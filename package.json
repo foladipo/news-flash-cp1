@@ -15,5 +15,9 @@
     "react"
   ],
   "author": "Folusho Oladipo",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "react": "^15.5.3",
+    "react-dom": "^15.5.3"
+  }
 }
