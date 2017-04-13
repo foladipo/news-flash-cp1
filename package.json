@@ -4,7 +4,7 @@
   "description": "A web app that retrieves news headlines and displays them in a list.",
   "main": "app.js",
   "scripts": {
-    "test": "mocha --require babel-register tests/*[sS]pec.js",
+    "test": "mocha --require babel-register tests/.setup.js tests/*[sS]pec.js",
     "build": "webpack"
   },
   "repository": {
