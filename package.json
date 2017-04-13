@@ -4,7 +4,7 @@
   "description": "A web app that retrieves news headlines and displays them in a list.",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha --require babel-register tests/*[sS]pec.js",
     "build": "webpack"
   },
   "repository": {
@@ -27,6 +27,10 @@
     "babel-loader": "^6.4.1",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
+    "babel-register": "^6.24.1",
+    "chai": "^3.5.0",
+    "chai-enzyme": "^0.6.1",
+    "cheerio": "^0.22.0",
     "css-loader": "^0.28.0",
     "enzyme": "^2.8.1",
     "eslint": "^3.19.0",
@@ -40,6 +44,7 @@
     "react": "^15.5.4",
     "react-addons-test-utils": "^15.5.1",
     "react-dom": "^15.5.4",
+    "react-test-renderer": "^15.5.4",
     "sass-loader": "^6.0.3",
     "style-loader": "^0.16.1",
     "webpack": "^2.3.3"
