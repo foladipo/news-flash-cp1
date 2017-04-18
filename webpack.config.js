@@ -2,7 +2,7 @@
 styling rules into a separate file. */
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-var extractCssToFile = new ExtractTextPlugin('styles/style.css');
+var extractCssToFile = new ExtractTextPlugin('stylesheets/style.css');
 
 var webpackConfig = {
   entry: './src/js/main.js',
@@ -16,7 +16,7 @@ var webpackConfig = {
       {
         // ES6 to ES5 conversion using Babel.
         test: /\.js$/,
-        exclude: /node_modules/,
+        exclude: /(node_modules|routes)/,
         loader: 'babel-loader'
       },
       {
