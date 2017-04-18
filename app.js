@@ -2,6 +2,8 @@ const express = require('express');
 const path = require('path');
 const logger = require('morgan');
 
+const isLoggedIn = false;
+
 // NOTE: On ALL routes, always, ALWAYS check that this user is logged in.
 // If not, redirect him/her to the home page.
 const index = require('./routes/index');
@@ -20,6 +22,18 @@ expressApp.set('views', path.join(__dirname, 'views'));
 expressApp.set('view engine', 'ejs');
 
 expressApp.use(logger('dev'));
+
+// Redirect all non-logged in users to the home page.
+// Otherwise, move on to the route they specified initially.
+// TODO: Add code such that after he/she logs in, a user is 
+// taken to the route they were going to before.
+expressApp.all('*', function(req, res, next) {
+  if (!isLoggedIn) {
+    res.redirect('/');
+  } else {
+    next();
+  }
+});
 
 // Respond to various routes. 404s are handled further down.
 expressApp.use('/', index);
