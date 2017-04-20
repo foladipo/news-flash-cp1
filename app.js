@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const logger = require('morgan');
+const cookieParser = require('cookie-parser');
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -18,6 +19,9 @@ expressApp.set('port', (process.env.PORT || 5000));
 // Set a dir to expose to public requests. Otherwise, a request to 
 // other dirs returns a 403.
 expressApp.use(express.static(path.join(__dirname, '/dist')));
+
+// Use the cookie-parser middleware to parse cookies.
+expressApp.use(cookieParser());
 
 // View engine setup.
 expressApp.set('views', path.join(__dirname, 'views'));
