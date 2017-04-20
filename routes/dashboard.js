@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
     pageTitle: 'Dashboard | NewsFlash',
     pageMessage: 'Your News Headlines'
   };
-  res.render('index', placeholderValues);
+  res.render('dashboard', placeholderValues);
 });
 
 module.exports = router;
