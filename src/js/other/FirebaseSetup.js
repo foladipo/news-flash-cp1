@@ -10,6 +10,5 @@ exports.initFirebase = () => {
       projectId: "news-flash-cp1"
   };
   firebase.initializeApp(config);
-  console.log('Firebase has been initialized.');
   return firebase;
 }
