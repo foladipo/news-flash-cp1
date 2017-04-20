@@ -3,10 +3,13 @@
   <head>
     <meta charset="utf-8">
     <title><%= pageTitle %></title>
-    <% include ./partials/header.ejs %>
+    <% include ./partials/head.ejs %>
   </head>
   <body>
     <h1 class="text-center"><%= pageMessage %></h1>
+    <div id="firebaseui-auth-container"></div>
     <% include ./partials/bottomBody.ejs %>
+    <script src="https://cdn.firebase.com/libs/firebaseui/1.0.1/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/1.0.1/firebaseui.css" />
   </body>
 </html>
