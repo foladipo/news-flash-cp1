@@ -1,8 +1,10 @@
 const express = require('express');
 const path = require('path');
 const logger = require('morgan');
+const dotenv = require('dotenv');
+dotenv.config();
 
-const isLoggedIn = false;
+const isLoggedIn = true;
 
 // NOTE: On ALL routes, always, ALWAYS check that this user is logged in.
 // If not, redirect him/her to the home page.
