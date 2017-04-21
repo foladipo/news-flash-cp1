@@ -3,9 +3,11 @@
   <head>
     <meta charset="utf-8">
     <title><%= pageTitle %></title>
-    <% include ./partials/header.ejs %>
+    <% include ./partials/head.ejs %>
   </head>
   <body>
     <h1 class="text-center"><%= pageMessage %></h1>
+    <button id="sign-out-btn">Sign out</button>
+    <% include ./partials/bottomBody.ejs %>
   </body>
 </html>
