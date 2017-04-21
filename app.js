@@ -2,13 +2,21 @@ const express = require('express');
 const path = require('path');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
+
 const dotenv = require('dotenv');
 dotenv.config();
 
-const isLoggedIn = true;
+const firebaseAdmin = require('firebase-admin');
+const firebaseAdminServiceAccount = require('./privateFiles/firebaseAdminServiceAccount.json');
+const firebaseApp = firebaseAdmin.initializeApp({
+  credential: firebaseAdmin.credential.cert(firebaseAdminServiceAccount),
+  databaseURL: 'https://news-flash-cp1.firebaseio.com'
+});
+const firebaseAuth = firebaseApp.auth();
+const firebaseDb = firebaseApp.database();
 
 // NOTE: On ALL routes, always, ALWAYS check that this user is logged in.
-// If not, redirect him/her to the home page.
+// If not, redirect him/her to the home page. This check is done further below.
 const index = require('./routes/index');
 const dashboard = require('./routes/dashboard');
 
@@ -34,10 +42,36 @@ expressApp.use(logger('dev'));
 // TODO: Add code such that after he/she logs in, a user is 
 // taken to the route they were going to before.
 expressApp.all('*', function(req, res, next) {
-  if (!isLoggedIn) {
-    res.redirect('/');
+  const idToken = req.cookies.idToken;
+  const urlPath = req.path;
+
+  // Check id the idToken is defined and has a value apart from 'null'.
+  // Then check if it is an authentic one i.e can be decoded.
+  if (idToken === undefined || idToken === 'null') {
+    // TODO: Maybe add some error message data or something?
+    if (urlPath === '/') {
+      next();
+    } else {
+      res.redirect('/');
+    }
   } else {
-    next();
+    firebaseAuth.verifyIdToken(idToken)
+      .then(function(decodedToken) {
+        var uid = decodedToken.uid;
+
+        if (urlPath === '/') {
+          res.redirect('/dashboard');
+        } else {
+          next();
+        }
+      }).catch(function(error) {
+        // TODO: Maybe add some error message data or something?
+        if (urlPath === '/') {
+          next();
+        } else {
+          res.redirect('/');
+        }
+      });
   }
 });
 
