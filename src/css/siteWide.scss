@@ -1,16 +1,19 @@
+$border-width: 2px;
+
 body {
-  border: 2px solid royalblue;
-  width: 97%;
+  border: $border-width solid royalblue;
+  width: 100%;
+  margin: 0;
 }
 
 #nav-container {
-  border: 2px solid red;
+  border: $border-width solid red;
 }
 
 #articles-container {
-  border: 2px solid green;
+  border: $border-width solid green;
 }
 
 #footer-container {
-  border: 2px solid blue;
+  border: $border-width solid blue;
 }
