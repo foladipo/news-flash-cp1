@@ -25,23 +25,18 @@ describe('The NewsFlash dashboard', () => {
 
 describe('The app container for the NewsFlash dashboard', () => {
   it('should have an HTML id of app-container', function () {
-    expect(wrapper.id).to.equal('app-container');
-  });
-});
-
-describe('The app container for the NewsFlash dashboard', () => {
-  it('should have an HTML class of col-mg-8', () => {
-    const hasColLg8 = wrapper.class.split(' ').contains('col-lg-8');
-    expect(hasColLg8).to.equal(true);
+    expect(wrapper).to.have.id('app-container');
   });
 
-  it('should have an HTML class of col-md-10', () => { 
-    const hasColMd10 = wrapper.class.split(' ').contains('col-md-10');
-    expect(hasColMd10).to.equal(true);
+  it('should have an HTML class of col-lg-8', () => {
+    expect(wrapper).to.have.className('col-lg-8');
   });
 
-  it('should have an HTML class of col-sm12', () => {
-    const hasColSm12 = wrapper.class.split(' ').contains('col-sm-12');
-    expect(hasColSm12).to.equal(true);
+  it('should have an HTML class of col-md-10', () => {
+    expect(wrapper).to.have.className('col-md-10');
+  });
+
+  it('should have an HTML class of col-sm-12', () => {
+    expect(wrapper).to.have.className('col-sm-12');
   });
 });
