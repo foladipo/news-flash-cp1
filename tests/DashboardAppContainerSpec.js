@@ -3,6 +3,9 @@ import chaiEnzyme from 'chai-enzyme';
 import React from 'react';
 import { shallow, mount, render } from 'enzyme';
 import DashboardAppContainer from '../src/js/views/DashboardAppContainer';
+import ArticlesContainer from '../src/js/views/ArticlesContainer';
+import FooterContainer from '../src/js/views/FooterContainer';
+import NavContainer from '../src/js/views/NavContainer';
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;
@@ -10,16 +13,21 @@ const expect = chai.expect;
 const wrapper = mount(<DashboardAppContainer />);
 
 describe('The NewsFlash dashboard', () => {
-  it('should have a navigation section', () => {
-    expect(wrapper.NavContainer).to.not.equal(undefined);
+  const children = wrapper.children();
+  it('should contain three (3) subcomponents only', () => {
+    expect(children).to.have.length(3);
   });
 
-  it('should have an articles section', () => {  
-    expect(wrapper.ArticlesContainer).to.not.equal(undefined);
+  it('should have a navigation section as the top component', () => {
+    expect(children.at(0).is(NavContainer)).to.be.true;
   });
 
-  it('should have a footer section', () => {  
-    expect(wrapper.FooterContainer).to.not.equal(undefined);
+  it('should have an articles section as the middle component', () => {
+    expect(children.at(1).is(ArticlesContainer)).to.be.true;
+  });
+
+  it('should have a footer section as the bottom component', () => {
+    expect(children.at(2).is(FooterContainer)).to.be.true;
   });
 });
 
