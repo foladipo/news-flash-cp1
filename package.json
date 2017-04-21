@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node app.js",
     "test": "mocha --require babel-register tests/.setup.js tests/*[sS]pec.js",
-    "build": "webpack"
+    "build": "webpack",
+    "build:watch": "webpack --watch"
   },
   "repository": {
     "type": "git",
