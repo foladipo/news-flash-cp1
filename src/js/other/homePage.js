@@ -3,24 +3,30 @@ if (window.location.pathname === '/') {
     if (document.readyState === 'interactive') {
       // initFirebase() is defined in initFirebase.js and imported with header.ejs.
       const firebase = initFirebase();
-      firebase.auth().onAuthStateChanged(user => {
-        const signInContainer = document.getElementById('sign-in-container');
-        const signedInContainer = document.getElementById('signed-in-container');
-        
+      firebase.auth().onAuthStateChanged(user => {        
         if (user) {
-          // signInContainer.hide();
-          // signedInContainer.show();
+          // TODO: Show a loading image while this Promise is being executed, and 
+          // hide it in then() or catch().
+          user.getToken(true)
+            .then(function(idToken) {
+            // Set a cookie about the sign in status that will be read by the server.
+              document.cookie = 'idToken=' + idToken;
 
-          // Set a cookie about the sign in status that can only be read by the server.
-          document.cookie = 'isSignedIn=true';
+              // TODO: Redirect the user to a) the dashboard or b) where he/she was 
+              // going before.
+              window.location.replace('/');
+            })
+            .catch(function(error) {
+              // Make the user sign in again.
+              // TODO: Show the user an error message.
+              document.cookie = 'idToken=null';
+              firebase.auth().signOut();
+          });
         } else {
-          // signedInContainer.hide();
-          // signInContainer.show();
-
-          document.cookie = 'isSignedIn=false';
+          document.cookie = 'idToken=null';
 
           const uiConfig = {
-            signInSuccessUrl: `${window.location.origin}/dashboard`,
+            signInSuccessUrl: window.location.origin,
             signInOptions: [
               firebase.auth.GoogleAuthProvider.PROVIDER_ID,
               firebase.auth.FacebookAuthProvider.PROVIDER_ID
