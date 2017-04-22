@@ -14,7 +14,7 @@ describe('The Article component', () => {
 });
 
 const testProps = {
-  id: 1001,
+  id: '1001',
   title: 'It is alive!',
   description: 'The dog is alive! Yes! And that halves the price of garri in the market.',
   url: 'https://foo.example.com',
@@ -25,7 +25,6 @@ const testProps = {
 
 const emptyProps = {};
 const firstWrapper = mount(<Article {...emptyProps} />);
-console.log('The set of props used to initialize Article is: \n\n' + JSON.stringify(testProps) + '\n');
 describe('When NOT initialized with any props, the Article component', () => {
   it('should NOT have an id prop', () => {
     expect(firstWrapper).to.not.have.prop('id');
@@ -43,12 +42,8 @@ describe('When NOT initialized with any props, the Article component', () => {
     expect(firstWrapper).to.not.have.prop('url');
   });
   
-  it('should have an imageUrl prop', () => {
-    expect(firstWrapper).to.have.prop('imageUrl');
-  });
-
-  it(`should have its imageUrl prop with the default value of /images/articlePlaceholderImg.png`, () => {
-    expect(firstWrapper).to.have.prop('imageUrl').deep.equal('/images/articlePlaceholderImg.png');
+  it('should NOT have an imageUrl prop', () => {
+    expect(firstWrapper).to.not.have.prop('imageUrl');
   });
   
   it('should NOT have an author prop', () => {
@@ -123,7 +118,7 @@ describe('When initialized with a correct set of props, the Article component', 
 
 describe('For the elements in an Article,', () => {
   it('all links should open in a new tab', () => {
-    expect(secondWrapper.find('a')).to.all.have.attr('target', '_blank');
+    expect(secondWrapper.find('a').every('[target="_blank"]')).to.equal(true);
   });
 
   it('the Article itself should have a row class', () => {
@@ -131,7 +126,6 @@ describe('For the elements in an Article,', () => {
   });
 
   it('the Article should have two direct children', () => {
-    expect(secondWrapper.children).to.have.length(2);
+    expect(secondWrapper.children()).to.have.length(2);
   });
 });
-
