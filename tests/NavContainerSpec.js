@@ -3,6 +3,7 @@ import chai from 'chai';
 import chaiEnzyme from 'chai-enzyme';
 import { mount, render, shallow } from 'enzyme';
 import NavContainer from '../src/js/views/NavContainer';
+import FetchArticlesFormContainer from '../src/js/views/FetchArticlesFormContainer';
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;
@@ -16,6 +17,7 @@ describe('NavContainer', () => {
 });
 
 describe('NavContainer', () => {
+  const children = wrapper.children();
   it('should have an id of nav-container', () => {
     expect(wrapper).to.have.id('nav-container');
   });
@@ -25,18 +27,26 @@ describe('NavContainer', () => {
   });
 
   it('should have two direct children', () => {
-    expect(wrapper.children()).to.have.length(2);
-  });
-
-  it('should have two direct children with class col-md-6', () => {
-    expect(wrapper.children().every('.col-md-6')).to.equal(true);
+    expect(children).to.have.length(2);
   });
 
   it('should have a first child with an id of nav-controls', () => {
-    expect(wrapper.childAt(0)).to.have.id('nav-controls');
+    expect(children.at(0)).to.have.id('nav-controls');
+  });
+
+  it('should have a first child with class col-md-6', () => {
+    expect(children.at(0)).to.have.className('col-md-6');
+  });
+
+  it('should have a second child that\'s an instance of FetchArticlesFormContainer', () => {
+    expect(children.at(1).is(FetchArticlesFormContainer)).to.equal(true);
   });
 
   it('should have a second child with an id of fetch-articles-form-container', () => {
-    expect(wrapper.childAt(1)).to.have.id('fetch-articles-form-container');
+    expect(children.at(1)).to.have.id('fetch-articles-form-container');
+  });
+
+  it('should have a first child with class col-md-6', () => {
+    expect(children.at(1)).to.have.className('col-md-6');
   });
 });
