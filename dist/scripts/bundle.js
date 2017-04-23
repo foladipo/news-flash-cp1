@@ -9941,7 +9941,7 @@ var Article = function (_React$Component) {
             _react2.default.createElement(
               'span',
               null,
-              description
+              title
             )
           ),
           _react2.default.createElement(
@@ -9991,6 +9991,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(17);
@@ -10000,6 +10002,16 @@ var _react2 = _interopRequireDefault(_react);
 var _Article = __webpack_require__(91);
 
 var _Article2 = _interopRequireDefault(_Article);
+
+var _ArticlesStore = __webpack_require__(208);
+
+var _ArticlesStore2 = _interopRequireDefault(_ArticlesStore);
+
+var _ArticlesActions = __webpack_require__(213);
+
+var ArticlesActions = _interopRequireWildcard(_ArticlesActions);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -10018,41 +10030,33 @@ var ArticlesContainer = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (ArticlesContainer.__proto__ || Object.getPrototypeOf(ArticlesContainer)).call(this));
 
     _this.state = {
-      articles: [{
-        id: '0001',
-        url: 'https://bbc.com',
-        title: 'Trump announces presidential ambition',
-        description: 'foo arldljaljajawfwwlwiwjwewewdffoo arldljaljajawfwwlwiwjwewewdffoo arldljaljajawfwwlwiwjwewewdffoo arldljaljajawfwwlwiwjwewewdffoo arldljaljajawfwwlwiwjwewewdffoo arldljaljajawfwwlwiwjwewewdffoo arldljaljajawfwwlwiwjwewewdffoo arldljaljajawfwwlwiwjwewewdffoo arldljaljajawfwwlwiwjwewewdffoo arldljaljajawfwwlwiwjwewewdffoo arldljaljajawfwwlwiwjwewewdf',
-        imageUrl: 'https://www.gstatic.com/kpui/social/fb_32x32.png',
-        author: 'Lagbaja Tamedu',
-        publishedAt: '2016-04-21T13:45:57Z'
-      }, {
-        id: '0002',
-        url: 'https://cnn.com',
-        title: 'Trump announces presidential ambition',
-        description: 'fcczzzxzxzxzxzoo arldljaljajawfwwlwiwjwewewdf',
-        imageUrl: 'https://www.gstatic.com/kpui/social/fb_32x32.png',
-        author: 'Lagbaja Tamedu',
-        publishedAt: '2016-04-21T13:45:57Z'
-      }, {
-        id: '0003',
-        url: 'https://techcrunch.com',
-        title: 'Trump announces presidential ambition',
-        description: 'ewewewewwewefoo arldljaljajawfwwlwiwjwewewdf',
-        imageUrl: 'https://www.gstatic.com/kpui/social/fb_32x32.png',
-        author: 'Lagbaja Tamedu',
-        publishedAt: '2016-04-21T13:45:57Z'
-      }]
+      articles: _ArticlesStore2.default.getAllArticles()
     };
     return _this;
   }
 
   _createClass(ArticlesContainer, [{
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      var _this2 = this;
+
+      _ArticlesStore2.default.on('newArticle', function () {
+        _this2.setState({
+          articles: _ArticlesStore2.default.getAllArticles()
+        });
+      });
+    }
+  }, {
+    key: 'fetchArticles',
+    value: function fetchArticles() {
+      ArticlesActions.startFetchArticles('cnn', 'top');
+    }
+  }, {
     key: 'render',
     value: function render() {
       var Articles = this.state.articles.map(function (article) {
         // Use the spread operator to extract each key in the article object.
-        return _react2.default.createElement(_Article2.default, article);
+        return _react2.default.createElement(_Article2.default, _extends({ key: Date.now() }, article));
       });
       return _react2.default.createElement(
         'div',
@@ -10061,6 +10065,11 @@ var ArticlesContainer = function (_React$Component) {
           'h1',
           null,
           'This is the articles container.'
+        ),
+        _react2.default.createElement(
+          'button',
+          { onClick: this.fetchArticles.bind(this), id: 'foobar' },
+          'Fetch Articles'
         ),
         _react2.default.createElement(
           'div',
@@ -10075,6 +10084,9 @@ var ArticlesContainer = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = ArticlesContainer;
+
+
+window.ArticleStore = _ArticlesStore2.default;
 
 /***/ }),
 /* 93 */
@@ -10147,6 +10159,10 @@ var _react = __webpack_require__(17);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _FetchArticlesFormContainer = __webpack_require__(215);
+
+var _FetchArticlesFormContainer2 = _interopRequireDefault(_FetchArticlesFormContainer);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -10170,11 +10186,8 @@ var NavContainer = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         { id: 'nav-container', className: 'row' },
-        _react2.default.createElement(
-          'h1',
-          null,
-          'This is the nav container.'
-        )
+        _react2.default.createElement('div', { id: 'nav-controls', className: 'col-md-6' }),
+        _react2.default.createElement(_FetchArticlesFormContainer2.default, null)
       );
     }
   }]);
@@ -23500,6 +23513,871 @@ module.exports = traverseAllChildren;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(27), __webpack_require__(0)))
+
+/***/ }),
+/* 200 */,
+/* 201 */,
+/* 202 */,
+/* 203 */,
+/* 204 */,
+/* 205 */,
+/* 206 */,
+/* 207 */,
+/* 208 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _events = __webpack_require__(209);
+
+var _Dispatcher = __webpack_require__(210);
+
+var _Dispatcher2 = _interopRequireDefault(_Dispatcher);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var ArticlesStore = function (_EventEmitter) {
+  _inherits(ArticlesStore, _EventEmitter);
+
+  function ArticlesStore() {
+    _classCallCheck(this, ArticlesStore);
+
+    var _this = _possibleConstructorReturn(this, (ArticlesStore.__proto__ || Object.getPrototypeOf(ArticlesStore)).call(this));
+
+    _this.articles = [{
+      id: '0001',
+      url: 'https://bbc.com',
+      title: 'Trump announces presidential ambition',
+      description: 'foo arldljaljajawfwwlwiwjwewewdffoo arldljaljajawfwwlwiwjwewewdffoo arldljaljajawfwwlwiwjwewewdffoo arldljaljajawfwwlwiwjwewewdffoo arldljaljajawfwwlwiwjwewewdffoo arldljaljajawfwwlwiwjwewewdffoo arldljaljajawfwwlwiwjwewewdffoo arldljaljajawfwwlwiwjwewewdffoo arldljaljajawfwwlwiwjwewewdffoo arldljaljajawfwwlwiwjwewewdffoo arldljaljajawfwwlwiwjwewewdf',
+      imageUrl: 'https://www.gstatic.com/kpui/social/fb_32x32.png',
+      author: 'Lagbaja Tamedu',
+      publishedAt: '2016-04-21T13:45:57Z'
+    }, {
+      id: '0002',
+      url: 'https://cnn.com',
+      title: 'Trump announces presidential ambition',
+      description: 'arldljaljajawfwwlwiwjwewewdfarldljaljajawfwwlwiwjwewewdfarldljaljajawfwwlwiwjwewewdffcczzzxzxzxzxzoo arldljaljajawfwwlwiwjwewewdf',
+      imageUrl: 'https://www.gstatic.com/kpui/social/fb_32x32.png',
+      author: 'Lagbaja Tamedu',
+      publishedAt: '2016-04-21T13:45:57Z'
+    }, {
+      id: '0003',
+      url: 'https://techcrunch.com',
+      title: 'Trump announces presidential ambition',
+      description: 'ewewewewwewefoo arldljaljajawfwwlwiwjwewewdf',
+      imageUrl: 'https://www.gstatic.com/kpui/social/fb_32x32.png',
+      author: 'Lagbaja Tamedu',
+      publishedAt: '2016-04-21T13:45:57Z'
+    }];
+    return _this;
+  }
+
+  _createClass(ArticlesStore, [{
+    key: 'handleAction',
+    value: function handleAction(action) {
+      console.log('Got an action', action);
+    }
+  }, {
+    key: 'setArticle',
+    value: function setArticle(title, description) {
+      this.articles.push({
+        id: Date.now(),
+        title: title,
+        description: description,
+        url: 'google.com',
+        imageUrl: 'example.com',
+        author: 'Magnifico',
+        publishedAt: 'Yesterday'
+      });
+
+      this.emit('newArticle');
+    }
+  }, {
+    key: 'getAllArticles',
+    value: function getAllArticles() {
+      return this.articles;
+    }
+  }]);
+
+  return ArticlesStore;
+}(_events.EventEmitter);
+
+var articleStore = new ArticlesStore();
+_Dispatcher2.default.register(articleStore.handleAction.bind(undefined));
+window.dispatcher = _Dispatcher2.default;
+
+exports.default = articleStore;
+
+/***/ }),
+/* 209 */
+/***/ (function(module, exports) {
+
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+function EventEmitter() {
+  this._events = this._events || {};
+  this._maxListeners = this._maxListeners || undefined;
+}
+module.exports = EventEmitter;
+
+// Backwards-compat with node 0.10.x
+EventEmitter.EventEmitter = EventEmitter;
+
+EventEmitter.prototype._events = undefined;
+EventEmitter.prototype._maxListeners = undefined;
+
+// By default EventEmitters will print a warning if more than 10 listeners are
+// added to it. This is a useful default which helps finding memory leaks.
+EventEmitter.defaultMaxListeners = 10;
+
+// Obviously not all Emitters should be limited to 10. This function allows
+// that to be increased. Set to zero for unlimited.
+EventEmitter.prototype.setMaxListeners = function(n) {
+  if (!isNumber(n) || n < 0 || isNaN(n))
+    throw TypeError('n must be a positive number');
+  this._maxListeners = n;
+  return this;
+};
+
+EventEmitter.prototype.emit = function(type) {
+  var er, handler, len, args, i, listeners;
+
+  if (!this._events)
+    this._events = {};
+
+  // If there is no 'error' event listener then throw.
+  if (type === 'error') {
+    if (!this._events.error ||
+        (isObject(this._events.error) && !this._events.error.length)) {
+      er = arguments[1];
+      if (er instanceof Error) {
+        throw er; // Unhandled 'error' event
+      } else {
+        // At least give some kind of context to the user
+        var err = new Error('Uncaught, unspecified "error" event. (' + er + ')');
+        err.context = er;
+        throw err;
+      }
+    }
+  }
+
+  handler = this._events[type];
+
+  if (isUndefined(handler))
+    return false;
+
+  if (isFunction(handler)) {
+    switch (arguments.length) {
+      // fast cases
+      case 1:
+        handler.call(this);
+        break;
+      case 2:
+        handler.call(this, arguments[1]);
+        break;
+      case 3:
+        handler.call(this, arguments[1], arguments[2]);
+        break;
+      // slower
+      default:
+        args = Array.prototype.slice.call(arguments, 1);
+        handler.apply(this, args);
+    }
+  } else if (isObject(handler)) {
+    args = Array.prototype.slice.call(arguments, 1);
+    listeners = handler.slice();
+    len = listeners.length;
+    for (i = 0; i < len; i++)
+      listeners[i].apply(this, args);
+  }
+
+  return true;
+};
+
+EventEmitter.prototype.addListener = function(type, listener) {
+  var m;
+
+  if (!isFunction(listener))
+    throw TypeError('listener must be a function');
+
+  if (!this._events)
+    this._events = {};
+
+  // To avoid recursion in the case that type === "newListener"! Before
+  // adding it to the listeners, first emit "newListener".
+  if (this._events.newListener)
+    this.emit('newListener', type,
+              isFunction(listener.listener) ?
+              listener.listener : listener);
+
+  if (!this._events[type])
+    // Optimize the case of one listener. Don't need the extra array object.
+    this._events[type] = listener;
+  else if (isObject(this._events[type]))
+    // If we've already got an array, just append.
+    this._events[type].push(listener);
+  else
+    // Adding the second element, need to change to array.
+    this._events[type] = [this._events[type], listener];
+
+  // Check for listener leak
+  if (isObject(this._events[type]) && !this._events[type].warned) {
+    if (!isUndefined(this._maxListeners)) {
+      m = this._maxListeners;
+    } else {
+      m = EventEmitter.defaultMaxListeners;
+    }
+
+    if (m && m > 0 && this._events[type].length > m) {
+      this._events[type].warned = true;
+      console.error('(node) warning: possible EventEmitter memory ' +
+                    'leak detected. %d listeners added. ' +
+                    'Use emitter.setMaxListeners() to increase limit.',
+                    this._events[type].length);
+      if (typeof console.trace === 'function') {
+        // not supported in IE 10
+        console.trace();
+      }
+    }
+  }
+
+  return this;
+};
+
+EventEmitter.prototype.on = EventEmitter.prototype.addListener;
+
+EventEmitter.prototype.once = function(type, listener) {
+  if (!isFunction(listener))
+    throw TypeError('listener must be a function');
+
+  var fired = false;
+
+  function g() {
+    this.removeListener(type, g);
+
+    if (!fired) {
+      fired = true;
+      listener.apply(this, arguments);
+    }
+  }
+
+  g.listener = listener;
+  this.on(type, g);
+
+  return this;
+};
+
+// emits a 'removeListener' event iff the listener was removed
+EventEmitter.prototype.removeListener = function(type, listener) {
+  var list, position, length, i;
+
+  if (!isFunction(listener))
+    throw TypeError('listener must be a function');
+
+  if (!this._events || !this._events[type])
+    return this;
+
+  list = this._events[type];
+  length = list.length;
+  position = -1;
+
+  if (list === listener ||
+      (isFunction(list.listener) && list.listener === listener)) {
+    delete this._events[type];
+    if (this._events.removeListener)
+      this.emit('removeListener', type, listener);
+
+  } else if (isObject(list)) {
+    for (i = length; i-- > 0;) {
+      if (list[i] === listener ||
+          (list[i].listener && list[i].listener === listener)) {
+        position = i;
+        break;
+      }
+    }
+
+    if (position < 0)
+      return this;
+
+    if (list.length === 1) {
+      list.length = 0;
+      delete this._events[type];
+    } else {
+      list.splice(position, 1);
+    }
+
+    if (this._events.removeListener)
+      this.emit('removeListener', type, listener);
+  }
+
+  return this;
+};
+
+EventEmitter.prototype.removeAllListeners = function(type) {
+  var key, listeners;
+
+  if (!this._events)
+    return this;
+
+  // not listening for removeListener, no need to emit
+  if (!this._events.removeListener) {
+    if (arguments.length === 0)
+      this._events = {};
+    else if (this._events[type])
+      delete this._events[type];
+    return this;
+  }
+
+  // emit removeListener for all listeners on all events
+  if (arguments.length === 0) {
+    for (key in this._events) {
+      if (key === 'removeListener') continue;
+      this.removeAllListeners(key);
+    }
+    this.removeAllListeners('removeListener');
+    this._events = {};
+    return this;
+  }
+
+  listeners = this._events[type];
+
+  if (isFunction(listeners)) {
+    this.removeListener(type, listeners);
+  } else if (listeners) {
+    // LIFO order
+    while (listeners.length)
+      this.removeListener(type, listeners[listeners.length - 1]);
+  }
+  delete this._events[type];
+
+  return this;
+};
+
+EventEmitter.prototype.listeners = function(type) {
+  var ret;
+  if (!this._events || !this._events[type])
+    ret = [];
+  else if (isFunction(this._events[type]))
+    ret = [this._events[type]];
+  else
+    ret = this._events[type].slice();
+  return ret;
+};
+
+EventEmitter.prototype.listenerCount = function(type) {
+  if (this._events) {
+    var evlistener = this._events[type];
+
+    if (isFunction(evlistener))
+      return 1;
+    else if (evlistener)
+      return evlistener.length;
+  }
+  return 0;
+};
+
+EventEmitter.listenerCount = function(emitter, type) {
+  return emitter.listenerCount(type);
+};
+
+function isFunction(arg) {
+  return typeof arg === 'function';
+}
+
+function isNumber(arg) {
+  return typeof arg === 'number';
+}
+
+function isObject(arg) {
+  return typeof arg === 'object' && arg !== null;
+}
+
+function isUndefined(arg) {
+  return arg === void 0;
+}
+
+
+/***/ }),
+/* 210 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _flux = __webpack_require__(211);
+
+exports.default = new _flux.Dispatcher();
+
+/***/ }),
+/* 211 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * Copyright (c) 2014-2015, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ */
+
+module.exports.Dispatcher = __webpack_require__(212);
+
+
+/***/ }),
+/* 212 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {/**
+ * Copyright (c) 2014-2015, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ * @providesModule Dispatcher
+ * 
+ * @preventMunge
+ */
+
+
+
+exports.__esModule = true;
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+var invariant = __webpack_require__(1);
+
+var _prefix = 'ID_';
+
+/**
+ * Dispatcher is used to broadcast payloads to registered callbacks. This is
+ * different from generic pub-sub systems in two ways:
+ *
+ *   1) Callbacks are not subscribed to particular events. Every payload is
+ *      dispatched to every registered callback.
+ *   2) Callbacks can be deferred in whole or part until other callbacks have
+ *      been executed.
+ *
+ * For example, consider this hypothetical flight destination form, which
+ * selects a default city when a country is selected:
+ *
+ *   var flightDispatcher = new Dispatcher();
+ *
+ *   // Keeps track of which country is selected
+ *   var CountryStore = {country: null};
+ *
+ *   // Keeps track of which city is selected
+ *   var CityStore = {city: null};
+ *
+ *   // Keeps track of the base flight price of the selected city
+ *   var FlightPriceStore = {price: null}
+ *
+ * When a user changes the selected city, we dispatch the payload:
+ *
+ *   flightDispatcher.dispatch({
+ *     actionType: 'city-update',
+ *     selectedCity: 'paris'
+ *   });
+ *
+ * This payload is digested by `CityStore`:
+ *
+ *   flightDispatcher.register(function(payload) {
+ *     if (payload.actionType === 'city-update') {
+ *       CityStore.city = payload.selectedCity;
+ *     }
+ *   });
+ *
+ * When the user selects a country, we dispatch the payload:
+ *
+ *   flightDispatcher.dispatch({
+ *     actionType: 'country-update',
+ *     selectedCountry: 'australia'
+ *   });
+ *
+ * This payload is digested by both stores:
+ *
+ *   CountryStore.dispatchToken = flightDispatcher.register(function(payload) {
+ *     if (payload.actionType === 'country-update') {
+ *       CountryStore.country = payload.selectedCountry;
+ *     }
+ *   });
+ *
+ * When the callback to update `CountryStore` is registered, we save a reference
+ * to the returned token. Using this token with `waitFor()`, we can guarantee
+ * that `CountryStore` is updated before the callback that updates `CityStore`
+ * needs to query its data.
+ *
+ *   CityStore.dispatchToken = flightDispatcher.register(function(payload) {
+ *     if (payload.actionType === 'country-update') {
+ *       // `CountryStore.country` may not be updated.
+ *       flightDispatcher.waitFor([CountryStore.dispatchToken]);
+ *       // `CountryStore.country` is now guaranteed to be updated.
+ *
+ *       // Select the default city for the new country
+ *       CityStore.city = getDefaultCityForCountry(CountryStore.country);
+ *     }
+ *   });
+ *
+ * The usage of `waitFor()` can be chained, for example:
+ *
+ *   FlightPriceStore.dispatchToken =
+ *     flightDispatcher.register(function(payload) {
+ *       switch (payload.actionType) {
+ *         case 'country-update':
+ *         case 'city-update':
+ *           flightDispatcher.waitFor([CityStore.dispatchToken]);
+ *           FlightPriceStore.price =
+ *             getFlightPriceStore(CountryStore.country, CityStore.city);
+ *           break;
+ *     }
+ *   });
+ *
+ * The `country-update` payload will be guaranteed to invoke the stores'
+ * registered callbacks in order: `CountryStore`, `CityStore`, then
+ * `FlightPriceStore`.
+ */
+
+var Dispatcher = (function () {
+  function Dispatcher() {
+    _classCallCheck(this, Dispatcher);
+
+    this._callbacks = {};
+    this._isDispatching = false;
+    this._isHandled = {};
+    this._isPending = {};
+    this._lastID = 1;
+  }
+
+  /**
+   * Registers a callback to be invoked with every dispatched payload. Returns
+   * a token that can be used with `waitFor()`.
+   */
+
+  Dispatcher.prototype.register = function register(callback) {
+    var id = _prefix + this._lastID++;
+    this._callbacks[id] = callback;
+    return id;
+  };
+
+  /**
+   * Removes a callback based on its token.
+   */
+
+  Dispatcher.prototype.unregister = function unregister(id) {
+    !this._callbacks[id] ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Dispatcher.unregister(...): `%s` does not map to a registered callback.', id) : invariant(false) : undefined;
+    delete this._callbacks[id];
+  };
+
+  /**
+   * Waits for the callbacks specified to be invoked before continuing execution
+   * of the current callback. This method should only be used by a callback in
+   * response to a dispatched payload.
+   */
+
+  Dispatcher.prototype.waitFor = function waitFor(ids) {
+    !this._isDispatching ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Dispatcher.waitFor(...): Must be invoked while dispatching.') : invariant(false) : undefined;
+    for (var ii = 0; ii < ids.length; ii++) {
+      var id = ids[ii];
+      if (this._isPending[id]) {
+        !this._isHandled[id] ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Dispatcher.waitFor(...): Circular dependency detected while ' + 'waiting for `%s`.', id) : invariant(false) : undefined;
+        continue;
+      }
+      !this._callbacks[id] ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Dispatcher.waitFor(...): `%s` does not map to a registered callback.', id) : invariant(false) : undefined;
+      this._invokeCallback(id);
+    }
+  };
+
+  /**
+   * Dispatches a payload to all registered callbacks.
+   */
+
+  Dispatcher.prototype.dispatch = function dispatch(payload) {
+    !!this._isDispatching ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Dispatch.dispatch(...): Cannot dispatch in the middle of a dispatch.') : invariant(false) : undefined;
+    this._startDispatching(payload);
+    try {
+      for (var id in this._callbacks) {
+        if (this._isPending[id]) {
+          continue;
+        }
+        this._invokeCallback(id);
+      }
+    } finally {
+      this._stopDispatching();
+    }
+  };
+
+  /**
+   * Is this Dispatcher currently dispatching.
+   */
+
+  Dispatcher.prototype.isDispatching = function isDispatching() {
+    return this._isDispatching;
+  };
+
+  /**
+   * Call the callback stored with the given id. Also do some internal
+   * bookkeeping.
+   *
+   * @internal
+   */
+
+  Dispatcher.prototype._invokeCallback = function _invokeCallback(id) {
+    this._isPending[id] = true;
+    this._callbacks[id](this._pendingPayload);
+    this._isHandled[id] = true;
+  };
+
+  /**
+   * Set up bookkeeping needed when dispatching.
+   *
+   * @internal
+   */
+
+  Dispatcher.prototype._startDispatching = function _startDispatching(payload) {
+    for (var id in this._callbacks) {
+      this._isPending[id] = false;
+      this._isHandled[id] = false;
+    }
+    this._pendingPayload = payload;
+    this._isDispatching = true;
+  };
+
+  /**
+   * Clear bookkeeping used for dispatching.
+   *
+   * @internal
+   */
+
+  Dispatcher.prototype._stopDispatching = function _stopDispatching() {
+    delete this._pendingPayload;
+    this._isDispatching = false;
+  };
+
+  return Dispatcher;
+})();
+
+module.exports = Dispatcher;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 213 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.startFetchArticles = startFetchArticles;
+exports.errorFetchArticles = errorFetchArticles;
+exports.successFetchArticles = successFetchArticles;
+
+var _Dispatcher = __webpack_require__(210);
+
+var _Dispatcher2 = _interopRequireDefault(_Dispatcher);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function startFetchArticles(source, sort) {
+  // Tell stores that we've started fetching articles. Then, fetch the articles 
+  // and call errorFetchArticles() or successFetchArticles() based on the failure 
+  // or otherwise of the fetch attempt.
+  _Dispatcher2.default.dispatch({
+    type: 'START_FETCH_ARTICLES',
+    message: 'Fetching articles... Please wait...',
+    sort: sort,
+    source: source
+  });
+}
+
+function errorFetchArticles() {}
+
+function successFetchArticles() {}
+
+/***/ }),
+/* 214 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getAllNewsSources = getAllNewsSources;
+exports.getAvailableSortForNewsSource = getAvailableSortForNewsSource;
+function getAllNewsSources() {
+  var newsSources = [{
+    name: 'CNN',
+    id: 'cnn'
+  }, {
+    name: 'BBC',
+    id: 'bbc'
+  }, {
+    name: 'Al Jazeera',
+    id: 'aljazeera'
+  }, {
+    name: 'TechCrunch',
+    id: 'techcrunch'
+  }, {
+    name: 'The International Daily Tribune',
+    id: 'daily-tribune'
+  }];
+  return newsSources;
+}
+
+function getAvailableSortForNewsSource(source) {
+  var availableSortTypes = [];
+  switch (source) {
+    case 'cnn':
+      availableSortTypes = ['top'];
+      break;
+
+    case 'bbc':
+      availableSortTypes = ['top', 'popular'];
+      break;
+
+    case 'aljazeera':
+      availableSortTypes = ['popular'];
+      break;
+
+    default:
+      availableSortTypes = ['latest'];
+  }
+
+  return availableSortTypes;
+}
+
+/***/ }),
+/* 215 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(17);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Utilities = __webpack_require__(214);
+
+var Utilities = _interopRequireWildcard(_Utilities);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var FetchArticlesFormContainer = function (_React$Component) {
+  _inherits(FetchArticlesFormContainer, _React$Component);
+
+  function FetchArticlesFormContainer(props) {
+    _classCallCheck(this, FetchArticlesFormContainer);
+
+    var _this = _possibleConstructorReturn(this, (FetchArticlesFormContainer.__proto__ || Object.getPrototypeOf(FetchArticlesFormContainer)).call(this, props));
+
+    _this.state = {
+      newsSources: Utilities.getAllNewsSources()
+    };
+    return _this;
+  }
+
+  _createClass(FetchArticlesFormContainer, [{
+    key: 'render',
+    value: function render() {
+      var newsSourcesOptions = this.state.newsSources.map(function (source) {
+        return _react2.default.createElement(
+          'option',
+          { value: source.id },
+          source.name
+        );
+      });
+
+      return _react2.default.createElement(
+        'div',
+        { id: 'fetch-articles-form-container', className: 'col-md-6' },
+        _react2.default.createElement(
+          'div',
+          { id: 'choose-news-source-container', className: 'col-xs-4' },
+          _react2.default.createElement(
+            'select',
+            { id: 'choose-news-source', className: 'form-control' },
+            newsSourcesOptions
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { id: 'choose-sort-container', className: 'col-xs-4' },
+          _react2.default.createElement('select', { id: 'choose-sort', className: 'form-control', disabled: true })
+        ),
+        _react2.default.createElement(
+          'div',
+          { id: 'fetch-articles-btn-container', className: 'col-xs-4' },
+          _react2.default.createElement(
+            'button',
+            { id: 'fetch-articles-btn', className: 'btn btn-primary', disabled: true },
+            'Get News'
+          )
+        )
+      );
+    }
+  }]);
+
+  return FetchArticlesFormContainer;
+}(_react2.default.Component);
+
+exports.default = FetchArticlesFormContainer;
 
 /***/ })
 /******/ ]);
