@@ -77,12 +77,12 @@ export default class FetchArticlesFormContainer extends React.Component {
   }
 
   render() {
-    const newsSourcesOptions = this.state.newsSources.map(source => {
-      return <option value={source.id}>{source.name}</option>;
+    const newsSourcesOptions = this.state.newsSources.map((source, index) => {
+      return <option key={index} value={source.id}>{source.name}</option>;
     });
 
-    const sortOptions = this.state.sorts.map(oneSort => {
-      return <option value={oneSort}>{oneSort[0].toUpperCase() + oneSort.substr(1)}</option>
+    const sortOptions = this.state.sorts.map((oneSort, index) => {
+      return <option key={index} value={oneSort}>{oneSort[0].toUpperCase() + oneSort.substr(1)}</option>
     });
 
     return (
