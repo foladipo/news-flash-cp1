@@ -24,14 +24,13 @@ export default class ArticlesContainer extends React.Component {
   }
 
   render() {
-    const Articles = this.state.articles.map(article => {
+    const Articles = this.state.articles.map((article, index) => {
       // Use the spread operator to extract each key in the article object.
-      return <Article key={article.id} {...article} />;
+      return <Article key={index} {...article} />;
     });
     return (
       <div id='articles-container' className='row'>
         <h1>This is the articles container.</h1>
-        <button onClick={this.fetchArticles.bind(this)} id='foobar'>Fetch Articles</button>
         <div>{Articles}</div>
       </div>
     );
