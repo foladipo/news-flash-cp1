@@ -20,6 +20,10 @@ describe('ArrivalMessage', () => {
     expect(wrapper).to.have.className('row');
   });
 
+  it('should NOT have a class of hidden when it is first rendered', () => {
+    expect(wrapper).to.not.have('hidden');
+  });
+
   it('should have exactly two (2) direct children', () => {
     expect(children).to.have.length(2);
   });
@@ -62,5 +66,17 @@ describe('ArrivalMessage', () => {
     'the form in the navigation bar.';
   it(`should have a second child that has text of '${welcomeText}'`, () => {
     expect(secondChild.render().text()).to.equal(welcomeText);
+  });
+});
+
+describe('When its state is set to something new, ArrivalMessage', () => {
+  // The aim of this test is to simulate how ArrivalMessage will react when 
+  // its Store changes, in turn due to an appropriate Action.
+  const newState = {
+    htmlClasses: ['row', 'hidden']
+  };
+  wrapper.setState(newState);
+  it(`should have class hidden when ArrivalMessage.state.htmlClasses is set to ${newState.htmlClasses}`, () => {
+    expect(wrapper).to.have.className('hidden');
   });
 });
