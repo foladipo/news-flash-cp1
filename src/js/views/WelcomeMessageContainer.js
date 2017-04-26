@@ -1,4 +1,5 @@
 import React from 'react';
+import WelcomeMessageContainerStore from '../stores/WelcomeMessageContainerStore';
 
 export default class WelcomeMessageContainer extends React.Component {
   constructor(props) {
@@ -8,7 +9,13 @@ export default class WelcomeMessageContainer extends React.Component {
     };
   }
 
-  
+  componentWillMount() {
+    WelcomeMessageContainerStore.on('loadArticles', () => {
+      this.setState({
+        htmlClasses: WelcomeMessageContainerStore.htmlClasses
+      });
+    });
+  }
 
   render() {
     const currentHtmlClasses = this.state.htmlClasses.join(' ');
