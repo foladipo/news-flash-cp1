@@ -21,7 +21,7 @@ describe('AppStatusContainer', () => {
   });
 
   it('should NOT have a class of hidden when it is first rendered', () => {
-    expect(wrapper).to.not.have('hidden');
+    expect(wrapper).to.not.have.className('hidden');
   });
 
   it('should have exactly three (3) direct children', () => {
@@ -30,11 +30,19 @@ describe('AppStatusContainer', () => {
 
   const firstChild = children.at(0);
   it('should have a first child that is an img', () => {
-    expect(secondChild.is('img')).to.equal(true);
+    expect(firstChild.is('img')).to.equal(true);
   });
 
   it('should have a first child that is an img with "src=/img/welcome-img.png"', () => {
-    expect(secondChild).to.have.attr('src', '/img/welcome-img.png');
+    expect(firstChild).to.have.attr('src', '/img/welcome-img.png');
+  });
+
+  it('should have a first child that has a class of img-responsive', () => {
+    expect(firstChild).to.have.className('img-responsive');
+  });
+
+  it('should have a first child that has a class of center-block', () => {
+    expect(firstChild).to.have.className('center-block');
   });
 
   const secondChild = children.at(1);
@@ -88,8 +96,9 @@ describe('When its state is set to something new, AppStatusContainer', () => {
   const newState = {
     htmlClasses: ['row', 'hidden']
   };
-  wrapper.setState(newState);
+  const newWrapper = mount(<AppStatusContainer />);
+  newWrapper.setState(newState);
   it(`should have class hidden when AppStatusContainer.state.htmlClasses is set to ${newState.htmlClasses}`, () => {
-    expect(wrapper).to.have.className('hidden');
+    expect(newWrapper).to.have.className('hidden');
   });
 });
