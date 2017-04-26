@@ -11,6 +11,7 @@ import * as homePage from './other/homePage';
 import * as utilityFunctions from './other/utilityFunctions';
 
 const initFirebase = FirebaseSetup.initFirebase;
+
 // Expose this method as a global method.
 window.initFirebase = initFirebase;
 

@@ -12,7 +12,7 @@ if (window.location.pathname === '/') {
           // hide it in then() or catch().
           user.getToken()
             .then(function(idToken) {
-            // Set a cookie about the sign in status that will be read by the server.
+              // Set a cookie about the sign in status that will be read by the server.
               document.cookie = 'idToken=' + idToken;
 
               // TODO: Redirect the user to a) the dashboard or b) where he/she was 
