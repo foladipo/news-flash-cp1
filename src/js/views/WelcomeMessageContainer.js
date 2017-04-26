@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class AppStatusContainer extends React.Component {
+export default class WelcomeMessageContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
