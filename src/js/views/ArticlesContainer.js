@@ -2,6 +2,7 @@ import React from 'react';
 import Article from './Article';
 import ArticlesStore from '../stores/ArticlesStore';
 import * as ArticlesActions from '../actions/ArticlesActions';
+import WelcomeMessageContainer from './WelcomeMessageContainer';
 
 export default class ArticlesContainer extends React.Component {
   constructor() {
@@ -29,12 +30,10 @@ export default class ArticlesContainer extends React.Component {
       return <Article key={index} {...article} />;
     });
     return (
-      <div id='articles-container' className='row'>
-        <h1>This is the articles container.</h1>
+      <div id='articles-container' className='row container-fluid'>
+        <WelcomeMessageContainer />
         <div>{Articles}</div>
       </div>
     );
   }
 }
-
-window.ArticleStore = ArticlesStore;
