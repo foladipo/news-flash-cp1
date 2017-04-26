@@ -24,7 +24,6 @@ export function startFetchArticles(sourceId, sort) {
 }
 
 export function errorFetchArticles(error) {
-  console.log(error);
   dispatcher.dispatch({
     type: 'ERROR_FETCH_ARTICLES',
     message: 'Failed to load news articles. Please try again.',
@@ -35,7 +34,6 @@ export function errorFetchArticles(error) {
 export function successFetchArticles(response) {
   // The data object contains other meta data about the request e.g the sortBy used.
   const data = response.data;
-  console.log(response);
   dispatcher.dispatch({
     type: 'SUCCESS_FETCH_ARTICLES',
     data
@@ -58,5 +56,3 @@ export function sortChange(sort) {
     sort
   });
 }
-
-window.startFetchArticles = startFetchArticles;

@@ -8,6 +8,8 @@ export default class AppStatusContainer extends React.Component {
     };
   }
 
+  
+
   render() {
     const currentHtmlClasses = this.state.htmlClasses.join(' ');
     return (
