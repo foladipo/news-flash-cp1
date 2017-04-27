@@ -50,7 +50,7 @@ export default class AppStatusContainer extends React.Component {
       <div id='app-status-container' className={showAppStatus}>
         <img src='/img/loading-img.png' id='loading-articles' className={'img-responsive center-block ' + showLoadingImg}/>
         <img src='/img/error-loading-img.png' id='error-loading-articles' className={'img-responsive center-block ' + showErrorImg}/>
-        <h3>{statusMsg}</h3>
+        <h3 className='text-center'>{statusMsg}</h3>
       </div>
     );
   }
