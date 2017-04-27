@@ -77,8 +77,12 @@ describe('AppStatusContainer', () => {
   });
 
   const thirdChild = children.at(2);
-  it('should have third child that is an h3', () => {
+  it('should have a third child that is an h3', () => {
     expect(thirdChild.is('h3')).to.equal(true);
+  });
+
+  it('should have third child that has class text-center', () => {
+    expect(thirdChild).to.have.className('text-center');
   });
 
   it('should have a third child that contains no text by default', () => {
