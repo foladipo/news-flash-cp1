@@ -1,3 +1,5 @@
+[![Coverage Status](https://coveralls.io/repos/github/andela-foladipo/news-flash-cp1/badge.svg?branch=develop)](https://coveralls.io/github/andela-foladipo/news-flash-cp1?branch=develop)
+
 # Welcome
 
 Welcome to News Flash! This project gives you access to high quality, cutting edge news from 
