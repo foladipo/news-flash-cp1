@@ -10,10 +10,10 @@ export default class Article extends React.Component {
     
     return (
       <div className='row'>
-        <div className='col-md-2'>
-          <a href={url} target='_blank'><img src={imageUrl}/></a>
+        <div className='col-xs-4'>
+          <a href={url} target='_blank'><img src={imageUrl} className='img-responsive'/></a>
         </div>
-        <div className='col-md-10'>
+        <div className='col-xs-8'>
           <a href={url} target='_blank'><span>{title}</span></a>
           <p>{description}</p>
           <div>
