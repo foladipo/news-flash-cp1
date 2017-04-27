@@ -17,20 +17,24 @@ This project uses a host of modern technologies. The core ones are:
 - ECMAScript 6: Also known as ES2015, this is the newest version of Javascript with 
 next-generation features like arrow functions, generators, enhanced object literals, 
 spread operators and more. See [this link](https://en.wikipedia.org/wiki/ECMAScript) for details.
+
 - [NodeJS](https://nodejs.org): NodeJS is a server-side JavaScript runtime engine built 
 on Chrome's V8 JavaScript engine. It is lightweight, efficient and greatly used in building 
 web apps. Please visit [this link](https://nodejs.org) for more details.
+
 - [React](https://facebook.github.io/react/) and [ReactDOM](https://facebook.github.io/react/docs/react-dom.html): 
 These were developed by Facebook and are used for building web pages that are structured as a collection of 
 components. These components are kept as independent as possible. See [this link](https://facebook.github.io/react/).
+
 - [The Flux architecture](https://facebook.github.io/flux/): This is a design architecture for building stable 
 web apps with, among other things, a unidirectional flow of data. See [this link](https://facebook.github.io/flux/) 
 for details.
+
 - [Firebase](https://firebase.google.com/): This project makes use of various components of 
 [the Firebase suite](https://firebase.google.com/), including Firebase Authentication.
 
-
 ## Installation and setup
+
 Here are the steps you need to follow to run this project on your computer:
 - **Install NodeJS**: You may visit [this link](https://nodejs.org/en/download/) for complete 
 instructions on installing NodeJS on your computer.
@@ -77,6 +81,7 @@ npm start
 - **Open a web browser of your choice and visit `http://localhost:5000`. Voila! It's alive!**
 
 ## FAQ
+
 - **What if I want to use another port?**
 That's easy. In the root of the project. create a file named `.env` and add the following line to it:
 
@@ -91,6 +96,7 @@ PORT=8080
 ```
 
 ## License
+
 This project is authored by [Folusho Oladipo](https://google.com/search?q=Folusho+Oladipo) and is licensed 
 for your use, modification and distribution under [the MIT license](https://en.wikipedia.org/wiki/MIT_License). 
 Feel free to hack, extend and share it!
