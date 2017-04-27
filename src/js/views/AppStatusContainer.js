@@ -1,12 +1,27 @@
 import React from 'react';
 
 export default class AppStatusContainer extends React.Component {
+  constructor(props) {
+    super(props);
+    // this.state.isSuccessFetch is set to true so that this component is hidden by default.
+    this.state = {
+      isFetching: false,
+      isErrorFetch: false,
+      isSuccessFetch: true
+    };
+  }
+
   render() {
+    const showAppStatus = this.state.isSuccessFetch ? 'hidden' : '';
+    const showLoadingImg = this.state.isFetching ? '' : 'hidden';
+    const showErrorImg = this.state.isErrorFetch ? '' : 'hidden';
+    const statusMsg = this.state.message || '';
+
     return (
-      <div id='app-status-container' className='hidden'>
-        <img src='/img/loading-img.png' id='loading-articles' className='img-responsive center-block'/>
-        <img src='/img/error-loading-img.png' id='error-loading-articles' className='img-responsive center-block hidden'/>
-        <h3></h3>
+      <div id='app-status-container' className={showAppStatus}>
+        <img src='/img/loading-img.png' id='loading-articles' className={'img-responsive center-block ' + showLoadingImg}/>
+        <img src='/img/error-loading-img.png' id='error-loading-articles' className={'img-responsive center-block ' + showErrorImg}/>
+        <h3>{statusMsg}</h3>
       </div>
     );
   }
