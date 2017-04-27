@@ -4,3 +4,6 @@
 node_modules
 npm-debug.log
 privateFiles
+.nyc_output
+coverage
+.coveralls.yml
