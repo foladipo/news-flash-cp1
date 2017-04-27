@@ -85,3 +85,56 @@ describe('AppStatusContainer', () => {
     expect(thirdChild.render().text()).to.equal('');
   });
 });
+
+describe('When the status of fetching news changes, AppStatusContainer', () => {
+  const startFetchState = {
+    isFetching: true,
+    isErrorFetch: false,
+    isSuccessFetch: false,
+    message: 'Loading... Please wait...'
+  };
+  const startFetchWrapper = mount(<AppStatusContainer />);
+  startFetchWrapper.setState(startFetchState);
+  it('should show a loading image when fetching articles starts', () => {
+    expect(startFetchWrapper.childAt(0)).to.not.have.className('hidden');
+  });
+
+  it('should NOT show an error image when fetching articles starts', () => {
+    expect(startFetchWrapper.childAt(1)).to.have.className('hidden');
+  });
+
+  it('should show a loading message when fetching articles starts', () => {
+    expect(startFetchWrapper.childAt(2).render().text()).to.equal('Loading... Please wait...');
+  });
+  
+  const errorFetchState = {
+    isFetching: false,
+    isErrorFetch: true,
+    isSuccessFetch: false,
+    message: 'Oops! Failed to fetch news articles. Please try again.'
+  };
+  const errorFetchWrapper = mount(<AppStatusContainer />);
+  errorFetchWrapper.setState(errorFetchState);
+  it('should NOT show a loading image when fetching articles fails', () => {
+    expect(errorFetchWrapper.childAt(0)).to.have.className('hidden');
+  });
+
+  it('should show an error image when fetching articles fails', () => {
+    expect(errorFetchWrapper.childAt(1)).to.not.have.className('hidden');
+  });
+
+  it('should show an error message when fetching articles fails', () => {
+    expect(errorFetchWrapper.childAt(2).render().text()).to.equal('Oops! Failed to fetch news articles. Please try again.');
+  });
+
+  const successFetchState = {
+    isFetching: false,
+    isErrorFetch: false,
+    isSuccessFetch: true
+  };
+  const successFetchWrapper = mount(<AppStatusContainer />);
+  successFetchWrapper.setState(successFetchState);
+  it('should be entirely hidden when fetching articles succeeds', () => {
+    expect(successFetchWrapper).to.have.className('hidden');
+  });
+});
