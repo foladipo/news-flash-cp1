@@ -83,13 +83,14 @@ npm start
 ## FAQ
 
 - **What if I want to use another port?**
+
 That's easy. In the root of the project. create a file named `.env` and add the following line to it:
 
 ```bash
 PORT=<your_desired_port>
 ```
 
-where your\_desired\_port is the port you want to use. So, if you want to use port 8080, you would write:
+where <your\_desired\_port> is the port you want to use. So, if you want to use port `8080`, you will write:
 
 ```bash
 PORT=8080
