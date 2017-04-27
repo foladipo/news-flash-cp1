@@ -3,6 +3,7 @@ import Article from './Article';
 import ArticlesStore from '../stores/ArticlesStore';
 import * as ArticlesActions from '../actions/ArticlesActions';
 import WelcomeMessageContainer from './WelcomeMessageContainer';
+import AppStatusContainer from './AppStatusContainer';
 
 export default class ArticlesContainer extends React.Component {
   constructor() {
@@ -32,6 +33,7 @@ export default class ArticlesContainer extends React.Component {
     return (
       <div id='articles-container' className='row container-fluid'>
         <WelcomeMessageContainer />
+        <AppStatusContainer />
         <div>{Articles}</div>
       </div>
     );
