@@ -44,7 +44,7 @@ instructions on installing NodeJS on your computer.
 - **Clone this repo**: Enter this command in the terminal:
 
 ```bash
-git clone (github repo link)
+git clone https://github.com/andela-foladipo/news-flash-cp1.git
 ```
 
 - **Install dependencies**: Do so by running the following command:
