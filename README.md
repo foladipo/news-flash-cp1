@@ -1,3 +1,8 @@
+[![Build Status](https://travis-ci.org/andela-foladipo/news-flash-cp1.svg?branch=develop)](https://travis-ci.org/andela-foladipo/news-flash-cp1)
+[![Coverage Status](https://coveralls.io/repos/github/andela-foladipo/news-flash-cp1/badge.svg?branch=develop)](https://coveralls.io/github/andela-foladipo/news-flash-cp1?branch=develop)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg)]()
+[![Code Climate](https://codeclimate.com/github/andela-foladipo/news-flash-cp1//badges/gpa.svg)](https://codeclimate.com/github/andela-foladipo/news-flash-cp1/)
+
 # Welcome
 
 Welcome to News Flash! This project gives you access to high quality, cutting edge news from 
