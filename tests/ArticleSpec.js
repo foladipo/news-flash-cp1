@@ -128,4 +128,22 @@ describe('For the elements in an Article,', () => {
   it('the Article should have two direct children', () => {
     expect(secondWrapper.children()).to.have.length(2);
   });
+
+  const firstChild = secondWrapper.childAt(0);
+  it('the first child should be a div', () => {
+    expect(firstChild.is('div')).to.equal(true);
+  });
+
+  it('the first child to have a class of col-xs-4', () => {
+    expect(firstChild).to.have.className('col-xs-4');
+  });
+
+  const secondChild = secondWrapper.childAt(1);
+  it('the second child should be a div', () => {
+    expect(secondChild.is('div')).to.equal(true);
+  });
+
+  it('the second child to have a class of col-xs-8', () => {
+    expect(secondChild).to.have.className('col-xs-8');
+  });
 });
