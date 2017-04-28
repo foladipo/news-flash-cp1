@@ -6,8 +6,8 @@ var router = express.Router();
 /* GET home page. */
 router.get('/', function(req, res, next) {
   var placeholderValues = {
-    pageTitle: 'NewsFlash | Home',
-    pageMessage: 'Welcome to NewsFlash.'
+    pageTitle: 'News Flash | Home',
+    pageMessage: 'Welcome to News Flash'
   };
   res.render('index', placeholderValues);
 });
