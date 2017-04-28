@@ -6,9 +6,6 @@
     <% include ./partials/head.ejs %>
   </head>
   <body>
-    <div id="bg">
-      <img src="img/site-background.png" alt="">
-    </div>
     <div class="full-horizontal-whitespace"></div>
     <h1 class="text-center"><%= pageMessage %></h1>
     <div class="container">
@@ -22,18 +19,22 @@
             <ol class="carousel-indicators">
               <li data-target="#home-page-slider" data-slide-to="0" class="active"></li>
               <li data-target="#home-page-slider" data-slide-to="1"></li>
-              <li data-target="#home-page-slider" data-slide-to="2"></li>
             </ol>
             <!-- Add captions -->
             <div class="carousel-inner" role="listbox">
               <div class="item active">
                 <img class="d-block img-fluid" src="/img/slide1.png" alt="First slide">
+                <div class="carousel-caption">
+                  <h3>The best sources. Worldwide.</h3>
+                  <p>Read news from top publishers all around the world</p>
+                </div>
               </div>
               <div class="item">
                 <img class="d-block img-fluid" src="/img/slide2.png" alt="Second slide">
-              </div>
-              <div class="item">
-                <img class="d-block img-fluid" src="/img/slide3.png" alt="Third slide">
+                <div class="carousel-caption">
+                  <h3>Read about anything.</h3>
+                  <p>Whatever topics interest you, they're all here.</p>
+                </div>
               </div>
             </div>
             <a class="carousel-control left" href="#home-page-slider" data-slide="prev">

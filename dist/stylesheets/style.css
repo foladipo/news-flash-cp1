@@ -5,6 +5,11 @@ body {
 .full-horizontal-whitespace {
   margin-bottom: 10%; }
 
+.carousel-caption {
+  background-color: rgba(255, 255, 255, 0.8); }
+  .carousel-caption p {
+    color: #303030; }
+
 .half-horizontal-whitespace {
   margin-bottom: 5%; }
 

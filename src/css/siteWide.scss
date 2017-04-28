@@ -1,4 +1,5 @@
 $border-width: 2px;
+$site-black: #303030;
 
 body {
   width: 100%;
@@ -7,6 +8,14 @@ body {
 
 .full-horizontal-whitespace {
   margin-bottom: 10%;
+}
+
+.carousel-caption {
+  background-color: rgba(256, 256, 256, 0.8);
+
+  p {
+    color: $site-black;
+  }
 }
 
 .half-horizontal-whitespace {
