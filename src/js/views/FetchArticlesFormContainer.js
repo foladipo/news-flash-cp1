@@ -86,7 +86,7 @@ export default class FetchArticlesFormContainer extends React.Component {
     });
 
     return (
-      <div id='fetch-articles-form-container' className='col-md-6'>
+      <div id='fetch-articles-form-container' className='col-md-12'>
         <div id='choose-news-source-container' className='col-xs-4'>
           <select id='choose-news-source' className='form-control' 
           onChange={this.handleNewsSourceChange.bind(this)}>
