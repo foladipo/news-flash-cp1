@@ -8,19 +8,26 @@ export default class Article extends React.Component {
   render() {
     const { id, title, description, url, imageUrl, author, publishedAt } = this.props;
     
+    let publishDate = '';
+    if (publishedAt) {
+      publishDate = publishedAt.split('T')[0];
+    }
     return (
-      <div className='row'>
+      <div className='row article quarter-horizontal-whitespace'>
         <div className='col-xs-4'>
-          <a href={url} target='_blank'><img src={imageUrl} className='img-responsive'/></a>
+          <a href={url} target='_blank'><img src={imageUrl} className='img-responsive img-thumbnail'/></a>
         </div>
         <div className='col-xs-8'>
-          <a href={url} target='_blank'><span>{title}</span></a>
-          <p>{description}</p>
-          <div>
-            <span>Published at: {publishedAt}</span>
-            <span>Written by: {author}</span>
+          <a href={url} target='_blank'><span className='article-title'>{title}</span></a>
+          <div className=''>
+            <ul className='list-inline'>
+              <li>At: <b>{publishDate}</b></li>
+              <li>By: <b>{author}</b></li>
+            </ul>
           </div>
-          <span className='btn btn-info'>{id}</span>
+          <p className='article-description'>{description}</p>
+          <div>
+          </div>
         </div>
       </div>
     );
