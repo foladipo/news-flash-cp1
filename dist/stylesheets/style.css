@@ -7,20 +7,22 @@ body {
 
 .carousel-caption {
   background-color: rgba(255, 255, 255, 0.8); }
-  .carousel-caption p {
+  .carousel-caption h3, .carousel-caption p {
     color: #303030; }
+
+body {
+  background-color: #f9f9f9; }
+  body #app-container {
+    box-shadow: 3px 3px 5x #303030;
+    background-color: #fefefe;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    box-sizing: border-box; }
+  body > div[id$="container"] {
+    margin-top: 1em; }
 
 .half-horizontal-whitespace {
   margin-bottom: 5%; }
 
 .quarter-horizontal-whitespace {
   margin-bottom: 2.5%; }
-
-#nav-container {
-  border: 2px solid red; }
-
-#articles-container {
-  border: 2px solid green; }
-
-#footer-container {
-  border: 2px solid blue; }

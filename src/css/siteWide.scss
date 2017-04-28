@@ -13,8 +13,25 @@ body {
 .carousel-caption {
   background-color: rgba(256, 256, 256, 0.8);
 
-  p {
+  h3, p {
     color: $site-black;
+  }
+}
+
+body {
+  background-color: #f9f9f9;
+
+  #app-container {
+    box-shadow: 3px 3px 5x $site-black;
+    background-color: #fefefe;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    box-sizing: border-box;
+  }
+
+  // Means "for all div's that are direct children of #app-container and whose id's end with container".
+  > div[id$="container"] {
+    margin-top: 1em;
   }
 }
 
@@ -24,16 +41,4 @@ body {
 
 .quarter-horizontal-whitespace {
   margin-bottom: 2.5%;
-}
-
-#nav-container {
-  border: $border-width solid red;
-}
-
-#articles-container {
-  border: $border-width solid green;
-}
-
-#footer-container {
-  border: $border-width solid blue;
 }
