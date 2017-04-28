@@ -7747,7 +7747,7 @@ var _Dispatcher2 = _interopRequireDefault(_Dispatcher);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var API_KEY = '213327409d384371851777e7c7f78dfe';
+var API_KEY = '32651939900d48bf91b24ee566e98f66';
 function startFetchArticles(sourceId, sort) {
   // Tell stores that we've started fetching articles. Then, fetch the articles 
   // and call errorFetchArticles() or successFetchArticles() based on the failure 
@@ -12493,17 +12493,24 @@ var Article = function (_React$Component) {
           author = _props.author,
           publishedAt = _props.publishedAt;
 
+      var facebookShareLink = 'https://www.facebook.com/sharer/sharer.php?u=' + url;
+      var googleShareLink = 'https://plus.google.com/share?url=' + url;
+      var twitterShareLink = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(title) + '&url=' + url + '&';
 
+      var publishDate = '';
+      if (publishedAt) {
+        publishDate = publishedAt.split('T')[0];
+      }
       return _react2.default.createElement(
         'div',
-        { className: 'row' },
+        { className: 'row article quarter-horizontal-whitespace' },
         _react2.default.createElement(
           'div',
           { className: 'col-xs-4' },
           _react2.default.createElement(
             'a',
             { href: url, target: '_blank' },
-            _react2.default.createElement('img', { src: imageUrl, className: 'img-responsive' })
+            _react2.default.createElement('img', { src: imageUrl, className: 'img-responsive img-thumbnail' })
           )
         ),
         _react2.default.createElement(
@@ -12514,35 +12521,91 @@ var Article = function (_React$Component) {
             { href: url, target: '_blank' },
             _react2.default.createElement(
               'span',
-              null,
+              { className: 'article-title' },
               title
             )
           ),
           _react2.default.createElement(
+            'div',
+            { className: '' },
+            _react2.default.createElement(
+              'ul',
+              { className: 'list-inline' },
+              _react2.default.createElement(
+                'li',
+                null,
+                'At: ',
+                _react2.default.createElement(
+                  'b',
+                  null,
+                  publishDate
+                )
+              ),
+              _react2.default.createElement(
+                'li',
+                null,
+                'By: ',
+                _react2.default.createElement(
+                  'b',
+                  null,
+                  author
+                )
+              )
+            )
+          ),
+          _react2.default.createElement(
             'p',
-            null,
+            { className: 'article-description' },
             description
           ),
           _react2.default.createElement(
             'div',
             null,
             _react2.default.createElement(
-              'span',
-              null,
-              'Published at: ',
-              publishedAt
-            ),
-            _react2.default.createElement(
-              'span',
-              null,
-              'Written by: ',
-              author
+              'div',
+              { className: 'col-xs-12' },
+              _react2.default.createElement(
+                'div',
+                { className: 'btn-group pull-right' },
+                _react2.default.createElement(
+                  'button',
+                  { type: 'button', className: 'btn btn-success dropdown-toggle', 'data-toggle': 'dropdown', 'aria-haspopup': 'true', 'aria-expanded': 'false' },
+                  'Share ',
+                  _react2.default.createElement('span', { className: 'caret' })
+                ),
+                _react2.default.createElement(
+                  'ul',
+                  { className: 'dropdown-menu' },
+                  _react2.default.createElement(
+                    'li',
+                    null,
+                    _react2.default.createElement(
+                      'a',
+                      { href: facebookShareLink, target: '_blank' },
+                      'Facebook'
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'li',
+                    null,
+                    _react2.default.createElement(
+                      'a',
+                      { href: googleShareLink, target: '_blank' },
+                      'Google+'
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'li',
+                    null,
+                    _react2.default.createElement(
+                      'a',
+                      { href: twitterShareLink, target: '_blank' },
+                      'Twitter'
+                    )
+                  )
+                )
+              )
             )
-          ),
-          _react2.default.createElement(
-            'span',
-            { className: 'btn btn-info' },
-            id
           )
         )
       );
@@ -12806,7 +12869,7 @@ var FetchArticlesFormContainer = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        { id: 'fetch-articles-form-container', className: 'col-md-6' },
+        { id: 'fetch-articles-form-container', className: 'col-md-12' },
         _react2.default.createElement(
           'div',
           { id: 'choose-news-source-container', className: 'col-xs-4' },
@@ -12944,7 +13007,32 @@ var NavContainer = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         { id: 'nav-container', className: 'row' },
-        _react2.default.createElement('div', { id: 'nav-controls', className: 'col-md-6' }),
+        _react2.default.createElement(
+          'div',
+          { id: 'nav-controls', className: 'col-md-12' },
+          _react2.default.createElement(
+            'nav',
+            { className: 'navbar navbar-default' },
+            _react2.default.createElement(
+              'div',
+              { className: 'container-fluid' },
+              _react2.default.createElement('ul', { className: 'nav navbar-nav navbar-left' }),
+              _react2.default.createElement(
+                'ul',
+                { className: 'nav navbar-nav navbar-right' },
+                _react2.default.createElement(
+                  'li',
+                  null,
+                  _react2.default.createElement(
+                    'button',
+                    { id: 'sign-out-btn', className: 'btn btn-info navbar-btn' },
+                    'Sign out'
+                  )
+                )
+              )
+            )
+          )
+        ),
         _react2.default.createElement(_FetchArticlesFormContainer2.default, null)
       );
     }
