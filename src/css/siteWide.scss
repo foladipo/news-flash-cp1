@@ -1,9 +1,20 @@
 $border-width: 2px;
 
 body {
-  border: $border-width solid royalblue;
   width: 100%;
   margin: 0;
+}
+
+.full-horizontal-whitespace {
+  margin-bottom: 10%;
+}
+
+.half-horizontal-whitespace {
+  margin-bottom: 5%;
+}
+
+.quarter-horizontal-whitespace {
+  margin-bottom: 2.5%;
 }
 
 #nav-container {
