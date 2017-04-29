@@ -28,6 +28,10 @@ body {
     }
   }
 
+  #wrapper {
+    min-height: 90%;
+  }
+
   #app-container {
     box-shadow: 3px 3px 5x $site-black;
     background-color: #fefefe;
@@ -35,9 +39,21 @@ body {
     padding-bottom: 1em;
     box-sizing: border-box;
 
+    #articles-container {
+      border-bottom: $border-width solid #ececec;
+    }
+
+    #sign-out-btn {
+      margin-right: 1em;
+    }
+
     .article:first-child {
       border-top: $border-width solid #dddddd;
       margin-top: 2.5%;
+    }
+
+    .article:last-child {
+      border-bottom: 0;
     }
 
     .article {

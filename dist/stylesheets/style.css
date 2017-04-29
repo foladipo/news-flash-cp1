@@ -12,15 +12,23 @@ body {
     background-color: rgba(255, 255, 255, 0.8); }
     body .carousel-caption h3, body .carousel-caption p {
       color: #303030; }
+  body #wrapper {
+    min-height: 90%; }
   body #app-container {
     box-shadow: 3px 3px 5x #303030;
     background-color: #fefefe;
     padding-top: 1em;
     padding-bottom: 1em;
     box-sizing: border-box; }
+    body #app-container #articles-container {
+      border-bottom: 2px solid #ececec; }
+    body #app-container #sign-out-btn {
+      margin-right: 1em; }
     body #app-container .article:first-child {
       border-top: 2px solid #dddddd;
       margin-top: 2.5%; }
+    body #app-container .article:last-child {
+      border-bottom: 0; }
     body #app-container .article {
       border-bottom: 2px solid #dddddd;
       padding: 2%; }
