@@ -1,15 +1,15 @@
-/* We will use ExtractTextPlugin to our transpiled 
+/* We will use ExtractTextPlugin to our transpiled
 styling rules into a separate file. */
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-var extractCssToFile = new ExtractTextPlugin('stylesheets/style.css');
+const extractCssToFile = new ExtractTextPlugin('stylesheets/style.css');
 
-var webpackConfig = {
+const webpackConfig = {
   entry: './src/js/main.js',
   output: {
-    path: __dirname + '/dist/',
+    path: `${__dirname}/dist/`,
     filename: 'scripts/bundle.js',
-    publicPath: 'dist/'
+    publicPath: 'dist/',
   },
   module: {
     loaders: [
@@ -17,7 +17,7 @@ var webpackConfig = {
         // ES6 to ES5 conversion using Babel.
         test: /\.js$/,
         exclude: /(node_modules|routes)/,
-        loader: 'babel-loader'
+        loader: 'babel-loader',
       },
       {
         // Convert .scss files to .css.
@@ -26,16 +26,16 @@ var webpackConfig = {
         loader: extractCssToFile.extract({
           use: ['css-loader', 'sass-loader'],
 
-          // In case we can't extract our CSS into a separate file, we'll 
+          // In case we can't extract our CSS into a separate file, we'll
           // just load it load it inline in our JS files, as is default.
-          fallback: 'style-loader'
-        })
-      }
-    ]
+          fallback: 'style-loader',
+        }),
+      },
+    ],
   },
   plugins: [
-    extractCssToFile
-  ]
+    extractCssToFile,
+  ],
 };
 
 module.exports = webpackConfig;

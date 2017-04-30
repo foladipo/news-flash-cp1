@@ -33,8 +33,9 @@ describe('WelcomeMessageContainer', () => {
     expect(firstChild.is('img')).to.equal(true);
   });
 
-  it('should have a first child that is an img with "src=/img/welcome-img.png"', () => {
-    expect(firstChild).to.have.attr('src', '/img/welcome-img.png');
+  const welcomeImgSrc = 'https://res.cloudinary.com/worldgeek/image/upload/c_scale,w_400/v1493551217/welcome-img_pbxehe.png';
+  it(`should have a first child that is an img with "src=${welcomeImgSrc}"`, () => {
+    expect(firstChild).to.have.attr('src', welcomeImgSrc);
   });
 
   it('should have a first child that has a class of img-responsive', () => {
@@ -91,14 +92,14 @@ describe('WelcomeMessageContainer', () => {
 });
 
 describe('When its state is set to something new, WelcomeMessageContainer', () => {
-  // The aim of this test is to simulate how WelcomeMessageContainer will react when 
+  // The aim of this test is to simulate how WelcomeMessageContainer will react when
   // its Store changes, in turn due to an appropriate Action.
   const newState = {
-    htmlClasses: ['row', 'hidden']
+    htmlClasses: ['row', 'hidden'],
   };
   const newWrapper = mount(<WelcomeMessageContainer />);
   newWrapper.setState(newState);
-  it(`should have class hidden when WelcomeMessageContainer.state.htmlClasses is set to ${newState.htmlClasses}`, () => {
+  it(`should have class hidden when WelcomeMessageContainer.state.htmlClasses is set to ['${newState.htmlClasses.join('\', \'')}']`, () => {
     expect(newWrapper).to.have.className('hidden');
   });
 });

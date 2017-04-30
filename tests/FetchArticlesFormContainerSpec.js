@@ -19,8 +19,8 @@ describe('When rendered, FetchArticlesFormContainer', () => {
     expect(wrapper).to.have.id('fetch-articles-form-container');
   });
 
-  it('should have a class of col-md-6', () => {
-    expect(wrapper).to.have.className('col-md-6');
+  it('should have a class of col-md-12', () => {
+    expect(wrapper).to.have.className('col-md-12');
   });
 
   const children = wrapper.children();
