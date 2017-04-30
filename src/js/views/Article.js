@@ -16,7 +16,8 @@ export default class Article extends React.Component {
     return (
       <div
         key={id}
-        className="row article quarter-horizontal-whitespace">
+        className="row article quarter-horizontal-whitespace"
+      >
         <div className="col-xs-4">
           <a href={url} target="_blank" rel="noopener noreferrer">
             <img

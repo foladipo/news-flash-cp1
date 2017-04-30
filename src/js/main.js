@@ -9,7 +9,6 @@ import SiteWideStyles from '../css/style.scss';
 import FirebaseSetup from './other/FirebaseSetup';
 import * as homePage from './other/homePage';
 import * as utilityFunctions from './other/utilityFunctions';
-const foo = 'gav';
 
 const initFirebase = FirebaseSetup.initFirebase;
 

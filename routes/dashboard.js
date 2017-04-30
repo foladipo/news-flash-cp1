@@ -1,10 +1,9 @@
-
-
 const express = require('express');
+
 const router = express.Router();
 
 /* GET home page. */
-router.get('/', (req, res, next) => {
+router.get('/', (req, res) => {
   const placeholderValues = {
     pageTitle: 'Dashboard | News Flash',
     pageMessage: 'Your News Headlines',
