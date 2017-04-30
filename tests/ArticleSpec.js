@@ -117,8 +117,14 @@ describe('When initialized with a correct set of props, the Article component', 
 });
 
 describe('For the elements in an Article,', () => {
+  const allLinks = secondWrapper.find('a');
   it('all links should open in a new tab', () => {
-    expect(secondWrapper.find('a').every('[target="_blank"]')).to.equal(true);
+    expect(allLinks.every('[target="_blank"]')).to.equal(true);
+  });
+
+  const linkRel = 'noopener noreferrer';
+  it(`all links should have rel="${linkRel}"`, () => {
+    expect(allLinks.every('[rel="noopener noreferrer"]')).to.equal(true);
   });
 
   it('the Article itself should have a row class', () => {
