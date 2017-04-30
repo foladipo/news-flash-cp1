@@ -3,12 +3,13 @@ import ReactDOM from 'react-dom';
 import DashboardAppContainer from './views/DashboardAppContainer';
 
 // Custom styles.
-import SiteWideStyles from '../css/siteWide.scss';
+import SiteWideStyles from '../css/style.scss';
 
 // Add custom scripts that aren't relevant to React or the Flux pattern.
 import FirebaseSetup from './other/FirebaseSetup';
 import * as homePage from './other/homePage';
 import * as utilityFunctions from './other/utilityFunctions';
+const foo = 'gav';
 
 const initFirebase = FirebaseSetup.initFirebase;
 

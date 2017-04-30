@@ -39,6 +39,10 @@ body {
     padding-bottom: 1em;
     box-sizing: border-box;
 
+    #app-status-container {
+      margin-top: 1em;
+    }
+
     #articles-container {
       border-bottom: $border-width solid #ececec;
     }
