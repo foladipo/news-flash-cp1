@@ -6,7 +6,7 @@ import NavContainer from './NavContainer';
 export default class DashboardAppContainer extends React.Component {
   render() {
     return (
-      <div id='app-container' className='col-lg-8 col-md-10 col-sm-12'>
+      <div id="app-container" className="col-lg-8 col-md-10 col-sm-12">
         <NavContainer />
         <ArticlesContainer />
         <FooterContainer />

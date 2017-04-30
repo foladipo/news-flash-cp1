@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import DashboardAppContainer from './views/DashboardAppContainer';
 
 // Custom styles.
-import SiteWideStyles from '../css/siteWide.scss';
+import SiteWideStyles from '../css/style.scss';
 
 // Add custom scripts that aren't relevant to React or the Flux pattern.
 import FirebaseSetup from './other/FirebaseSetup';
@@ -19,9 +19,9 @@ class WrappedApp extends React.Component {
   render() {
     return (
       <div>
-        <div className="col-lg-2 col-md-1 col-sm-0"></div>
+        <div className="col-lg-2 col-md-1 col-sm-0" />
         <DashboardAppContainer />
-        <div className="col-lg-2 col-md-1 col-sm-0"></div>
+        <div className="col-lg-2 col-md-1 col-sm-0" />
       </div>
     );
   }

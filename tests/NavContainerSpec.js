@@ -34,8 +34,8 @@ describe('NavContainer', () => {
     expect(children.at(0)).to.have.id('nav-controls');
   });
 
-  it('should have a first child with class col-md-6', () => {
-    expect(children.at(0)).to.have.className('col-md-6');
+  it('should have a first child with class col-md-12', () => {
+    expect(children.at(0)).to.have.className('col-md-12');
   });
 
   it('should have a second child that\'s an instance of FetchArticlesFormContainer', () => {
@@ -46,7 +46,7 @@ describe('NavContainer', () => {
     expect(children.at(1)).to.have.id('fetch-articles-form-container');
   });
 
-  it('should have a first child with class col-md-6', () => {
-    expect(children.at(1)).to.have.className('col-md-6');
+  it('should have a first child with class col-md-12', () => {
+    expect(children.at(1)).to.have.className('col-md-12');
   });
 });

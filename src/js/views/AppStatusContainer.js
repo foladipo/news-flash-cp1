@@ -8,18 +8,18 @@ export default class AppStatusContainer extends React.Component {
     this.state = {
       isFetching: false,
       isErrorFetch: false,
-      isSuccessFetch: true
+      isSuccessFetch: true,
     };
   }
 
   componentWillMount() {
     AppStatusStore.on('startFetchArticles', () => {
       this.setState({
-    isFetching: true,
-    isErrorFetch: false,
-    isSuccessFetch: false,
-    message: 'Loading... Please wait...'
-  });
+        isFetching: true,
+        isErrorFetch: false,
+        isSuccessFetch: false,
+        message: 'Loading... Please wait...',
+      });
     });
 
     AppStatusStore.on('errorFetchArticles', () => {
@@ -27,7 +27,7 @@ export default class AppStatusContainer extends React.Component {
         isFetching: false,
         isErrorFetch: true,
         isSuccessFetch: false,
-        message: 'Oops! Failed to fetch news articles. Please try again.'
+        message: 'Oops! Failed to fetch news articles. Please try again.',
       });
     });
 
@@ -35,7 +35,7 @@ export default class AppStatusContainer extends React.Component {
       this.setState({
         isFetching: false,
         isErrorFetch: false,
-        isSuccessFetch: true
+        isSuccessFetch: true,
       });
     });
   }
@@ -47,10 +47,10 @@ export default class AppStatusContainer extends React.Component {
     const statusMsg = this.state.message || '';
 
     return (
-      <div id='app-status-container' className={showAppStatus}>
-        <img src='/img/loading-img.png' id='loading-articles' className={'img-responsive center-block ' + showLoadingImg}/>
-        <img src='/img/error-loading-img.png' id='error-loading-articles' className={'img-responsive center-block ' + showErrorImg}/>
-        <h3 className='text-center'>{statusMsg}</h3>
+      <div id="app-status-container" className={showAppStatus}>
+        <img id="loading-articles" className={`img-responsive center-block ${showLoadingImg}`} src="https://res.cloudinary.com/worldgeek/image/upload/v1493551216/loading-img_zqnq20.gif" />
+        <img id="error-loading-articles" className={`img-responsive center-block ${showErrorImg}`} src="https://res.cloudinary.com/worldgeek/image/upload/v1493551216/error-loading-img_z8tzia.png" />
+        <h3 className="text-center">{statusMsg}</h3>
       </div>
     );
   }

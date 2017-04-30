@@ -9,16 +9,16 @@ export default class ArticlesContainer extends React.Component {
   constructor() {
     super();
     this.state = {
-      articles: ArticlesStore.articles
-    }
+      articles: ArticlesStore.articles,
+    };
   }
 
   componentWillMount() {
     ArticlesStore.on('loadArticles', () => {
       this.setState({
-        articles: ArticlesStore.articles
+        articles: ArticlesStore.articles,
       });
-    })
+    });
   }
 
   fetchArticles() {
@@ -26,12 +26,11 @@ export default class ArticlesContainer extends React.Component {
   }
 
   render() {
-    const Articles = this.state.articles.map((article, index) => {
+    const Articles = this.state.articles.map((article, index) =>
       // Use the spread operator to extract each key in the article object.
-      return <Article key={index} {...article} />;
-    });
+      <Article key={index} {...article} />);
     return (
-      <div id='articles-container' className='row container-fluid'>
+      <div id="articles-container" className="row container-fluid">
         <WelcomeMessageContainer />
         <AppStatusContainer />
         <div>{Articles}</div>

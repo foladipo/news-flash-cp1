@@ -8,7 +8,7 @@ class WelcomeMessageContainerStore extends EventEmitter {
   }
 
   handleAction(action) {
-    switch(action.type) {
+    switch (action.type) {
       case 'START_FETCH_ARTICLES':
         this.htmlClasses = ['row', 'hidden'];
         this.emit('loadArticles');

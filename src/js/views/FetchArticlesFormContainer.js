@@ -12,17 +12,17 @@ export default class FetchArticlesFormContainer extends React.Component {
       sortBy: '',
       sorts: [],
       isSelectSortDisabled: true,
-      isFetchArticlesBtnDisabled: true
+      isFetchArticlesBtnDisabled: true,
     };
   }
 
-  // NB: State components are merged. That is, when setState() is called, React 
-  // merges the object provided into the current state. For details, see this link: 
+  // NB: State components are merged. That is, when setState() is called, React
+  // merges the object provided into the current state. For details, see this link:
   // https://facebook.github.io/react/docs/state-and-lifecycle.html#state-updates-are-merged
   componentWillMount() {
     FetchArticlesFormStore.on('changeNewsSource', () => {
-      // NB: There is a second form of setState() that takes a function as argument and 
-      // supplies that function with previousState and props. The function should return an 
+      // NB: There is a second form of setState() that takes a function as argument and
+      // supplies that function with previousState and props. The function should return an
       // object that will be used to set the new state. For details, see this link:
       // https://facebook.github.io/react/docs/state-and-lifecycle.html#state-updates-may-be-asynchronous
       this.setState((previousState, props) => {
@@ -32,16 +32,16 @@ export default class FetchArticlesFormContainer extends React.Component {
           sortBy: availableSorts[0],
           sorts: availableSorts,
           isSelectSortDisabled: false,
-          isFetchArticlesBtnDisabled: false
+          isFetchArticlesBtnDisabled: false,
         };
-        
+
         return newState;
       });
     });
 
     FetchArticlesFormStore.on('startFetchArticles', () => {
       this.setState({
-        isFetchArticlesBtnDisabled: true
+        isFetchArticlesBtnDisabled: true,
       });
     });
 
@@ -55,9 +55,9 @@ export default class FetchArticlesFormContainer extends React.Component {
 
     const finishFetch = () => {
       this.setState({
-        isFetchArticlesBtnDisabled: false
+        isFetchArticlesBtnDisabled: false,
       });
-    }
+    };
   }
 
   handleNewsSourceChange(event) {
@@ -77,31 +77,33 @@ export default class FetchArticlesFormContainer extends React.Component {
   }
 
   render() {
-    const newsSourcesOptions = this.state.newsSources.map((source, index) => {
-      return <option key={index} value={source.id}>{source.name}</option>;
-    });
+    const newsSourcesOptions = this.state.newsSources.map((source, index) => <option key={index} value={source.id}>{source.name}</option>);
 
-    const sortOptions = this.state.sorts.map((oneSort, index) => {
-      return <option key={index} value={oneSort}>{oneSort[0].toUpperCase() + oneSort.substr(1)}</option>
-    });
+    const sortOptions = this.state.sorts.map((oneSort, index) => <option key={index} value={oneSort}>{oneSort[0].toUpperCase() + oneSort.substr(1)}</option>);
 
     return (
-      <div id='fetch-articles-form-container' className='col-md-6'>
-        <div id='choose-news-source-container' className='col-xs-4'>
-          <select id='choose-news-source' className='form-control' 
-          onChange={this.handleNewsSourceChange.bind(this)}>
+      <div id="fetch-articles-form-container" className="col-md-12">
+        <div id="choose-news-source-container" className="col-xs-4">
+          <select
+            id="choose-news-source" className="form-control"
+            onChange={this.handleNewsSourceChange.bind(this)}
+          >
             {newsSourcesOptions}
           </select>
         </div>
-        <div id='choose-sort-container' className='col-xs-4'>
-          <select id='choose-sort' className='form-control' disabled={this.state.isSelectSortDisabled} 
-          onChange={this.handleSortChange.bind(this)}>
+        <div id="choose-sort-container" className="col-xs-4">
+          <select
+            id="choose-sort" className="form-control" disabled={this.state.isSelectSortDisabled}
+            onChange={this.handleSortChange.bind(this)}
+          >
             {sortOptions}
           </select>
         </div>
-        <div id='fetch-articles-btn-container' className='col-xs-4'>
-          <button id='fetch-articles-btn' className='btn btn-primary' 
-          disabled={this.state.isFetchArticlesBtnDisabled} onClick={this.handleFetchArticles.bind(this)}>
+        <div id="fetch-articles-btn-container" className="col-xs-4">
+          <button
+            id="fetch-articles-btn" className="btn btn-primary"
+            disabled={this.state.isFetchArticlesBtnDisabled} onClick={this.handleFetchArticles.bind(this)}
+          >
           Get News
           </button>
         </div>
