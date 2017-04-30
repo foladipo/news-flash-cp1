@@ -38,8 +38,9 @@ describe('AppStatusContainer', () => {
     expect(firstChild).to.have.id('loading-articles');
   });
 
-  it('should have a first child that has src="/img/loading-img.png"', () => {
-    expect(firstChild).to.have.attr('src', '/img/loading-img.png');
+  const loadImgSrc = 'https://res.cloudinary.com/worldgeek/image/upload/v1493551216/loading-img_zqnq20.gif';
+  it(`should have a first child that has src="${loadImgSrc}"`, () => {
+    expect(firstChild).to.have.attr('src', loadImgSrc);
   });
 
   it('should have a first child that has class img-responsive', () => {
@@ -60,8 +61,9 @@ describe('AppStatusContainer', () => {
     expect(secondChild).to.have.id('error-loading-articles');
   });
 
-  it('should have a second child that has src="/img/error-loading-img.png"', () => {
-    expect(secondChild).to.have.attr('src', '/img/error-loading-img.png');
+  const errorImgSrc = 'https://res.cloudinary.com/worldgeek/image/upload/v1493551216/error-loading-img_z8tzia.png';
+  it(`should have a second child that has src="${errorImgSrc}"`, () => {
+    expect(secondChild).to.have.attr('src', errorImgSrc);
   });
 
   it('should have a second child that has class img-responsive', () => {
