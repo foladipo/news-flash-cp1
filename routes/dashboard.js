@@ -1,13 +1,13 @@
-'use strict';
 
-var express = require('express');
-var router = express.Router();
+
+const express = require('express');
+const router = express.Router();
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  var placeholderValues = {
+router.get('/', (req, res, next) => {
+  const placeholderValues = {
     pageTitle: 'Dashboard | News Flash',
-    pageMessage: 'Your News Headlines'
+    pageMessage: 'Your News Headlines',
   };
   res.render('dashboard', placeholderValues);
 });

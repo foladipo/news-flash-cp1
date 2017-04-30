@@ -10,7 +10,7 @@ const firebaseAdmin = require('firebase-admin');
 const firebaseAdminServiceAccount = require('./privateFiles/firebaseAdminServiceAccount.json');
 const firebaseApp = firebaseAdmin.initializeApp({
   credential: firebaseAdmin.credential.cert(firebaseAdminServiceAccount),
-  databaseURL: 'https://news-flash-cp1.firebaseio.com'
+  databaseURL: 'https://news-flash-cp1.firebaseio.com',
 });
 const firebaseAuth = firebaseApp.auth();
 const firebaseDb = firebaseApp.database();
@@ -24,7 +24,7 @@ const expressApp = express();
 
 expressApp.set('port', (process.env.PORT || 5000));
 
-// Set a dir to expose to public requests. Otherwise, a request to 
+// Set a dir to expose to public requests. Otherwise, a request to
 // other dirs returns a 403.
 expressApp.use(express.static(path.join(__dirname, '/dist')));
 
@@ -39,9 +39,9 @@ expressApp.use(logger('dev'));
 
 // Redirect all non-logged in users to the home page.
 // Otherwise, move on to the route they specified initially.
-// TODO: Add code such that after he/she logs in, a user is 
+// TODO: Add code such that after he/she logs in, a user is
 // taken to the route they were going to before.
-expressApp.all('*', function(req, res, next) {
+expressApp.all('*', (req, res, next) => {
   const idToken = req.cookies.idToken;
   const urlPath = req.path;
 
@@ -56,15 +56,15 @@ expressApp.all('*', function(req, res, next) {
     }
   } else {
     firebaseAuth.verifyIdToken(idToken)
-      .then(function(decodedToken) {
-        var uid = decodedToken.uid;
+      .then((decodedToken) => {
+        const uid = decodedToken.uid;
 
         if (urlPath === '/') {
           res.redirect('/dashboard');
         } else {
           next();
         }
-      }).catch(function(error) {
+      }).catch((error) => {
         // TODO: Maybe add some error message data or something?
         if (urlPath === '/') {
           next();
@@ -80,14 +80,14 @@ expressApp.use('/', index);
 expressApp.use('/dashboard', dashboard);
 
 // Catch 404 and forward to error handler.
-expressApp.use(function(req, res, next) {
+expressApp.use((req, res, next) => {
   const err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
 // Error handler.
-expressApp.use(function(err, req, res, next) {
+expressApp.use((err, req, res, next) => {
   // Set locals, only providing error in development.
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -97,6 +97,6 @@ expressApp.use(function(err, req, res, next) {
   res.render('error');
 });
 
-expressApp.listen(expressApp.get('port'), function() {
+expressApp.listen(expressApp.get('port'), () => {
   console.log('Node app is running on port', expressApp.get('port'));
 });

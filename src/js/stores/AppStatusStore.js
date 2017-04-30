@@ -3,7 +3,7 @@ import dispatcher from '../dispatcher/Dispatcher';
 
 class AppStatusStore extends EventEmitter {
   handleAction(action) {
-    switch(action.type) {
+    switch (action.type) {
       case 'START_FETCH_ARTICLES':
         this.emit('startFetchArticles');
         break;

@@ -97,7 +97,7 @@ describe('When the status of fetching news changes, AppStatusContainer', () => {
     isFetching: true,
     isErrorFetch: false,
     isSuccessFetch: false,
-    message: 'Loading... Please wait...'
+    message: 'Loading... Please wait...',
   };
   const startFetchWrapper = mount(<AppStatusContainer />);
   startFetchWrapper.setState(startFetchState);
@@ -112,12 +112,12 @@ describe('When the status of fetching news changes, AppStatusContainer', () => {
   it('should show a loading message when fetching articles starts', () => {
     expect(startFetchWrapper.childAt(2).render().text()).to.equal('Loading... Please wait...');
   });
-  
+
   const errorFetchState = {
     isFetching: false,
     isErrorFetch: true,
     isSuccessFetch: false,
-    message: 'Oops! Failed to fetch news articles. Please try again.'
+    message: 'Oops! Failed to fetch news articles. Please try again.',
   };
   const errorFetchWrapper = mount(<AppStatusContainer />);
   errorFetchWrapper.setState(errorFetchState);
@@ -136,7 +136,7 @@ describe('When the status of fetching news changes, AppStatusContainer', () => {
   const successFetchState = {
     isFetching: false,
     isErrorFetch: false,
-    isSuccessFetch: true
+    isSuccessFetch: true,
   };
   const successFetchWrapper = mount(<AppStatusContainer />);
   successFetchWrapper.setState(successFetchState);

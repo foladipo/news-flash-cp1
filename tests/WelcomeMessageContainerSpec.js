@@ -92,10 +92,10 @@ describe('WelcomeMessageContainer', () => {
 });
 
 describe('When its state is set to something new, WelcomeMessageContainer', () => {
-  // The aim of this test is to simulate how WelcomeMessageContainer will react when 
+  // The aim of this test is to simulate how WelcomeMessageContainer will react when
   // its Store changes, in turn due to an appropriate Action.
   const newState = {
-    htmlClasses: ['row', 'hidden']
+    htmlClasses: ['row', 'hidden'],
   };
   const newWrapper = mount(<WelcomeMessageContainer />);
   newWrapper.setState(newState);

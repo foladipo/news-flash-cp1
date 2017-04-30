@@ -20,9 +20,9 @@ class WrappedApp extends React.Component {
   render() {
     return (
       <div>
-        <div className="col-lg-2 col-md-1 col-sm-0"></div>
+        <div className="col-lg-2 col-md-1 col-sm-0" />
         <DashboardAppContainer />
-        <div className="col-lg-2 col-md-1 col-sm-0"></div>
+        <div className="col-lg-2 col-md-1 col-sm-0" />
       </div>
     );
   }

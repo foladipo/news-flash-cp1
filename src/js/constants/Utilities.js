@@ -59,14 +59,14 @@ export function getAllNewsSources() {
     { id: 'the-wall-street-journal', name: 'The Wall Street Journal' },
     { id: 'the-washington-post', name: 'The Washington Post' },
     { id: 'time', name: 'Time' },
-    { id: 'usa-today', name: 'USA Today' }
+    { id: 'usa-today', name: 'USA Today' },
   ];
   return newsSources;
 }
 
 export function getAvailableSortForNewsSource(source) {
   let availableSortTypes = [];
-  switch(source) {
+  switch (source) {
     case 'abc-news-au':
       availableSortTypes = ['top'];
       break;
@@ -96,7 +96,7 @@ export function getAvailableSortForNewsSource(source) {
       break;
 
     case 'breitbart-news':
-      availableSortTypes= ['top', 'latest'];
+      availableSortTypes = ['top', 'latest'];
       break;
 
     case 'business-insider':

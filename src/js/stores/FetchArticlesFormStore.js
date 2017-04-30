@@ -9,7 +9,7 @@ class FetchArticlesFormStore extends EventEmitter {
   }
 
   handleAction(action) {
-    switch(action.type) {
+    switch (action.type) {
       case 'NEWS_SOURCE_CHANGE':
         this.availableSorts = Utilities.getAvailableSortForNewsSource(action.sourceId);
         this.emit('changeNewsSource');
