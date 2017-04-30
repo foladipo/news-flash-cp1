@@ -7,7 +7,7 @@
     "build": "./node_modules/.bin/webpack",
     "build:watch": "./node_modules/.bin/webpack --watch",
     "coverage": "./node_modules/.bin/nyc report --reporter=text-lcov | ./node_modules/.bin/coveralls",
-    "deploy": "npm install && npm start",
+    "deploy": "npm run build && npm start",
     "start": "node app.js",
     "test": "./node_modules/.bin/mocha --require babel-register tests/.setup.js tests/*[sS]pec.js",
     "test:nyc": "./node_modules/.bin/nyc --reporter=html --reporter=text ./node_modules/.bin/mocha --require babel-register tests/.setup.js tests/*[sS]pec.js"
