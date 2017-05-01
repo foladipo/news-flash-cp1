@@ -1,6 +1,10 @@
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import DotEnvPlugin from 'dotenv-webpack';
 
 const extractCssToFile = new ExtractTextPlugin('stylesheets/style.css');
+const dotEnvPlugin = new DotEnvPlugin({
+  path: '.env',
+});
 
 const webpackConfig = {
   entry: './src/js/main.js',
@@ -28,6 +32,13 @@ const webpackConfig = {
         }),
       },
     ],
+  },
+  plugins: [
+    extractCssToFile,
+    dotEnvPlugin,
+  ],
+  node: {
+    fs: 'empty',
   },
 };
 
