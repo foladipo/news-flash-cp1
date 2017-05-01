@@ -1,6 +1,4 @@
-/* We will use ExtractTextPlugin to our transpiled
-styling rules into a separate file. */
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
 const extractCssToFile = new ExtractTextPlugin('stylesheets/style.css');
 
@@ -14,13 +12,11 @@ const webpackConfig = {
   module: {
     loaders: [
       {
-        // ES6 to ES5 conversion using Babel.
         test: /\.js$/,
         exclude: /(node_modules|routes)/,
         loader: 'babel-loader',
       },
       {
-        // Convert .scss files to .css.
         test: /\.scss$/,
         exclude: /node_modules/,
         loader: extractCssToFile.extract({
@@ -33,9 +29,6 @@ const webpackConfig = {
       },
     ],
   },
-  plugins: [
-    extractCssToFile,
-  ],
 };
 
-module.exports = webpackConfig;
+export default webpackConfig;
