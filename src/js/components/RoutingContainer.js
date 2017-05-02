@@ -23,11 +23,13 @@ function RoutingComponent() {
 }
 
 function AuthenticatedRoute(props) {
-  const isLoggedIn = firebaseApp.auth().currentUser;
-  if (isLoggedIn) {
+  // Cookie-extraction regex courtesey of MDN (https://goo.gl/pLHkdj).
+  const token = document.cookie.replace(/(?:(?:^|.*;\s*)idToken\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+  if (token !== '' && token !== 'null') {
     return <props.component />;
   }
-  return <Redirect to="/" />;
+
+  window.location.replace('/');
 }
 
 export default RoutingComponent;
