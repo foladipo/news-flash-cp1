@@ -1,6 +1,6 @@
 import React from 'react';
 import Article from './Article';
-import ArticlesStore from '../stores/ArticlesStore';
+import articlesStore from '../stores/ArticlesStore';
 import * as ArticlesActions from '../actions/ArticlesActions';
 import WelcomeMessageContainer from './WelcomeMessageContainer';
 import AppStatusContainer from './AppStatusContainer';
@@ -9,20 +9,16 @@ export default class ArticlesContainer extends React.Component {
   constructor() {
     super();
     this.state = {
-      articles: ArticlesStore.articles,
+      articles: articlesStore.getArticles(),
     };
   }
 
   componentWillMount() {
-    ArticlesStore.on('loadArticles', () => {
+    articlesStore.on('articlesFetched', () => {
       this.setState({
-        articles: ArticlesStore.articles,
+        articles: articlesStore.getArticles(),
       });
     });
-  }
-
-  fetchArticles() {
-    ArticlesActions.startFetchArticles('cnn', 'top');
   }
 
   render() {

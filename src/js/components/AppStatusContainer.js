@@ -1,10 +1,9 @@
 import React from 'react';
-import AppStatusStore from '../stores/AppStatusStore';
+import appStatusStore from '../stores/AppStatusStore';
 
 export default class AppStatusContainer extends React.Component {
   constructor(props) {
     super(props);
-    // this.state.isSuccessFetch is set to true so that this component is hidden by default.
     this.state = {
       isFetching: false,
       isErrorFetch: false,
@@ -13,7 +12,7 @@ export default class AppStatusContainer extends React.Component {
   }
 
   componentWillMount() {
-    AppStatusStore.on('startFetchArticles', () => {
+    appStatusStore.on('fetchArticles', () => {
       this.setState({
         isFetching: true,
         isErrorFetch: false,
@@ -22,7 +21,7 @@ export default class AppStatusContainer extends React.Component {
       });
     });
 
-    AppStatusStore.on('errorFetchArticles', () => {
+    appStatusStore.on('fetchArticlesFailed', () => {
       this.setState({
         isFetching: false,
         isErrorFetch: true,
@@ -31,7 +30,7 @@ export default class AppStatusContainer extends React.Component {
       });
     });
 
-    AppStatusStore.on('successFetchArticles', () => {
+    appStatusStore.on('articlesFetched', () => {
       this.setState({
         isFetching: false,
         isErrorFetch: false,

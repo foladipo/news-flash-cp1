@@ -1,4 +1,5 @@
 import { EventEmitter } from 'events';
+import uuid from 'uuid';
 import dispatcher from '../dispatcher/Dispatcher';
 
 class ArticlesStore extends EventEmitter {
@@ -9,9 +10,9 @@ class ArticlesStore extends EventEmitter {
 
   handleAction(action) {
     switch (action.type) {
-      case 'SUCCESS_FETCH_ARTICLES':
+      case 'ARTICLES_FETCHED':
         const articles = action.data.articles.map(article => ({
-          id: Date.now() * Math.random(),
+          id: uuid.v4(),
           title: article.title,
           description: article.description,
           url: article.url,
@@ -20,9 +21,13 @@ class ArticlesStore extends EventEmitter {
           publishedAt: article.publishedAt,
         }));
         this.articles = articles;
-        this.emit('loadArticles');
+        this.emit('articlesFetched');
         break;
     }
+  }
+
+  getArticles() {
+    return this.articles;
   }
 }
 

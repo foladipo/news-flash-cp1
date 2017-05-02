@@ -8,7 +8,6 @@ import NotFoundContainer from './NotFoundContainer';
 import getFirebaseApp from '../other/getFirebaseApp';
 
 dotenv.config();
-const firebaseApp = getFirebaseApp();
 
 function RoutingComponent() {
   return (

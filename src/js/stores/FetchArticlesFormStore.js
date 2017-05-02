@@ -10,27 +10,31 @@ class FetchArticlesFormStore extends EventEmitter {
 
   handleAction(action) {
     switch (action.type) {
-      case 'NEWS_SOURCE_CHANGE':
+      case 'CHANGE_NEWS_SOURCE':
         this.availableSorts = Utilities.getAvailableSortForNewsSource(action.sourceId);
         this.emit('changeNewsSource');
         break;
 
-      case 'SORT_CHANGE':
+      case 'CHANGE_SORT':
         this.emit('changeSort');
         break;
 
-      case 'START_FETCH_ARTICLES':
-        this.emit('startFetchArticles');
+      case 'FETCH_ARTICLES':
+        this.emit('fetchArticles');
         break;
 
-      case 'ERROR_FETCH_ARTICLES':
-        this.emit('errorFetchArticles');
+      case 'FETCH_ARTICLES_FAILED':
+        this.emit('fetchArticlesFailed');
         break;
 
-      case 'SUCCESS_FETCH_ARTICLES':
-        this.emit('successFetchArticles');
+      case 'ARTICLES_FETCHED':
+        this.emit('articlesFetched');
         break;
     }
+  }
+
+  getAvailableSorts() {
+    return this.availableSorts;
   }
 }
 

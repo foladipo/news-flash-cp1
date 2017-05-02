@@ -1,7 +1,7 @@
 import React from 'react';
 import * as Utilities from '../constants/Utilities';
 import * as ArticlesActions from '../actions/ArticlesActions';
-import FetchArticlesFormStore from '../stores/FetchArticlesFormStore';
+import fetchArticlesFormStore from '../stores/FetchArticlesFormStore';
 
 export default class FetchArticlesFormContainer extends React.Component {
   constructor(props) {
@@ -16,19 +16,11 @@ export default class FetchArticlesFormContainer extends React.Component {
     };
   }
 
-  // NB: State components are merged. That is, when setState() is called, React
-  // merges the object provided into the current state. For details, see this link:
-  // https://facebook.github.io/react/docs/state-and-lifecycle.html#state-updates-are-merged
   componentWillMount() {
-    FetchArticlesFormStore.on('changeNewsSource', () => {
-      // NB: There is a second form of setState() that takes a function as argument and
-      // supplies that function with previousState and props. The function should return an
-      // object that will be used to set the new state. For details, see this link:
-      // https://facebook.github.io/react/docs/state-and-lifecycle.html#state-updates-may-be-asynchronous
-      this.setState((previousState, props) => {
-        const availableSorts = FetchArticlesFormStore.availableSorts;
+    fetchArticlesFormStore.on('changeNewsSource', () => {
+      this.setState(() => {
+        const availableSorts = fetchArticlesFormStore.getAvailableSorts();
         const newState = {
-          // Give sortBy a default value.
           sortBy: availableSorts[0],
           sorts: availableSorts,
           isSelectSortDisabled: false,
@@ -39,18 +31,10 @@ export default class FetchArticlesFormContainer extends React.Component {
       });
     });
 
-    FetchArticlesFormStore.on('startFetchArticles', () => {
+    fetchArticlesFormStore.on('fetchArticles', () => {
       this.setState({
         isFetchArticlesBtnDisabled: true,
       });
-    });
-
-    FetchArticlesFormStore.on('successFetchArticles', () => {
-      finishFetch();
-    });
-
-    FetchArticlesFormStore.on('errorFetchArticles', () => {
-      finishFetch();
     });
 
     const finishFetch = () => {
@@ -58,22 +42,30 @@ export default class FetchArticlesFormContainer extends React.Component {
         isFetchArticlesBtnDisabled: false,
       });
     };
+
+    fetchArticlesFormStore.on('articlesFetched', () => {
+      finishFetch();
+    });
+
+    fetchArticlesFormStore.on('fetchArticlesFailed', () => {
+      finishFetch();
+    });
   }
 
-  handleNewsSourceChange(event) {
+  handleChangeNewsSource(event) {
     const sourceId = event.target.value;
     this.state.sourceId = sourceId;
-    ArticlesActions.newsSourceChange(sourceId);
+    ArticlesActions.changeNewsSource(sourceId);
   }
 
-  handleSortChange(event) {
+  handleChangeSort(event) {
     const sortBy = event.target.value;
     this.state.sortBy = sortBy;
-    ArticlesActions.sortChange(sortBy);
+    ArticlesActions.changeSort(sortBy);
   }
 
   handleFetchArticles(event) {
-    ArticlesActions.startFetchArticles(this.state.sourceId, this.state.sortBy);
+    ArticlesActions.fetchArticles(this.state.sourceId, this.state.sortBy);
   }
 
   render() {
@@ -86,7 +78,7 @@ export default class FetchArticlesFormContainer extends React.Component {
         <div id="choose-news-source-container" className="col-xs-4">
           <select
             id="choose-news-source" className="form-control"
-            onChange={this.handleNewsSourceChange.bind(this)}
+            onChange={this.handleChangeNewsSource.bind(this)}
           >
             {newsSourcesOptions}
           </select>
@@ -94,7 +86,7 @@ export default class FetchArticlesFormContainer extends React.Component {
         <div id="choose-sort-container" className="col-xs-4">
           <select
             id="choose-sort" className="form-control" disabled={this.state.isSelectSortDisabled}
-            onChange={this.handleSortChange.bind(this)}
+            onChange={this.handleChangeSort.bind(this)}
           >
             {sortOptions}
           </select>

@@ -4,16 +4,16 @@ import dispatcher from '../dispatcher/Dispatcher';
 class AppStatusStore extends EventEmitter {
   handleAction(action) {
     switch (action.type) {
-      case 'START_FETCH_ARTICLES':
-        this.emit('startFetchArticles');
+      case 'FETCH_ARTICLES':
+        this.emit('fetchArticles');
         break;
 
-      case 'ERROR_FETCH_ARTICLES':
-        this.emit('errorFetchArticles');
+      case 'FETCH_ARTICLES_FAILED':
+        this.emit('fetchArticlesFailed');
         break;
 
-      case 'SUCCESS_FETCH_ARTICLES':
-        this.emit('successFetchArticles');
+      case 'ARTICLES_FETCHED':
+        this.emit('articlesFetched');
         break;
     }
   }
