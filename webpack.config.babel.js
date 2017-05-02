@@ -13,10 +13,13 @@ const webpackConfig = {
     filename: 'scripts/bundle.js',
     publicPath: 'dist/',
   },
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
   module: {
     loaders: [
       {
-        test: /\.js$/,
+        test: /(\.js|\.jsx)$/,
         exclude: /(node_modules|routes)/,
         loader: 'babel-loader',
       },
