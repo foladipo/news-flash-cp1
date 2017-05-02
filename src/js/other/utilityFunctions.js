@@ -1,12 +1,14 @@
-if (window.location.pathname !== '/') {
+import getFirebaseApp from './getFirebaseApp';
+
+if (window.location.pathname === '/dashboard') {
   document.onreadystatechange = () => {
     if (document.readyState === 'interactive') {
-      const firebase = initFirebase();
+      const firebaseApp = getFirebaseApp();
 
       const signOutBtn = document.getElementById('sign-out-btn');
       signOutBtn.onclick = (e) => {
         e.preventDefault();
-        firebase.auth().signOut();
+        firebaseApp.auth().signOut();
         document.cookie = 'idToken=null';
         window.location.replace('/');
       };
