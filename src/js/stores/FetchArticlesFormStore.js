@@ -1,6 +1,6 @@
 import { EventEmitter } from 'events';
 import dispatcher from '../dispatcher/Dispatcher';
-import * as Utilities from '../constants/Utilities';
+import * as values from '../constants/values';
 
 class FetchArticlesFormStore extends EventEmitter {
   constructor() {
@@ -11,7 +11,7 @@ class FetchArticlesFormStore extends EventEmitter {
   handleAction(action) {
     switch (action.type) {
       case 'CHANGE_NEWS_SOURCE':
-        this.availableSorts = Utilities.getAvailableSortForNewsSource(action.sourceId);
+        this.availableSorts = values.getAvailableSortForNewsSource(action.sourceId);
         this.emit('changeNewsSource');
         break;
 
@@ -30,6 +30,9 @@ class FetchArticlesFormStore extends EventEmitter {
       case 'ARTICLES_FETCHED':
         this.emit('articlesFetched');
         break;
+
+      default:
+        // Do nothing.
     }
   }
 

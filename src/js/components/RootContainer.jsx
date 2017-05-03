@@ -1,11 +1,9 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
-import firebase from 'firebase';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import dotenv from 'dotenv';
 import HomePageContainer from './HomePageContainer';
 import DashboardContainer from './DashboardContainer';
-import NotFoundContainer from './NotFoundContainer';
-import getFirebaseApp from '../other/getFirebaseApp';
+import NotFound from './NotFound';
 
 dotenv.config();
 
@@ -15,7 +13,7 @@ function RoutingComponent() {
       <Switch>
         <Route exact path="/" component={HomePageContainer} />
         <AuthenticatedRoute exact path="/dashboard" component={DashboardContainer} />
-        <AuthenticatedRoute exact path="*" component={NotFoundContainer} />
+        <AuthenticatedRoute exact path="*" component={NotFound} />
       </Switch>
     </BrowserRouter>
   );
@@ -23,7 +21,7 @@ function RoutingComponent() {
 
 function AuthenticatedRoute(props) {
   // Cookie-extraction regex courtesey of MDN (https://goo.gl/pLHkdj).
-  const token = document.cookie.replace(/(?:(?:^|.*;\s*)idToken\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+  const token = document.cookie.replace(/(?:(?:^|.*;\s*)idToken\s*=\s*([^;]*).*$)|^.*$/, '$1');
   if (token !== '' && token !== 'null') {
     return <props.component />;
   }

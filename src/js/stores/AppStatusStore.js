@@ -8,13 +8,12 @@ class AppStatusStore extends EventEmitter {
         this.emit('fetchArticles');
         break;
 
-      case 'FETCH_ARTICLES_FAILED':
-        this.emit('fetchArticlesFailed');
-        break;
-
       case 'ARTICLES_FETCHED':
         this.emit('articlesFetched');
         break;
+
+      default:
+        // Do nothing.
     }
   }
 }

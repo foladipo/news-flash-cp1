@@ -1,9 +1,8 @@
 import React from 'react';
 import Article from './Article';
 import articlesStore from '../stores/ArticlesStore';
-import * as ArticlesActions from '../actions/ArticlesActions';
-import WelcomeMessageContainer from './WelcomeMessageContainer';
-import AppStatusContainer from './AppStatusContainer';
+import WelcomeMessage from './WelcomeMessage';
+import AppStatus from './AppStatus';
 
 export default class ArticlesContainer extends React.Component {
   constructor() {
@@ -22,13 +21,13 @@ export default class ArticlesContainer extends React.Component {
   }
 
   render() {
-    const Articles = this.state.articles.map((article, index) =>
+    const Articles = this.state.articles.map(article =>
       // Use the spread operator to extract each key in the article object.
-      <Article key={index} {...article} />);
+      <Article key={article.id} {...article} />);
     return (
       <div id="articles-container" className="row container-fluid">
-        <WelcomeMessageContainer />
-        <AppStatusContainer />
+        <WelcomeMessage />
+        <AppStatus />
         <div>{Articles}</div>
       </div>
     );

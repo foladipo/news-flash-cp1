@@ -1,5 +1,6 @@
 import React from 'react';
-import * as Utilities from '../constants/Utilities';
+import uuid from 'uuid';
+import * as values from '../constants/values';
 import * as ArticlesActions from '../actions/ArticlesActions';
 import fetchArticlesFormStore from '../stores/FetchArticlesFormStore';
 
@@ -8,7 +9,7 @@ export default class FetchArticlesFormContainer extends React.Component {
     super(props);
     this.state = {
       sourceId: '',
-      newsSources: Utilities.getAllNewsSources(),
+      newsSources: values.getAllNewsSources(),
       sortBy: '',
       sorts: [],
       isSelectSortDisabled: true,
@@ -64,14 +65,27 @@ export default class FetchArticlesFormContainer extends React.Component {
     ArticlesActions.changeSort(sortBy);
   }
 
-  handleFetchArticles(event) {
+  handleFetchArticles() {
     ArticlesActions.fetchArticles(this.state.sourceId, this.state.sortBy);
   }
 
   render() {
-    const newsSourcesOptions = this.state.newsSources.map((source, index) => <option key={index} value={source.id}>{source.name}</option>);
+    const newsSourcesOptions = this.state.newsSources.map(source =>
+      <option
+        key={uuid.v4()}
+        value={source.id}
+      >
+        {source.name}
+      </option>);
 
-    const sortOptions = this.state.sorts.map((oneSort, index) => <option key={index} value={oneSort}>{oneSort[0].toUpperCase() + oneSort.substr(1)}</option>);
+    const sortOptions = this.state.sorts.map(oneSort =>
+      <option
+        key={uuid.v4()}
+        value={oneSort}
+      >
+        {oneSort[0].toUpperCase() + oneSort.substr(1)}
+      </option>,
+    );
 
     return (
       <div id="fetch-articles-form-container" className="col-md-12">

@@ -306,6 +306,9 @@ export function getAvailableSortForNewsSource(source) {
     case 'usa-today':
       availableSortTypes = ['top', 'latest'];
       break;
+
+    default:
+      availableSortTypes = [];
   }
 
   return availableSortTypes;

@@ -1,7 +1,7 @@
 import React from 'react';
 import appStatusStore from '../stores/AppStatusStore';
 
-export default class AppStatusContainer extends React.Component {
+export default class AppStatus extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

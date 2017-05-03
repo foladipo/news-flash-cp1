@@ -7,7 +7,7 @@ const dotEnvPlugin = new DotEnvPlugin({
 });
 
 const webpackConfig = {
-  entry: './src/js/main.js',
+  entry: './src/js/main.jsx',
   output: {
     path: `${__dirname}/dist/`,
     filename: 'scripts/bundle.js',

@@ -1,11 +1,11 @@
 import React from 'react';
-import DashboardAppContainer from './DashboardAppContainer';
+import DashboardApp from './DashboardApp';
 
 function DashboardContainer() {
   return (
     <div>
       <div className="col-lg-2 col-md-1 col-sm-0" />
-      <DashboardAppContainer />
+      <DashboardApp />
       <div className="col-lg-2 col-md-1 col-sm-0" />
     </div>
   );
