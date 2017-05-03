@@ -1,0 +1,3 @@
+# Pushing to Coveralls needs this config file with your repo token. Note that
+# this token is sensitive info, so make sure you add it to your .gitignore.
+repo_token: XXXXXXXXXXXXXXXXXXXXXXXXX
