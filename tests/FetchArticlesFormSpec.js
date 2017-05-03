@@ -2,19 +2,19 @@ import React from 'react';
 import chai from 'chai';
 import chaiEnzyme from 'chai-enzyme';
 import { mount } from 'enzyme';
-import FetchArticlesFormContainer from '../src/js/components/FetchArticlesFormContainer';
+import FetchArticlesForm from '../src/js/components/FetchArticlesForm';
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;
 
-describe('FetchArticlesFormContainer', () => {
+describe('FetchArticlesForm', () => {
   it('should be defined', () => {
-    expect(FetchArticlesFormContainer).to.not.equal(undefined);
+    expect(FetchArticlesForm).to.not.equal(undefined);
   });
 });
 
-const wrapper = mount(<FetchArticlesFormContainer />);
-describe('When rendered, FetchArticlesFormContainer', () => {
+const wrapper = mount(<FetchArticlesForm />);
+describe('When rendered, FetchArticlesForm', () => {
   it('should have an id of fetch-articles-form-container', () => {
     expect(wrapper).to.have.id('fetch-articles-form-container');
   });

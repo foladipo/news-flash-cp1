@@ -2,20 +2,20 @@ import React from 'react';
 import chai from 'chai';
 import chaiEnzyme from 'chai-enzyme';
 import { mount } from 'enzyme';
-import WelcomeMessageContainer from '../src/js/components/WelcomeMessageContainer';
+import WelcomeMessage from '../src/js/components/WelcomeMessage';
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;
 
-describe('WelcomeMessageContainer', () => {
+describe('WelcomeMessage', () => {
   it('should be defined', () => {
-    expect(WelcomeMessageContainer).to.not.equal(undefined);
+    expect(WelcomeMessage).to.not.equal(undefined);
   });
 });
 
-const wrapper = mount(<WelcomeMessageContainer />);
+const wrapper = mount(<WelcomeMessage />);
 const children = wrapper.children();
-describe('WelcomeMessageContainer', () => {
+describe('WelcomeMessage', () => {
   it('should have a class of row when rendered', () => {
     expect(wrapper).to.have.className('row');
   });
@@ -91,15 +91,15 @@ describe('WelcomeMessageContainer', () => {
   });
 });
 
-describe('When its state is set to something new, WelcomeMessageContainer', () => {
-  // The aim of this test is to simulate how WelcomeMessageContainer will react when
+describe('When its state is set to something new, WelcomeMessage', () => {
+  // The aim of this test is to simulate how WelcomeMessage will react when
   // its Store changes, in turn due to an appropriate Action.
   const newState = {
     htmlClasses: ['row', 'hidden'],
   };
-  const newWrapper = mount(<WelcomeMessageContainer />);
+  const newWrapper = mount(<WelcomeMessage />);
   newWrapper.setState(newState);
-  it(`should have class hidden when WelcomeMessageContainer.state.htmlClasses is set to ['${newState.htmlClasses.join('\', \'')}']`, () => {
+  it(`should have class hidden when WelcomeMessage.state.htmlClasses is set to ['${newState.htmlClasses.join('\', \'')}']`, () => {
     expect(newWrapper).to.have.className('hidden');
   });
 });

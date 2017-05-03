@@ -1,20 +1,20 @@
 import React from 'react';
 import chai from 'chai';
 import chaiEnzyme from 'chai-enzyme';
-import { mount, render } from 'enzyme';
-import AppStatusContainer from '../src/js/components/AppStatusContainer';
+import { mount } from 'enzyme';
+import AppStatus from '../src/js/components/AppStatus';
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;
 
-describe('AppStatusContainer', () => {
+describe('AppStatus', () => {
   it('should be defined', () => {
-    expect(AppStatusContainer).to.not.equal(undefined);
+    expect(AppStatus).to.not.equal(undefined);
   });
 });
 
-const wrapper = mount(<AppStatusContainer />);
-describe('AppStatusContainer', () => {
+const wrapper = mount(<AppStatus />);
+describe('AppStatus', () => {
   it('should have an id of app-status-container', () => {
     expect(wrapper).to.have.id('app-status-container');
   });
@@ -92,14 +92,14 @@ describe('AppStatusContainer', () => {
   });
 });
 
-describe('When the status of fetching news changes, AppStatusContainer', () => {
+describe('When the status of fetching news changes, AppStatus', () => {
   const startFetchState = {
     isFetching: true,
     isErrorFetch: false,
     isSuccessFetch: false,
     message: 'Loading... Please wait...',
   };
-  const startFetchWrapper = mount(<AppStatusContainer />);
+  const startFetchWrapper = mount(<AppStatus />);
   startFetchWrapper.setState(startFetchState);
   it('should show a loading image when fetching articles starts', () => {
     expect(startFetchWrapper.childAt(0)).to.not.have.className('hidden');
@@ -119,7 +119,7 @@ describe('When the status of fetching news changes, AppStatusContainer', () => {
     isSuccessFetch: false,
     message: 'Oops! Failed to fetch news articles. Please try again.',
   };
-  const errorFetchWrapper = mount(<AppStatusContainer />);
+  const errorFetchWrapper = mount(<AppStatus />);
   errorFetchWrapper.setState(errorFetchState);
   it('should NOT show a loading image when fetching articles fails', () => {
     expect(errorFetchWrapper.childAt(0)).to.have.className('hidden');
@@ -138,7 +138,7 @@ describe('When the status of fetching news changes, AppStatusContainer', () => {
     isErrorFetch: false,
     isSuccessFetch: true,
   };
-  const successFetchWrapper = mount(<AppStatusContainer />);
+  const successFetchWrapper = mount(<AppStatus />);
   successFetchWrapper.setState(successFetchState);
   it('should be entirely hidden when fetching articles succeeds', () => {
     expect(successFetchWrapper).to.have.className('hidden');

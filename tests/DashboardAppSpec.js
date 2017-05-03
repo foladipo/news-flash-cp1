@@ -1,8 +1,8 @@
 import chai from 'chai';
 import chaiEnzyme from 'chai-enzyme';
 import React from 'react';
-import { shallow, mount, render } from 'enzyme';
-import DashboardAppContainer from '../src/js/components/DashboardAppContainer';
+import { mount } from 'enzyme';
+import DashboardApp from '../src/js/components/DashboardApp';
 import ArticlesContainer from '../src/js/components/ArticlesContainer';
 import FooterContainer from '../src/js/components/FooterContainer';
 import NavContainer from '../src/js/components/NavContainer';
@@ -10,7 +10,7 @@ import NavContainer from '../src/js/components/NavContainer';
 chai.use(chaiEnzyme());
 const expect = chai.expect;
 
-const wrapper = mount(<DashboardAppContainer />);
+const wrapper = mount(<DashboardApp />);
 
 describe('The NewsFlash dashboard', () => {
   const children = wrapper.children();

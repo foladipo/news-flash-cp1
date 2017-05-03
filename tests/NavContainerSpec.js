@@ -1,9 +1,9 @@
 import React from 'react';
 import chai from 'chai';
 import chaiEnzyme from 'chai-enzyme';
-import { mount, render, shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import NavContainer from '../src/js/components/NavContainer';
-import FetchArticlesFormContainer from '../src/js/components/FetchArticlesFormContainer';
+import FetchArticlesForm from '../src/js/components/FetchArticlesForm';
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;
@@ -38,8 +38,8 @@ describe('NavContainer', () => {
     expect(children.at(0)).to.have.className('col-md-12');
   });
 
-  it('should have a second child that\'s an instance of FetchArticlesFormContainer', () => {
-    expect(children.at(1).is(FetchArticlesFormContainer)).to.equal(true);
+  it('should have a second child that\'s an instance of FetchArticlesForm', () => {
+    expect(children.at(1).is(FetchArticlesForm)).to.equal(true);
   });
 
   it('should have a second child with an id of fetch-articles-form-container', () => {
