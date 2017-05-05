@@ -1,5 +1,6 @@
 import React from 'react';
 import uuid from 'uuid';
+import SearchSources from './SearchSources';
 import * as ArticlesActions from '../actions/ArticlesActions';
 import dashboardStore from '../stores/DashboardStore';
 
@@ -37,13 +38,15 @@ export default class FetchArticlesFormContainer extends React.Component {
 
     dashboardStore.on('changeNewsSource', () => {
       this.setState(() => {
-        const availableSorts = dashboardStore.getSorts(this.state.sourceId);
+        const newSourceId = dashboardStore.getCurrentSource();
+        const availableSorts = dashboardStore.getSorts(newSourceId);
 
         if (availableSorts === undefined) {
           return {};
         }
 
         const newState = {
+          sourceId: newSourceId,
           sortBy: availableSorts[0],
           sortOptions: availableSorts,
           isSelectSortDisabled: false,
@@ -111,25 +114,30 @@ export default class FetchArticlesFormContainer extends React.Component {
 
     return (
       <div id="fetch-articles-form-container" className="col-md-12">
+        <div id="search-sources-container" className="col-xs-4">
+          <SearchSources />
+        </div>
         <div id="choose-news-source-container" className="col-xs-4">
           <select
             id="choose-news-source"
             className="form-control"
+            value={this.state.sourceId}
             onChange={this.handleChangeNewsSource.bind(this)}
           >
             {newsSourcesOptions}
           </select>
         </div>
-        <div id="choose-sort-container" className="col-xs-4">
+        <div id="choose-sort-container" className="col-xs-2">
           <select
-            id="choose-sort" className="form-control"
+            id="choose-sort"
+            className="form-control"
             disabled={this.state.isSelectSortDisabled}
             onChange={this.handleChangeSort.bind(this)}
           >
             {sortOptions}
           </select>
         </div>
-        <div id="fetch-articles-btn-container" className="col-xs-4">
+        <div id="fetch-articles-btn-container" className="col-xs-2">
           <button
             id="fetch-articles-btn" className="btn btn-primary"
             disabled={this.state.isFetchArticlesBtnDisabled}

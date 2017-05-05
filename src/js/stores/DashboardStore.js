@@ -5,6 +5,7 @@ class DashboardStore extends EventEmitter {
   constructor() {
     super();
     this.sources = [];
+    this.currentSource = '';
     this.sorts = {};
     this.message = '';
   }
@@ -36,6 +37,7 @@ class DashboardStore extends EventEmitter {
         break;
 
       case 'CHANGE_NEWS_SOURCE':
+        this.currentSource = action.sourceId;
         this.emit('changeNewsSource');
         break;
 
@@ -66,6 +68,10 @@ class DashboardStore extends EventEmitter {
 
   getSorts(sourceId) {
     return this.sorts[sourceId];
+  }
+
+  getCurrentSource() {
+    return this.currentSource;
   }
 }
 
