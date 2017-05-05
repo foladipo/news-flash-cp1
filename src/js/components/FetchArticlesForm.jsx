@@ -113,7 +113,7 @@ export default class FetchArticlesFormContainer extends React.Component {
     );
 
     return (
-      <div id="fetch-articles-form-container" className="col-md-12">
+      <div id="fetch-articles-form" className="col-md-12">
         <div id="search-sources-container" className="col-xs-4">
           <SearchSources />
         </div>
