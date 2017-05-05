@@ -39,12 +39,21 @@ body {
     padding-bottom: 1em;
     box-sizing: border-box;
 
+    #nav-container {
+      #search-sources-container {
+        div.input {
+          width: 95%;
+        }
+      }
+    }
+
     #app-status-container {
       margin-top: 1em;
     }
 
     #articles-container {
       border-bottom: $border-width solid #ececec;
+      margin-bottom: 1em;
     }
 
     #sign-out-btn {
