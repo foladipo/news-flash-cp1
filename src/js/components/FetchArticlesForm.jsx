@@ -1,29 +1,32 @@
 import React from 'react';
 import uuid from 'uuid';
-import * as values from '../constants/values';
 import * as ArticlesActions from '../actions/ArticlesActions';
-import fetchArticlesFormStore from '../stores/FetchArticlesFormStore';
+import dashboardStore from '../stores/DashboardStore';
 
 export default class FetchArticlesFormContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       sourceId: '',
-      newsSources: values.getAllNewsSources(),
+      newsSources: [],
       sortBy: '',
-      sorts: [],
+      sortOptions: [],
       isSelectSortDisabled: true,
       isFetchArticlesBtnDisabled: true,
     };
   }
 
   componentWillMount() {
-    fetchArticlesFormStore.on('changeNewsSource', () => {
+    dashboardStore.on('sourcesFetched', () => {
       this.setState(() => {
-        const availableSorts = fetchArticlesFormStore.getAvailableSorts();
+        const sources = dashboardStore.getSources();
+        const firstSourceId = sources[0].id;
+        const availableSorts = dashboardStore.getSorts(firstSourceId);
         const newState = {
+          sourceId: firstSourceId,
+          newsSources: sources,
           sortBy: availableSorts[0],
-          sorts: availableSorts,
+          sortOptions: availableSorts,
           isSelectSortDisabled: false,
           isFetchArticlesBtnDisabled: false,
         };
@@ -32,7 +35,26 @@ export default class FetchArticlesFormContainer extends React.Component {
       });
     });
 
-    fetchArticlesFormStore.on('fetchArticles', () => {
+    dashboardStore.on('changeNewsSource', () => {
+      this.setState(() => {
+        const availableSorts = dashboardStore.getSorts(this.state.sourceId);
+
+        if (availableSorts === undefined) {
+          return {};
+        }
+
+        const newState = {
+          sortBy: availableSorts[0],
+          sortOptions: availableSorts,
+          isSelectSortDisabled: false,
+          isFetchArticlesBtnDisabled: false,
+        };
+
+        return newState;
+      });
+    });
+
+    dashboardStore.on('fetchArticles', () => {
       this.setState({
         isFetchArticlesBtnDisabled: true,
       });
@@ -44,11 +66,11 @@ export default class FetchArticlesFormContainer extends React.Component {
       });
     };
 
-    fetchArticlesFormStore.on('articlesFetched', () => {
+    dashboardStore.on('articlesFetched', () => {
       finishFetch();
     });
 
-    fetchArticlesFormStore.on('fetchArticlesFailed', () => {
+    dashboardStore.on('fetchArticlesFailed', () => {
       finishFetch();
     });
   }
@@ -78,7 +100,7 @@ export default class FetchArticlesFormContainer extends React.Component {
         {source.name}
       </option>);
 
-    const sortOptions = this.state.sorts.map(oneSort =>
+    const sortOptions = this.state.sortOptions.map(oneSort =>
       <option
         key={uuid.v4()}
         value={oneSort}
@@ -91,7 +113,8 @@ export default class FetchArticlesFormContainer extends React.Component {
       <div id="fetch-articles-form-container" className="col-md-12">
         <div id="choose-news-source-container" className="col-xs-4">
           <select
-            id="choose-news-source" className="form-control"
+            id="choose-news-source"
+            className="form-control"
             onChange={this.handleChangeNewsSource.bind(this)}
           >
             {newsSourcesOptions}
@@ -99,7 +122,8 @@ export default class FetchArticlesFormContainer extends React.Component {
         </div>
         <div id="choose-sort-container" className="col-xs-4">
           <select
-            id="choose-sort" className="form-control" disabled={this.state.isSelectSortDisabled}
+            id="choose-sort" className="form-control"
+            disabled={this.state.isSelectSortDisabled}
             onChange={this.handleChangeSort.bind(this)}
           >
             {sortOptions}
@@ -108,7 +132,8 @@ export default class FetchArticlesFormContainer extends React.Component {
         <div id="fetch-articles-btn-container" className="col-xs-4">
           <button
             id="fetch-articles-btn" className="btn btn-primary"
-            disabled={this.state.isFetchArticlesBtnDisabled} onClick={this.handleFetchArticles.bind(this)}
+            disabled={this.state.isFetchArticlesBtnDisabled}
+            onClick={this.handleFetchArticles.bind(this)}
           >
           Get News
           </button>
