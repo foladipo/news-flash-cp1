@@ -2,6 +2,7 @@ import React from 'react';
 import chai from 'chai';
 import chaiEnzyme from 'chai-enzyme';
 import { mount } from 'enzyme';
+import SearchSources from '../src/js/components/SearchSources';
 import FetchArticlesForm from '../src/js/components/FetchArticlesForm';
 
 chai.use(chaiEnzyme());
@@ -15,8 +16,8 @@ describe('FetchArticlesForm', () => {
 
 const wrapper = mount(<FetchArticlesForm />);
 describe('When rendered, FetchArticlesForm', () => {
-  it('should have an id of fetch-articles-form-container', () => {
-    expect(wrapper).to.have.id('fetch-articles-form-container');
+  it('should have an id of fetch-articles-form', () => {
+    expect(wrapper).to.have.id('fetch-articles-form');
   });
 
   it('should have a class of col-md-12', () => {
@@ -24,51 +25,63 @@ describe('When rendered, FetchArticlesForm', () => {
   });
 
   const children = wrapper.children();
-  it('should have three (3) direct children', () => {
-    expect(children).to.have.length(3);
+  it('should have four (4) direct children', () => {
+    expect(children).to.have.length(4);
   });
 
-  it('should have three (3) direct children that each have a class of col-xs-4', () => {
-    expect(children.every('.col-xs-4')).to.equal(true);
+  const firstChild = children.at(0);
+  it('should have a first child that has an id of search-sources-container', () => {
+    expect(firstChild).to.have.id('search-sources-container');
   });
 
-  it('should have a first child with an id of choose-news-source-container', () => {
-    expect(children.at(0)).to.have.id('choose-news-source-container');
+  it('should have a first child contains one element', () => {
+    expect(firstChild.children()).to.have.length(1);
   });
 
-  it('should have a first child that contains a select element with an id of choose-news-source', () => {
-    expect(children.at(0).find('select')).to.have.id('choose-news-source');
+  it('should have a first child that contains a SearchSources component', () => {
+    expect(firstChild.children().at(0).is(SearchSources)).to.equal(true);
   });
 
-  it('should have a second child with an id of choose-sort-container', () => {
-    expect(children.at(1)).to.have.id('choose-sort-container');
+  const secondChild = children.at(1);
+  it('should have a second child with an id of choose-news-source-container', () => {
+    expect(secondChild).to.have.id('choose-news-source-container');
   });
 
-  it('should have a second child that contains a select element with an id of choose-sort', () => {
-    expect(children.at(1).find('select')).to.have.id('choose-sort');
+  it('should have a second child that contains a select element with an id of choose-news-source', () => {
+    expect(secondChild.find('select')).to.have.id('choose-news-source');
+  });
+
+  const thirdChild = children.at(2);
+  it('should have a third child with an id of choose-sort-container', () => {
+    expect(thirdChild).to.have.id('choose-sort-container');
+  });
+
+  it('should have a third child that contains a select element with an id of choose-sort', () => {
+    expect(thirdChild.find('select')).to.have.id('choose-sort');
   });
 
   it('should have a #choose-sort select element that\'s disabled by default', () => {
-    expect(children.at(1).find('select')).to.have.attr('disabled');
+    expect(thirdChild.find('select')).to.have.attr('disabled');
   });
 
-  it('should have a third child with an id of fetch-articles-btn-container', () => {
-    expect(children.at(2)).to.have.id('fetch-articles-btn-container');
+  const fourthChild = children.at(3);
+  it('should have a fourth child with an id of fetch-articles-btn-container', () => {
+    expect(fourthChild).to.have.id('fetch-articles-btn-container');
   });
 
-  it('should have a third child that contains a button element with an id of fetch-articles-btn', () => {
-    expect(children.at(2).find('button')).to.have.id('fetch-articles-btn');
+  it('should have a fourth child that contains a button element with an id of fetch-articles-btn', () => {
+    expect(fourthChild.find('button')).to.have.id('fetch-articles-btn');
   });
 
   it('should have a #fetch-articles-btn button element that\'s disabled by default', () => {
-    expect(children.at(2).find('button')).to.have.attr('disabled');
+    expect(fourthChild.find('button')).to.have.attr('disabled');
   });
 
   it('should have a #fetch-articles-btn button element that also has a class btn', () => {
-    expect(children.at(2).find('button')).to.have.className('btn');
+    expect(fourthChild.find('button')).to.have.className('btn');
   });
 
   it('should have a #fetch-articles-btn button element that also has a class btn-primary', () => {
-    expect(children.at(2).find('button')).to.have.className('btn-primary');
+    expect(fourthChild.find('button')).to.have.className('btn-primary');
   });
 });

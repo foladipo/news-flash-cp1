@@ -42,8 +42,8 @@ describe('NavContainer', () => {
     expect(children.at(1).is(FetchArticlesForm)).to.equal(true);
   });
 
-  it('should have a second child with an id of fetch-articles-form-container', () => {
-    expect(children.at(1)).to.have.id('fetch-articles-form-container');
+  it('should have a second child with an id of fetch-articles-form', () => {
+    expect(children.at(1)).to.have.id('fetch-articles-form');
   });
 
   it('should have a first child with class col-md-12', () => {
