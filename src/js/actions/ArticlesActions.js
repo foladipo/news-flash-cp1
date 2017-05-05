@@ -51,3 +51,26 @@ export function changeSort(sort) {
     sort,
   });
 }
+
+export function fetchSources() {
+  dispatcher.dispatch({
+    type: 'FETCH_SOURCES',
+    message: 'We\'re updating our list of news sources... Please wait...',
+  });
+
+  const sourcesUrl = 'https://newsapi.org/v1/sources?language=en';
+  axios.get(sourcesUrl)
+    .then((response) => {
+      dispatcher.dispatch({
+        type: 'SOURCES_FETCHED',
+        data: response.data,
+      });
+    })
+    .catch(() => {
+      dispatcher.dispatch({
+        type: 'FETCH_SOURCES_FAILED',
+        message: 'Ooops! Update failed. Please check your internet connection and try again.',
+      });
+    });
+}
+

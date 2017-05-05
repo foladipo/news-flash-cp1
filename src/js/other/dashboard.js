@@ -1,4 +1,5 @@
 import getFirebaseApp from './getFirebaseApp';
+import * as ArticlesActions from '../actions/ArticlesActions';
 
 if (window.location.pathname === '/dashboard') {
   document.onreadystatechange = () => {
@@ -12,6 +13,8 @@ if (window.location.pathname === '/dashboard') {
         document.cookie = 'idToken=null';
         window.location.replace('/');
       };
+
+      ArticlesActions.fetchSources();
     }
   };
 }
