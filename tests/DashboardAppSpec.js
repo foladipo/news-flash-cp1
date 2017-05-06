@@ -9,8 +9,6 @@ import NavContainer from '../src/js/components/NavContainer';
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;
-const describe = chai.describe;
-const it = chai.it;
 
 const wrapper = mount(<DashboardApp />);
 

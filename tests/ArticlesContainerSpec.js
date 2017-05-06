@@ -6,8 +6,6 @@ import ArticlesContainer from '../src/js/components/ArticlesContainer';
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;
-const describe = chai.describe;
-const it = chai.it;
 
 const wrapper = mount(<ArticlesContainer />);
 

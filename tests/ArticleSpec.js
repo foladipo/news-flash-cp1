@@ -6,8 +6,6 @@ import Article from '../src/js/components/Article';
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;
-const describe = chai.describe;
-const it = chai.it;
 
 describe('The Article component', () => {
   it('should be defined', () => {

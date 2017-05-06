@@ -7,8 +7,6 @@ import FetchArticlesForm from '../src/js/components/FetchArticlesForm';
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;
-const describe = chai.describe;
-const it = chai.it;
 
 describe('FetchArticlesForm', () => {
   it('should be defined', () => {
