@@ -13,7 +13,7 @@ if (window.location.pathname === '/') {
               document.cookie = `idToken=${idToken}`;
               window.location.replace('/dashboard');
             })
-            .catch((error) => {
+            .catch(() => {
               document.cookie = 'idToken=null';
               firebaseApp.auth().signOut();
             });
