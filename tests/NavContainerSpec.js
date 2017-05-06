@@ -7,6 +7,8 @@ import FetchArticlesForm from '../src/js/components/FetchArticlesForm';
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;
+const describe = chai.describe;
+const it = chai.it;
 
 const wrapper = mount(<NavContainer />);
 

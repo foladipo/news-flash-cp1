@@ -6,6 +6,8 @@ import AppStatus from '../src/js/components/AppStatus';
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;
+const describe = chai.describe;
+const it = chai.it;
 
 describe('AppStatus', () => {
   it('should be defined', () => {

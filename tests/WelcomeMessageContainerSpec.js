@@ -6,6 +6,8 @@ import WelcomeMessage from '../src/js/components/WelcomeMessage';
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;
+const describe = chai.describe;
+const it = chai.it;
 
 describe('WelcomeMessage', () => {
   it('should be defined', () => {

@@ -6,6 +6,8 @@ import FooterContainer from '../src/js/components/FooterContainer';
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;
+const describe = chai.describe;
+const it = chai.it;
 
 const wrapper = mount(<FooterContainer />);
 
