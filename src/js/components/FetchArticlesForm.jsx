@@ -131,7 +131,6 @@ export default class FetchArticlesFormContainer extends React.Component {
           <select
             id="choose-sort"
             className="form-control"
-            disabled={this.state.isSelectSortDisabled}
             onChange={this.handleChangeSort.bind(this)}
           >
             {sortOptions}
@@ -140,7 +139,6 @@ export default class FetchArticlesFormContainer extends React.Component {
         <div id="fetch-articles-btn-container" className="col-xs-2">
           <button
             id="fetch-articles-btn" className="btn btn-primary"
-            disabled={this.state.isFetchArticlesBtnDisabled}
             onClick={this.handleFetchArticles.bind(this)}
           >
           Get News

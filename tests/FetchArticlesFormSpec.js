@@ -60,10 +60,6 @@ describe('When rendered, FetchArticlesForm', () => {
     expect(thirdChild.find('select')).to.have.id('choose-sort');
   });
 
-  it('should have a #choose-sort select element that\'s disabled by default', () => {
-    expect(thirdChild.find('select')).to.have.attr('disabled');
-  });
-
   const fourthChild = children.at(3);
   it('should have a fourth child with an id of fetch-articles-btn-container', () => {
     expect(fourthChild).to.have.id('fetch-articles-btn-container');
@@ -71,10 +67,6 @@ describe('When rendered, FetchArticlesForm', () => {
 
   it('should have a fourth child that contains a button element with an id of fetch-articles-btn', () => {
     expect(fourthChild.find('button')).to.have.id('fetch-articles-btn');
-  });
-
-  it('should have a #fetch-articles-btn button element that\'s disabled by default', () => {
-    expect(fourthChild.find('button')).to.have.attr('disabled');
   });
 
   it('should have a #fetch-articles-btn button element that also has a class btn', () => {
