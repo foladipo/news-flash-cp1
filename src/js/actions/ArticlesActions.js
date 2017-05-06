@@ -1,58 +1,83 @@
 import axios from 'axios';
+import dotenv from 'dotenv';
 import dispatcher from '../dispatcher/Dispatcher';
 
-const API_KEY = '32651939900d48bf91b24ee566e98f66';
-export function startFetchArticles(sourceId, sort) {
-  // Tell stores that we've started fetching articles. Then, fetch the articles
-  // and call errorFetchArticles() or successFetchArticles() based on the failure
-  // or otherwise of the fetch attempt.
-  dispatcher.dispatch({
-    type: 'START_FETCH_ARTICLES',
-    message: 'Fetching articles... Please wait...',
-    sourceId,
-    sort,
-  });
+dotenv.config();
 
-  const url = `https://newsapi.org/v1/articles?source=${sourceId}&sortBy=${sort}&apiKey=${API_KEY}`;
-  axios.get(url)
-    .then((response) => {
-      successFetchArticles(response);
-    })
-    .catch((error) => {
-      errorFetchArticles(error);
-    });
-}
-
-export function errorFetchArticles(error) {
+export function fetchArticlesFailed(error) {
   dispatcher.dispatch({
-    type: 'ERROR_FETCH_ARTICLES',
+    type: 'FETCH_ARTICLES_FAILED',
     message: 'Failed to load news articles. Please try again.',
     cause: error.message,
   });
 }
 
-export function successFetchArticles(response) {
-  // The data object contains other meta data about the request e.g the sortBy used.
+export function articlesFetched(response) {
   const data = response.data;
   dispatcher.dispatch({
-    type: 'SUCCESS_FETCH_ARTICLES',
+    type: 'ARTICLES_FETCHED',
     data,
   });
 }
 
-// There's a form to be used to choose the news source a user wants to read and
-// the sorting of the news items by recency, popularity etc. The next few actions are
-// fired as the user changes the form.
-export function newsSourceChange(newsSourceId) {
+export function fetchArticles(sourceId, sort) {
   dispatcher.dispatch({
-    type: 'NEWS_SOURCE_CHANGE',
+    type: 'FETCH_ARTICLES',
+    message: 'Fetching articles... Please wait...',
+    sourceId,
+    sort,
+  });
+
+  const url = `https://newsapi.org/v1/articles?source=${sourceId}&sortBy=${sort}&apiKey=${process.env.NEWS_API_KEY}`;
+  axios.get(url)
+    .then((response) => {
+      articlesFetched(response);
+    })
+    .catch((error) => {
+      fetchArticlesFailed(error);
+    });
+}
+
+export function changeNewsSource(newsSourceId) {
+  dispatcher.dispatch({
+    type: 'CHANGE_NEWS_SOURCE',
     sourceId: newsSourceId,
   });
 }
 
-export function sortChange(sort) {
+export function changeSort(sort) {
   dispatcher.dispatch({
-    type: 'SORT_CHANGE',
+    type: 'CHANGE_SORT',
     sort,
   });
+}
+
+export function sourcesFetched(response) {
+  dispatcher.dispatch({
+    type: 'SOURCES_FETCHED',
+    data: response.data,
+  });
+}
+
+export function fetchSourcesFailed() {
+  dispatcher.dispatch({
+    type: 'FETCH_SOURCES_FAILED',
+    message: 'Ooops! Update failed. Please check your internet connection and try again.',
+  });
+}
+
+export function fetchSources() {
+  dispatcher.dispatch({
+    type: 'FETCH_SOURCES',
+    message: 'We\'re updating our list of news sources... Please wait...',
+  });
+
+  const sourcesUrl = 'https://newsapi.org/v1/sources?language=en';
+  axios.get(sourcesUrl)
+    .then((response) => {
+      sourcesFetched(response);
+    })
+    .catch(() => {
+      fetchSourcesFailed();
+    });
 }

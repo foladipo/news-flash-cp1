@@ -4,5 +4,13 @@
         "react",
         "jsx-a11y",
         "import"
-    ]
+    ],
+    "env": {
+        "browser": true,
+        "mocha": true,
+        "node": true
+    },
+    "globals": {
+    "firebaseui": true
+  }
 }

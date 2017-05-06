@@ -1,0 +1,12 @@
+engines:
+  eslint:
+    enabled: true
+    checks:
+      jsx-a11y/img-has-alt:
+        enabled: false
+      import/extensions:
+        enabled: false
+ratings:
+  paths:
+  - "src/**"
+  - "tests/**"
