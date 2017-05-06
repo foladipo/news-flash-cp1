@@ -2,7 +2,7 @@ import React from 'react';
 import chai from 'chai';
 import chaiEnzyme from 'chai-enzyme';
 import { mount } from 'enzyme';
-import ArticlesContainer from '../src/js/components/ArticlesContainer';
+import ArticlesContainer from '../../src/js/components/ArticlesContainer';
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;

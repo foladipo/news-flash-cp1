@@ -2,10 +2,10 @@ import chai from 'chai';
 import chaiEnzyme from 'chai-enzyme';
 import React from 'react';
 import { mount } from 'enzyme';
-import DashboardApp from '../src/js/components/DashboardApp';
-import ArticlesContainer from '../src/js/components/ArticlesContainer';
-import FooterContainer from '../src/js/components/FooterContainer';
-import NavContainer from '../src/js/components/NavContainer';
+import DashboardApp from '../../src/js/components/DashboardApp';
+import ArticlesContainer from '../../src/js/components/ArticlesContainer';
+import FooterContainer from '../../src/js/components/FooterContainer';
+import NavContainer from '../../src/js/components/NavContainer';
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;

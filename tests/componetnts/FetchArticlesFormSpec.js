@@ -2,8 +2,8 @@ import React from 'react';
 import chai from 'chai';
 import chaiEnzyme from 'chai-enzyme';
 import { mount } from 'enzyme';
-import SearchSources from '../src/js/components/SearchSources';
-import FetchArticlesForm from '../src/js/components/FetchArticlesForm';
+import SearchSources from '../../src/js/components/SearchSources';
+import FetchArticlesForm from '../../src/js/components/FetchArticlesForm';
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;
