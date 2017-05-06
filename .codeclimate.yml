@@ -1,0 +1,18 @@
+engines:
+  eslint:
+    enabled: true
+    checks:
+      jsx-a11y/img-has-alt:
+        enabled: false
+      import/extensions:
+        enabled: false
+  duplication:
+  	enabled: true
+    config:
+    	languages:
+      - javascript
+      	mass_threshold: 30
+ratings:
+  paths:
+  - src/**
+  - tests/**
