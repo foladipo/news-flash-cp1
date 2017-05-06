@@ -9,8 +9,8 @@
     "coverage": "./node_modules/.bin/nyc report --reporter=text-lcov | ./node_modules/.bin/coveralls",
     "deploy": "npm run build && npm start",
     "start": "./node_modules/.bin/babel-node app.js",
-    "test": "./node_modules/.bin/mocha --require babel-register tests/.setup.js tests/*[sS]pec.js",
-    "test:nyc": "./node_modules/.bin/nyc --reporter=html --reporter=text ./node_modules/.bin/mocha --require babel-register tests/.setup.js tests/*[sS]pec.js"
+    "test": "./node_modules/.bin/mocha --require babel-register tests/.setup.js tests/*/*[sS]pec.js",
+    "test:nyc": "./node_modules/.bin/nyc --reporter=html --reporter=text ./node_modules/.bin/mocha --require babel-register tests/.setup.js tests/*/*[sS]pec.js"
   },
   "repository": {
     "type": "git",
@@ -66,6 +66,7 @@
     "mocha": "^3.2.0",
     "nyc": "^10.2.0",
     "react-addons-test-utils": "^15.5.1",
-    "react-test-renderer": "^15.5.4"
+    "react-test-renderer": "^15.5.4",
+    "sinon": "^2.2.0"
   }
 }
