@@ -3,20 +3,23 @@
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)]()
 [![Code Climate](https://codeclimate.com/github/andela-foladipo/news-flash-cp1//badges/gpa.svg)](https://codeclimate.com/github/andela-foladipo/news-flash-cp1/)
 
+
 # Welcome
 
 Welcome to News Flash! This project gives you access to high quality, cutting edge news from 
 sources worldwide. It is also designed to be intuitive and easy to use, all with a 
 great, responsive UI. To see a live version of this project, please visit [this link](https://news-flash-cp1-staging.herokuapp.com/).
 
+
 ## Table of Contents
 
   1. [Tech stack](#tech-stack)
-  1. [Installation and setup](#installation-and-setup).
-  1. [Limitations](#limitations).
-  1. [How to Contribute](#how-to-contribute).
+  1. [Installation and setup](#installation-and-setup)
+  1. [Limitations](#limitations)
+  1. [How to Contribute](#how-to-contribute)
   1. [FAQ](#faq)
   1. [License](#license)
+
 
 ## Tech stack
 
@@ -39,6 +42,7 @@ for details.
 
 - [Firebase](https://firebase.google.com/): This project makes use of various components of 
 [the Firebase suite](https://firebase.google.com/), including Firebase Authentication.
+
 
 ## Installation and setup
 
@@ -87,6 +91,7 @@ npm start
 
 - **Open a web browser of your choice and visit `http://localhost:5000`. Voila! It's alive!**
 
+
 ## Limitations
 
 This project has some limitations. The most notable ones are:
@@ -96,7 +101,9 @@ at a time.
 - You can only read ten (10) articles at a time, and no more i.e pagination is not possible. This 
 limitation comes from our central news source, [NewsAPI](https://newsapi.org).
 
+
 ## How to Contribute
+
 Do you want to contribute to this project? We would love for you to do so! The steps involved are:
 - fork this repo.
 - create a branch using [this format](https://github.com/andela-foladipo/news-flash-cp1/wiki/Branch-naming-convention).
@@ -104,6 +111,7 @@ Do you want to contribute to this project? We would love for you to do so! The s
 - submit a pull request that follows [this format](https://github.com/andela-foladipo/news-flash-cp1/wiki/Pull-request-naming-and-description).
 
 That's all and thanks a lot for helping out!
+
 
 ## FAQ
 
@@ -120,6 +128,7 @@ where <your\_desired\_port> is the port you want to use. So, if you want to use 
 ```bash
 PORT=8080
 ```
+
 
 ## License
 
