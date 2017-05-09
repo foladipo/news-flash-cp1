@@ -10,6 +10,9 @@ export default class SearchSources extends React.Component {
 
     this.allResults = [];
     this.matchingResults = [];
+
+    this.handleResultSelect = this.handleResultSelect.bind(this);
+    this.handleSearchChange = this.handleSearchChange.bind(this);
   }
 
   componentWillMount() {
@@ -17,12 +20,10 @@ export default class SearchSources extends React.Component {
 
     dashboardStore.on('sourcesFetched', () => {
       const sources = dashboardStore.getSources();
-      this.state.allResults = sources.map((source) => {
-        return {
-          title: source.name,
-          value: source.id,
-        };
-      });
+      this.state.allResults = sources.map(source => ({
+        title: source.name,
+        value: source.id,
+      }));
     });
   }
 
@@ -42,7 +43,10 @@ export default class SearchSources extends React.Component {
     this.setState({ isLoading: true, value });
 
     setTimeout(() => {
-      if (this.state.value.length < 1) return this.resetComponent();
+      if (this.state.value.length < 1) {
+        this.resetComponent();
+        return;
+      }
 
       const pattern = new RegExp(lodash.escapeRegExp(this.state.value), 'i');
       const isMatch = (result => pattern.test(result.title));
@@ -62,8 +66,8 @@ export default class SearchSources extends React.Component {
         loading={isLoading}
         fluid
         input="text"
-        onResultSelect={this.handleResultSelect.bind(this)}
-        onSearchChange={this.handleSearchChange.bind(this)}
+        onResultSelect={this.handleResultSelect}
+        onSearchChange={this.handleSearchChange}
         results={matchingResults}
         value={value}
         className="row row-full"

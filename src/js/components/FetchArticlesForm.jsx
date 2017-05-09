@@ -15,6 +15,10 @@ export default class FetchArticlesFormContainer extends React.Component {
       isSelectSortDisabled: true,
       isFetchArticlesBtnDisabled: true,
     };
+
+    this.handleChangeNewsSource = this.handleChangeNewsSource.bind(this);
+    this.handleChangeSort = this.handleChangeSort.bind(this);
+    this.handleFetchArticles = this.handleFetchArticles.bind(this);
   }
 
   componentWillMount() {
@@ -122,7 +126,7 @@ export default class FetchArticlesFormContainer extends React.Component {
             id="choose-news-source"
             className="form-control"
             value={this.state.sourceId}
-            onChange={this.handleChangeNewsSource.bind(this)}
+            onChange={this.handleChangeNewsSource}
           >
             {newsSourcesOptions}
           </select>
@@ -131,7 +135,7 @@ export default class FetchArticlesFormContainer extends React.Component {
           <select
             id="choose-sort"
             className="form-control"
-            onChange={this.handleChangeSort.bind(this)}
+            onChange={this.handleChangeSort}
           >
             {sortOptions}
           </select>
@@ -139,7 +143,7 @@ export default class FetchArticlesFormContainer extends React.Component {
         <div id="fetch-articles-btn-container" className="col-xs-2">
           <button
             id="fetch-articles-btn" className="btn btn-primary"
-            onClick={this.handleFetchArticles.bind(this)}
+            onClick={this.handleFetchArticles}
           >
           Get News
           </button>
