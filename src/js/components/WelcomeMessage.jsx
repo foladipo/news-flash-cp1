@@ -1,5 +1,5 @@
 import React from 'react';
-import welcomeMessageContainerStore from '../stores/WelcomeMessageContainerStore';
+import welcomeMessageStore from '../stores/WelcomeMessageStore';
 
 export default class WelcomeMessageContainer extends React.Component {
   constructor(props) {
@@ -10,9 +10,9 @@ export default class WelcomeMessageContainer extends React.Component {
   }
 
   componentWillMount() {
-    welcomeMessageContainerStore.on('articlesFetched', () => {
+    welcomeMessageStore.on('articlesFetched', () => {
       this.setState({
-        htmlClasses: welcomeMessageContainerStore.getHtmlClasses(),
+        htmlClasses: welcomeMessageStore.getHtmlClasses(),
       });
     });
   }

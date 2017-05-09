@@ -1,7 +1,7 @@
 import { EventEmitter } from 'events';
 import dispatcher from '../dispatcher/Dispatcher';
 
-class WelcomeMessageContainerStore extends EventEmitter {
+class WelcomeMessageStore extends EventEmitter {
   constructor() {
     super();
     this.htmlClasses = [];
@@ -19,7 +19,7 @@ class WelcomeMessageContainerStore extends EventEmitter {
   }
 }
 
-const welcomeMessageStore = new WelcomeMessageContainerStore();
+const welcomeMessageStore = new WelcomeMessageStore();
 dispatcher.register(welcomeMessageStore.handleAction.bind(welcomeMessageStore));
 
 export default welcomeMessageStore;
