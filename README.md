@@ -13,6 +13,8 @@ great, responsive UI. To see a live version of this project, please visit [this 
 
   1. [Tech stack](#tech-stack)
   1. [Installation and setup](#installation-and-setup).
+  1. [Limitations](#limitations).
+  1. [How to Contribute](#how-to-contribute).
   1. [FAQ](#faq)
   1. [License](#license)
 
@@ -84,6 +86,24 @@ npm start
 ```
 
 - **Open a web browser of your choice and visit `http://localhost:5000`. Voila! It's alive!**
+
+## Limitations
+
+This project has some limitations. The most notable ones are:
+- You cannot share multiple articles at once. So, if you see a couple of news articles that 
+you would love to share to your followers on Twitter,  you have to do that one article 
+at a time.
+- You can only read ten (10) articles at a time, and no more i.e pagination is not possible. This 
+limitation comes from our central news source, [NewsAPI](https://newsapi.org).
+
+## How to Contribute
+Do you want to contribute to this project? We would love for you to do so! The steps involved are:
+- fork this repo.
+- create a branch using [this format](https://github.com/andela-foladipo/news-flash-cp1/wiki/Branch-naming-convention).
+- make the changes you want and commit them with concise, descriptive commit messages.
+- submit a pull request that follows [this format](https://github.com/andela-foladipo/news-flash-cp1/wiki/Pull-request-naming-and-description).
+
+That's all and thanks a lot for helping out!
 
 ## FAQ
 
