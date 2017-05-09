@@ -1,7 +1,7 @@
 import firebase from 'firebase';
 import chai from 'chai';
 import dotenv from 'dotenv';
-import getFirebaseApp from '../../src/js/other/getFirebaseApp';
+import getFirebaseApp from '../../src/js/util/getFirebaseApp';
 
 dotenv.config();
 const expect = chai.expect;
