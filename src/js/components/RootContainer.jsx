@@ -7,7 +7,7 @@ import NotFound from './NotFound';
 
 dotenv.config();
 
-function RoutingComponent() {
+function RootComponent() {
   return (
     <BrowserRouter>
       <Switch>
@@ -29,4 +29,4 @@ function AuthenticatedRoute(props) {
   window.location.replace('/');
 }
 
-export default RoutingComponent;
+export default RootComponent;
