@@ -2,7 +2,8 @@ import React from 'react';
 
 /**
  * This Component contains the elements that make up the footer for this app.
- * @return - HTML representation of this Component for DOM rendering.
+ * @return {ReactComponent|null|false} - A Component for DOM rendering.
+ * Otherwise, null or false to not render this Component.
  */
 export default function FooterContainer() {
   return (

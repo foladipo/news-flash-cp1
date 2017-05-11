@@ -54,7 +54,8 @@ export default class AppStatus extends React.Component {
 
   /**
    * Computes and returns a representation of this Component for rendering.
-   * @return - HTML representation of this Component for DOM rendering.
+   * @return {ReactComponent|null|false} - A Component for DOM rendering.
+   * Otherwise, null or false to not render this Component.
    */
   render() {
     const showAppStatus = this.state.isSuccessFetch ? 'hidden' : '';

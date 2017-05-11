@@ -10,7 +10,8 @@ dotenv.config();
 /**
  * This Component is the instance of BrowerRouter that is used to route
  * all the requests to paths in this single page app.
- * @return - HTML representation of this Component for DOM rendering.
+ * @return {ReactComponent|null|false} - A Component for DOM rendering.
+ * Otherwise, null or false to not render this Component.
  */
 function RootComponent() {
   return (

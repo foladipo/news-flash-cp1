@@ -3,7 +3,8 @@ import React from 'react';
 /**
  * This Component represents a single news article.
  * @param {Object} props - Data about this article like url, headline etc.
- * @return - HTML representation of this Component for DOM rendering.
+ * @return {ReactComponent|null|false} - A Component for DOM rendering.
+ * Otherwise, null or false to not render this Component.
  */
 function Article(props) {
   const { id, title, description, url, imageUrl, author, publishedAt } = props;

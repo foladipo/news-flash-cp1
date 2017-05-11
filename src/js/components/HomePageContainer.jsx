@@ -6,7 +6,8 @@ import getFirebaseApp from '../util/getFirebaseApp';
  * This Component contains all the elements that make up the home page
  * of this app. Currently, this includes a FirebaseUI widget, a slider and
  * some text for welcoming a user.
- * @return - HTML representation of this Component for DOM rendering.
+ * @return {ReactComponent|null|false} - A Component for DOM rendering.
+ * Otherwise, null or false to not render this Component.
  */
 export default function HomePageContainer() {
   const firebaseApp = getFirebaseApp();

@@ -6,7 +6,8 @@ import NavContainer from './NavContainer';
 /**
  * This Component contains the principal components that make up the structure
  * of the dashboard: a nav bar, a container for Articles and a footer.
- * @return - HTML representation of this Component for DOM rendering.
+ * @return {ReactComponent|null|false} - A Component for DOM rendering.
+ * Otherwise, null or false to not render this Component.
  */
 export default function DashboardAppContainer() {
   return (
