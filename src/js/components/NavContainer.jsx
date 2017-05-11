@@ -26,6 +26,9 @@ export default function NavContainer() {
       <div id="nav-controls" className="col-md-12">
         <nav className="navbar navbar-default">
           <div className="container-fluid">
+            <div className="navbar-header">
+              <h3 className="navbar-brand">News Flash</h3>
+            </div>
             <ul className="nav navbar-nav navbar-left" />
             <ul className="nav navbar-nav navbar-right">
               <li>
