@@ -1,5 +1,10 @@
 import React from 'react';
 
+/**
+ * This Component is the '404: Not Found' page and is rendered when a user
+ * is logged in and navigates to an undefined Route.
+ * @return - HTML representation of this Component for DOM rendering.
+ */
 function NotFoundContainer() {
   const goBack = (e) => {
     e.preventDefault();

@@ -1,6 +1,11 @@
 import React from 'react';
 
-export default function Article(props) {
+/**
+ * This Component represents a single news article.
+ * @param {Object} props - Data about this article like url, headline etc.
+ * @return - HTML representation of this Component for DOM rendering.
+ */
+function Article(props) {
   const { id, title, description, url, imageUrl, author, publishedAt } = props;
   const facebookShareLink = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
   const googleShareLink = `https://plus.google.com/share?url=${url}`;
@@ -82,6 +87,4 @@ export default function Article(props) {
   );
 }
 
-// Article.propTypes = {
-//   children: React.PropTypes.object,
-// };
+export default Article;

@@ -1,5 +1,11 @@
 import React from 'react';
 
+/**
+ * This Component contains all the elements that make up the home page
+ * of this app. Currently, this includes a FirebaseUI widget, a slider and
+ * some text for welcoming a user.
+ * @return - HTML representation of this Component for DOM rendering.
+ */
 export default function HomePageContainer() {
   return (
     <div>

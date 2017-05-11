@@ -4,7 +4,14 @@ import articlesStore from '../stores/ArticlesStore';
 import WelcomeMessage from './WelcomeMessage';
 import AppStatus from './AppStatus';
 
+/**
+ * This Component houses a list of Article's for easy reading.
+ * @extends React.Component
+ */
 export default class ArticlesContainer extends React.Component {
+  /**
+   * @constructor
+   */
   constructor() {
     super();
     this.state = {
@@ -12,6 +19,10 @@ export default class ArticlesContainer extends React.Component {
     };
   }
 
+  /**
+   * Contains callbacks that update this Component whenever a Store it
+   *  depends on changes.
+   */
   componentWillMount() {
     articlesStore.on('articlesFetched', () => {
       this.setState({
@@ -20,9 +31,13 @@ export default class ArticlesContainer extends React.Component {
     });
   }
 
+
+  /**
+   * Computes and returns a representation of this Component for rendering.
+   * @return - HTML representation of this Component for DOM rendering.
+   */
   render() {
     const Articles = this.state.articles.map(article =>
-      // Use the spread operator to extract each key in the article object.
       <Article key={article.id} {...article} />);
     return (
       <div id="articles-container" className="row container-fluid">

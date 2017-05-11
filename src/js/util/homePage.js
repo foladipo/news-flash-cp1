@@ -1,5 +1,5 @@
 import firebase from 'firebase';
-import getFirebaseApp from '../other/getFirebaseApp';
+import getFirebaseApp from '../util/getFirebaseApp';
 
 if (window.location.pathname === '/') {
   document.onreadystatechange = () => {

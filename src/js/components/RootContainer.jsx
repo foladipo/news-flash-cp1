@@ -7,7 +7,12 @@ import NotFound from './NotFound';
 
 dotenv.config();
 
-function RoutingComponent() {
+/**
+ * This Component is the instance of BrowerRouter that is used to route
+ * all the requests to paths in this single page app.
+ * @return - HTML representation of this Component for DOM rendering.
+ */
+function RootComponent() {
   return (
     <BrowserRouter>
       <Switch>
@@ -19,8 +24,14 @@ function RoutingComponent() {
   );
 }
 
+/**
+ * This Component is a subclass of Route. It contains code for determining
+ * whether or not a user is logged in and only allows that user to access
+ * his/her desired Route if he/she is logged in.
+ * @return - HTML representation of this Component for DOM rendering.
+ */
 function AuthenticatedRoute(props) {
-  // Cookie-extraction regex courtesey of MDN (https://goo.gl/pLHkdj).
+  // Cookie-extraction regex courtesy of MDN (https://goo.gl/pLHkdj).
   const token = document.cookie.replace(/(?:(?:^|.*;\s*)idToken\s*=\s*([^;]*).*$)|^.*$/, '$1');
   if (token !== '' && token !== 'null') {
     return <props.component />;
@@ -29,4 +40,4 @@ function AuthenticatedRoute(props) {
   window.location.replace('/');
 }
 
-export default RoutingComponent;
+export default RootComponent;

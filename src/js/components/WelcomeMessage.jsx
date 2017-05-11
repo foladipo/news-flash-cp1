@@ -1,7 +1,17 @@
 import React from 'react';
-import welcomeMessageContainerStore from '../stores/WelcomeMessageContainerStore';
+import welcomeMessageStore from '../stores/WelcomeMessageStore';
 
+/**
+ * This Component shows some elements that welcome a user to the dashboard
+ * and onboard them properly e.g a splash image with a welcome message.
+ * @extends React.Component
+ */
 export default class WelcomeMessageContainer extends React.Component {
+  /**
+   * @constructor
+   * @param {Object} props - Data about the state or values of the elements
+   * in this component.
+   */
   constructor(props) {
     super(props);
     this.state = {
@@ -9,14 +19,22 @@ export default class WelcomeMessageContainer extends React.Component {
     };
   }
 
+  /**
+   * Contains callbacks that update this Component whenever a Store it
+   * depends on changes.
+   */
   componentWillMount() {
-    welcomeMessageContainerStore.on('articlesFetched', () => {
+    welcomeMessageStore.on('articlesFetched', () => {
       this.setState({
-        htmlClasses: welcomeMessageContainerStore.getHtmlClasses(),
+        htmlClasses: welcomeMessageStore.getHtmlClasses(),
       });
     });
   }
 
+  /**
+   * Computes and returns a representation of this Component for rendering.
+   * @return - HTML representation of this Component for DOM rendering.
+   */
   render() {
     const currentHtmlClasses = this.state.htmlClasses.join(' ');
     return (

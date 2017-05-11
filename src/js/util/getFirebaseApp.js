@@ -4,9 +4,9 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 /**
- * @description: return the existing Firebase app for this project, or instantiate
+ * Return the existing Firebase app for this project, or instantiate
  * a new one if none existed before.
- * @return: a Firebase app, of type firebase.app.
+ * @return - A Firebase app, of type firebase.app.
  */
 export default function getFirebaseApp() {
   let firebaseApp = {};

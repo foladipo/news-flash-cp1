@@ -1,7 +1,7 @@
 import firebase from 'firebase';
 import chai from 'chai';
 import dotenv from 'dotenv';
-import getFirebaseApp from '../../src/js/other/getFirebaseApp';
+import getFirebaseApp from '../../src/js/util/getFirebaseApp';
 
 dotenv.config();
 const expect = chai.expect;
@@ -18,28 +18,31 @@ describe('When called, getFirebaseApp()', () => {
     expect(app instanceof firebase.app.App).to.equal(true);
   });
 
-  it('should return a firebase app with name [DEFAULT]', () => {
+  const initWith = 'should return a firebase app that was initialized with';
+  it(`${initWith} the name: [DEFAULT]`, () => {
     expect(app.name).to.equal('[DEFAULT]');
   });
 
   const appOptions = app.options;
-  it(`should return a firebase app with API key: ${process.env.FIREBASE_API_KEY}`, () => {
+  it(`${initWith} an API key of: ${process.env.FIREBASE_API_KEY}`, () => {
     expect(appOptions.apiKey).to.equal(process.env.FIREBASE_API_KEY);
   });
 
-  it(`should return a firebase app with project ID: ${process.env.FIREBASE_PROJECT_ID}`, () => {
+  it(`${initWith} a project ID of: ${process.env.FIREBASE_PROJECT_ID}`, () => {
     expect(appOptions.projectId).to.equal(process.env.FIREBASE_PROJECT_ID);
   });
 
-  it(`should return a firebase app with DB url: ${process.env.FIREBASE_DB_URL}`, () => {
+  it(`${initWith} a database url of: ${process.env.FIREBASE_DB_URL}`, () => {
     expect(appOptions.databaseURL).to.equal(process.env.FIREBASE_DB_URL);
   });
 
-  it(`should return a firebase app with storage bucket: ${process.env.FIREBASE_STORAGE_BUCKET}`, () => {
+  it(`${initWith} a storage bucket address
+     of: ${process.env.FIREBASE_STORAGE_BUCKET}`, () => {
     expect(appOptions.storageBucket).to.equal(process.env.FIREBASE_STORAGE_BUCKET);
   });
 
-  it(`should return a firebase app with auth domain: ${process.env.FIREBASE_AUTH_DOMAIN}`, () => {
+  it(`${initWith} an auth domain address
+     of: ${process.env.FIREBASE_AUTH_DOMAIN}`, () => {
     expect(appOptions.authDomain).to.equal(process.env.FIREBASE_AUTH_DOMAIN);
   });
 });

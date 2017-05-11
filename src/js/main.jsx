@@ -2,9 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import RootContainer from './components/RootContainer';
 
-// Custom styles.
-import mainStyles from '../css/style.scss';
-import * as homePage from './other/homePage';
-import * as dashboard from './other/dashboard';
+// Styles and JS code for the rendered document.
 
-ReactDOM.render(<RootContainer />, document.getElementById('routing-container'));
+// eslint-disable-next-line no-unused-vars
+import mainStyles from '../css/style.scss';
+
+// eslint-disable-next-line no-unused-vars
+import * as homePage from './util/homePage';
+
+// eslint-disable-next-line no-unused-vars
+import * as dashboard from './util/dashboard';
+
+ReactDOM.render(<RootContainer />, document.getElementById('root-container'));

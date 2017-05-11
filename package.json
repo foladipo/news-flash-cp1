@@ -35,7 +35,7 @@
     "dotenv-webpack": "^1.4.3",
     "express": "^4.15.2",
     "extract-text-webpack-plugin": "^2.1.0",
-    "firebase": "^3.8.0",
+    "firebase": "^3.9.0",
     "flux": "^3.1.2",
     "json-loader": "^0.5.4",
     "lodash": "^4.17.4",
