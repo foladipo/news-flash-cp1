@@ -28,7 +28,7 @@ function RootComponent() {
  * This Component is a subclass of Route. It contains code for determining
  * whether or not a user is logged in and only allows that user to access
  * his/her desired Route if he/she is logged in.
- * @return - HTML representation of this Component for DOM rendering.
+ * @return {Component|null} - HTML representation of this Component for DOM rendering.
  */
 function AuthenticatedRoute(props) {
   // Cookie-extraction regex courtesy of MDN (https://goo.gl/pLHkdj).
@@ -38,6 +38,7 @@ function AuthenticatedRoute(props) {
   }
 
   window.location.replace('/');
+  return null;
 }
 
 export default RootComponent;
