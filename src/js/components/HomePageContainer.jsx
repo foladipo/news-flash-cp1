@@ -1,4 +1,6 @@
 import React from 'react';
+import firebase from 'firebase';
+import getFirebaseApp from '../util/getFirebaseApp';
 
 /**
  * This Component contains all the elements that make up the home page
@@ -7,6 +9,36 @@ import React from 'react';
  * @return - HTML representation of this Component for DOM rendering.
  */
 export default function HomePageContainer() {
+  const firebaseApp = getFirebaseApp();
+  const firebaseUi = new firebaseui.auth.AuthUI(firebaseApp.auth());
+  firebaseApp.auth().onAuthStateChanged((user) => {
+    if (user) {
+      user.getToken()
+        .then((idToken) => {
+          document.cookie = `idToken=${idToken}`;
+          window.location.replace('/dashboard');
+        })
+        .catch(() => {
+          document.cookie = 'idToken=null';
+          firebaseApp.auth().signOut();
+        });
+    } else {
+      document.cookie = 'idToken=null';
+
+      const firebaseUiConfig = {
+        callbacks: {
+          signInSuccess: () => false,
+        },
+        signInOptions: [
+          firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+          firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+        ],
+      };
+
+      firebaseUi.start('#firebaseui-auth-container', firebaseUiConfig);
+    }
+  });
+
   return (
     <div>
       <div className="full-horizontal-whitespace" />
