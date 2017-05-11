@@ -1,5 +1,9 @@
 import React from 'react';
 
+/**
+ * This Component contains the elements that make up the footer for this app.
+ * @return - HTML representation of this Component for DOM rendering.
+ */
 export default function FooterContainer() {
   return (
     <div id="footer-container" className="row">

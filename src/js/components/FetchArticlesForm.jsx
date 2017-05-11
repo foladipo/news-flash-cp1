@@ -4,7 +4,17 @@ import SearchSources from './SearchSources';
 import * as ArticlesActions from '../actions/ArticlesActions';
 import dashboardStore from '../stores/DashboardStore';
 
+/**
+ * A Component with a form that a user can use to search for or select
+ * the news source and sort type that he/she wants to read.
+ * @extends React.Component
+ */
 export default class FetchArticlesFormContainer extends React.Component {
+  /**
+   * @constructor
+   * @param {Object} props - Data about the state or values of the elements
+   * in this form.
+   */
   constructor(props) {
     super(props);
     this.state = {
@@ -21,6 +31,10 @@ export default class FetchArticlesFormContainer extends React.Component {
     this.handleFetchArticles = this.handleFetchArticles.bind(this);
   }
 
+  /**
+   * Contains callbacks that update this Component whenever a Store it
+   * depends on changes.
+   */
   componentWillMount() {
     dashboardStore.on('sourcesFetched', () => {
       this.setState(() => {
@@ -82,22 +96,42 @@ export default class FetchArticlesFormContainer extends React.Component {
     });
   }
 
+  /**
+   * This fires an Action when a user chooses a different news source from
+   * this Component's dropdown menu.
+   * @param {SyntheticEvent} event - An object with data about the event e.g
+   * the DOM element on which it happened.
+   */
   handleChangeNewsSource(event) {
     const sourceId = event.target.value;
     this.state.sourceId = sourceId;
     ArticlesActions.changeNewsSource(sourceId);
   }
 
+  /**
+   * This fires an Action when a user chooses a new sort type from
+   * this Component's dropdown menu.
+   * @param {SyntheticEvent} event - An object with data about the event e.g
+   * the DOM element on which it happened.
+   */
   handleChangeSort(event) {
     const sortBy = event.target.value;
     this.state.sortBy = sortBy;
     ArticlesActions.changeSort(sortBy);
   }
 
+  /**
+   * This helps fire an Action when a user clicks the button for fetching
+   * more news articles.
+   */
   handleFetchArticles() {
     ArticlesActions.fetchArticles(this.state.sourceId, this.state.sortBy);
   }
 
+  /**
+   * Computes and returns a representation of this Component for rendering.
+   * @return - HTML representation of this Component for DOM rendering.
+   */
   render() {
     const newsSourcesOptions = this.state.newsSources.map(source =>
       <option
