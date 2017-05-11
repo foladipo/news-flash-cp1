@@ -95,7 +95,7 @@ export default class SearchSources extends React.Component {
   /**
    * Computes and returns a representation of this Component for rendering.
    * @return {ReactComponent|null|false} - A Component for DOM rendering.
-   * Otherwise, null or false to not render this Component.
+   * Otherwise, return null or false to prevent the rendering of this Component.
    */
   render() {
     const { isLoading, value, matchingResults } = this.state;

@@ -8,22 +8,16 @@ import welcomeMessageStore from '../stores/WelcomeMessageStore';
  */
 export default class WelcomeMessageContainer extends React.Component {
   /**
+   * Sets up this Component with some default attributes e.g hide or show
+   * this Component when appropriate.
    * @constructor
-   * @param {Object} props - Data about the state or values of the elements
-   * in this component.
    */
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       htmlClasses: ['row'],
     };
-  }
 
-  /**
-   * Contains callbacks that update this Component whenever a Store it
-   * depends on changes.
-   */
-  componentWillMount() {
     welcomeMessageStore.on('articlesFetched', () => {
       this.setState({
         htmlClasses: welcomeMessageStore.getHtmlClasses(),
@@ -34,7 +28,7 @@ export default class WelcomeMessageContainer extends React.Component {
   /**
    * Computes and returns a representation of this Component for rendering.
    * @return {ReactComponent|null|false} - A Component for DOM rendering.
-   * Otherwise, null or false to not render this Component.
+   * Otherwise, return null or false to prevent the rendering of this Component.
    */
   render() {
     const currentHtmlClasses = this.state.htmlClasses.join(' ');

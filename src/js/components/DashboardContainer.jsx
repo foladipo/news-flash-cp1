@@ -4,9 +4,9 @@ import LoadingSourcesModal from './LoadingSourcesModal';
 
 /**
  * This Component houses the DashboardApp and LoadingSourceModal components.
- * @return: a Component that can/will be rendered as HTML.
+ * @return {ReactComponent|null|false} - A Component for DOM rendering.
  */
-function DashboardContainer() {
+export default function DashboardContainer() {
   return (
     <div>
       <div className="col-lg-2 col-md-1 col-sm-0" />
@@ -16,5 +16,3 @@ function DashboardContainer() {
     </div>
   );
 }
-
-export default DashboardContainer;

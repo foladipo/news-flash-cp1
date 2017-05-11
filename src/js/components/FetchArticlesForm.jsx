@@ -11,12 +11,13 @@ import dashboardStore from '../stores/DashboardStore';
  */
 export default class FetchArticlesFormContainer extends React.Component {
   /**
+   * Initializes this Component e.g sets the list of news sources to an
+   * empty Array, adds listeners for pertinent Store's etc.
    * @constructor
-   * @param {Object} props - Data about the state or values of the elements
-   * in this form.
    */
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
+
     this.state = {
       sourceId: '',
       newsSources: [],
@@ -29,13 +30,7 @@ export default class FetchArticlesFormContainer extends React.Component {
     this.handleChangeNewsSource = this.handleChangeNewsSource.bind(this);
     this.handleChangeSort = this.handleChangeSort.bind(this);
     this.handleFetchArticles = this.handleFetchArticles.bind(this);
-  }
 
-  /**
-   * Contains callbacks that update this Component whenever a Store it
-   * depends on changes.
-   */
-  componentWillMount() {
     dashboardStore.on('sourcesFetched', () => {
       this.setState(() => {
         const sources = dashboardStore.getSources();
@@ -131,7 +126,7 @@ export default class FetchArticlesFormContainer extends React.Component {
   /**
    * Computes and returns a representation of this Component for rendering.
    * @return {ReactComponent|null|false} - A Component for DOM rendering.
-   * Otherwise, null or false to not render this Component.
+   * Otherwise, return null or false to prevent the rendering of this Component.
    */
   render() {
     const newsSourcesOptions = this.state.newsSources.map(source =>

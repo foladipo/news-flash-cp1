@@ -10,20 +10,17 @@ import AppStatus from './AppStatus';
  */
 export default class ArticlesContainer extends React.Component {
   /**
+   * Initializes this Component e.g sets the initial list of articles to zero,
+   * adds listeners for changes in a Store etc.
    * @constructor
    */
   constructor() {
     super();
+
     this.state = {
       articles: articlesStore.getArticles(),
     };
-  }
 
-  /**
-   * Contains callbacks that update this Component whenever a Store it
-   *  depends on changes.
-   */
-  componentWillMount() {
     articlesStore.on('articlesFetched', () => {
       this.setState({
         articles: articlesStore.getArticles(),
@@ -35,7 +32,7 @@ export default class ArticlesContainer extends React.Component {
   /**
    * Computes and returns a representation of this Component for rendering.
    * @return {ReactComponent|null|false} - A Component for DOM rendering.
-   * Otherwise, null or false to not render this Component.
+   * Otherwise, return null or false to prevent the rendering of this Component.
    */
   render() {
     const Articles = this.state.articles.map(article =>

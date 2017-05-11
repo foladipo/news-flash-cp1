@@ -7,7 +7,7 @@ import getFirebaseApp from '../util/getFirebaseApp';
  * of this app. Currently, this includes a FirebaseUI widget, a slider and
  * some text for welcoming a user.
  * @return {ReactComponent|null|false} - A Component for DOM rendering.
- * Otherwise, null or false to not render this Component.
+ * Otherwise, return null or false to prevent the rendering of this Component.
  */
 export default function HomePageContainer() {
   const firebaseApp = getFirebaseApp();
@@ -35,7 +35,6 @@ export default function HomePageContainer() {
           firebase.auth.FacebookAuthProvider.PROVIDER_ID,
         ],
       };
-
       firebaseUi.start('#firebaseui-auth-container', firebaseUiConfig);
     }
   });
@@ -60,14 +59,22 @@ export default function HomePageContainer() {
               </ol>
               <div className="carousel-inner" role="listbox">
                 <div className="item active">
-                  <img className="d-block img-fluid" src="https://res.cloudinary.com/worldgeek/image/upload/v1493551218/slide1_pao7l8.png" alt="First slide" />
+                  <img
+                    className="d-block img-fluid"
+                    src="https://res.cloudinary.com/worldgeek/image/upload/v1493551218/slide1_pao7l8.png"
+                    alt="First slide"
+                  />
                   <div className="carousel-caption">
                     <h3>The best sources. Worldwide.</h3>
                     <p>Read news from top publishers all around the world</p>
                   </div>
                 </div>
                 <div className="item">
-                  <img className="d-block img-fluid" src="https://res.cloudinary.com/worldgeek/image/upload/v1493551217/slide2_wln6bq.png" alt="Second slide" />
+                  <img
+                    className="d-block img-fluid"
+                    src="https://res.cloudinary.com/worldgeek/image/upload/v1493551217/slide2_wln6bq.png"
+                    alt="Second slide"
+                  />
                   <div className="carousel-caption">
                     <h3>Read about anything.</h3>
                     <p>Whatever topics interest you, they are all here.</p>

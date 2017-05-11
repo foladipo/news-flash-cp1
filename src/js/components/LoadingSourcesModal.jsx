@@ -10,6 +10,8 @@ import dashboardStore from '../stores/DashboardStore';
  */
 export default class LoadingSourcesModal extends React.Component {
   /**
+   * Initializes this Component e.g sets it to being visible by default, adds
+   * listeners to relevant Store's etc.
    * @constructor
    */
   constructor() {
@@ -21,13 +23,7 @@ export default class LoadingSourcesModal extends React.Component {
       messageClasses: [],
       message: 'We\'re updating our list of news sources... Please wait...',
     };
-  }
 
-  /**
-   * Contains callbacks that update this Component whenever a Store
-   * it depends on changes.
-   */
-  componentWillMount() {
     dashboardStore.on('sourcesFetched', () => {
       this.setState({
         open: false,
@@ -44,7 +40,8 @@ export default class LoadingSourcesModal extends React.Component {
   }
 
   /**
-   * @return - HTML representation of this modal dialog for DOM rendering.
+   * @return {ReactComponent|null|false} - A Component for DOM rendering.
+   * Otherwise, return null or false to prevent the rendering of this Component.
    */
   render() {
     return (

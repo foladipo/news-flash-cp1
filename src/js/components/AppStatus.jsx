@@ -8,23 +8,19 @@ import appStatusStore from '../stores/AppStatusStore';
  */
 export default class AppStatus extends React.Component {
   /**
+   * Initializes this Component e.g adds listeners for changes in a Store,
+   * hides some elements by default etc.
    * @constructor
-   * @param {Object} props - Data passed in from the parent component or function.
    */
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
+
     this.state = {
       isFetching: false,
       isErrorFetch: false,
       isSuccessFetch: true,
     };
-  }
 
-  /**
-   * Called before this component is mounted. Contains callbacks that
-   * update this Component whenever a Store it depends on changes.
-   */
-  componentWillMount() {
     appStatusStore.on('fetchArticles', () => {
       this.setState({
         isFetching: true,
@@ -55,7 +51,7 @@ export default class AppStatus extends React.Component {
   /**
    * Computes and returns a representation of this Component for rendering.
    * @return {ReactComponent|null|false} - A Component for DOM rendering.
-   * Otherwise, null or false to not render this Component.
+   * Otherwise, return null or false to prevent the rendering of this Component.
    */
   render() {
     const showAppStatus = this.state.isSuccessFetch ? 'hidden' : '';
