@@ -1,5 +1,7 @@
 import React from 'react';
+import getFirebaseApp from '../util/getFirebaseApp';
 import FetchArticlesForm from './FetchArticlesForm';
+import * as ArticlesActions from '../actions/ArticlesActions';
 
 /**
  * This Component contains the elements that make up the navigation bar e.g
@@ -8,6 +10,16 @@ import FetchArticlesForm from './FetchArticlesForm';
  * @return - HTML representation of this Component for DOM rendering.
  */
 export default function NavContainer() {
+  ArticlesActions.fetchSources();
+  const firebaseApp = getFirebaseApp();
+
+  const signOut = (event) => {
+    event.preventDefault();
+    firebaseApp.auth().signOut();
+    document.cookie = 'idToken=null';
+    window.location.replace('/');
+  };
+
   return (
     <div id="nav-container" className="row">
       <div id="nav-controls" className="col-md-12">
@@ -16,7 +28,13 @@ export default function NavContainer() {
             <ul className="nav navbar-nav navbar-left" />
             <ul className="nav navbar-nav navbar-right">
               <li>
-                <button id="sign-out-btn" className="btn btn-info navbar-btn">Sign out</button>
+                <button
+                  id="sign-out-btn"
+                  onClick={signOut}
+                  className="btn btn-info navbar-btn"
+                >
+                  Sign out
+                </button>
               </li>
             </ul>
           </div>
