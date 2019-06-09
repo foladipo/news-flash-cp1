@@ -132,7 +132,7 @@ That's all and thanks a lot for helping out!
 
 - **What if I want to use another port?**
 
-That's easy. In the root of the project. create a file named `.env` and add the following line to it:
+That's easy. Edit your existing `.env` file (or create a new one) and add the following line to it:
 
 ```bash
 PORT=<YOUR_DESIRED_PORT>
