@@ -1,0 +1,15 @@
+{
+    "name": "News Flash",
+    "description": "A web app that retrieves news headlines and displays them in a list.",
+    "keywords": [
+        "news",
+        "react"
+    ],
+    "website": "https://news-flash-cp1-staging.herokuapp.com/",
+    "repository": "https://github.com/foladipo/news-flash-cp1.git",
+    "buildpacks": [
+        {
+            "url": "heroku/nodejs"
+        }
+    ]
+}

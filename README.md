@@ -1,7 +1,7 @@
-[![Build Status](https://travis-ci.org/andela-foladipo/news-flash-cp1.svg?branch=develop)](https://travis-ci.org/andela-foladipo/news-flash-cp1)
-[![Coverage Status](https://coveralls.io/repos/github/andela-foladipo/news-flash-cp1/badge.png?branch=develop)](https://coveralls.io/github/andela-foladipo/news-flash-cp1?branch=develop)
+[![Build Status](https://travis-ci.org/foladipo/news-flash-cp1.svg?branch=develop)](https://travis-ci.org/foladipo/news-flash-cp1)
+[![Coverage Status](https://coveralls.io/repos/github/foladipo/news-flash-cp1/badge.png?branch=develop)](https://coveralls.io/github/foladipo/news-flash-cp1?branch=develop)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)]()
-[![Code Climate](https://codeclimate.com/github/andela-foladipo/news-flash-cp1//badges/gpa.svg)](https://codeclimate.com/github/andela-foladipo/news-flash-cp1/)
+[![Code Climate](https://codeclimate.com/github/foladipo/news-flash-cp1//badges/gpa.svg)](https://codeclimate.com/github/foladipo/news-flash-cp1/)
 
 
 # Welcome
@@ -55,7 +55,7 @@ instructions on installing NodeJS on your computer.
 - **Clone this repo**: Enter this command in the terminal:
 
 ```bash
-git clone https://github.com/andela-foladipo/news-flash-cp1.git
+git clone https://github.com/foladipo/news-flash-cp1.git
 ```
 
 - **Install dependencies**: Do so by running the following command:
@@ -106,9 +106,9 @@ limitation comes from our central news source, [NewsAPI](https://newsapi.org).
 
 Do you want to contribute to this project? We would love for you to do so! The steps involved are:
 - fork this repo.
-- create a branch using [this format](https://github.com/andela-foladipo/news-flash-cp1/wiki/Branch-naming-convention).
+- create a branch using [this format](https://github.com/foladipo/news-flash-cp1/wiki/Branch-naming-convention).
 - make the changes you want and commit them with concise, descriptive commit messages.
-- submit a pull request that follows [this format](https://github.com/andela-foladipo/news-flash-cp1/wiki/Pull-request-naming-and-description).
+- submit a pull request that follows [the format described here](https://github.com/foladipo/news-flash-cp1/wiki/Pull-request-naming-and-description).
 
 That's all and thanks a lot for helping out!
 

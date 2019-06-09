@@ -19,8 +19,12 @@ export default class SearchSources extends React.Component {
   constructor() {
     super();
 
-    this.allResults = [];
-    this.matchingResults = [];
+    this.state = {
+      isLoading: false,
+      matchingResults: [],
+      value: '',
+      allResults: [],
+    };
 
     this.handleResultSelect = this.handleResultSelect.bind(this);
     this.handleSearchChange = this.handleSearchChange.bind(this);
@@ -30,7 +34,7 @@ export default class SearchSources extends React.Component {
    * Contains callbacks that update this Component whenever a Store it
    * depends on changes.
    */
-  componentWillMount() {
+  componentDidMount() {
     this.resetComponent();
 
     dashboardStore.on('sourcesFetched', () => {
