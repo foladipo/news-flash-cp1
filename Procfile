@@ -1,1 +1,1 @@
-web: npm run start-use-built
+web: npm run start-on-heroku

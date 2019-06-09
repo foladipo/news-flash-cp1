@@ -10,6 +10,7 @@
     "webpack-prod": "./node_modules/.bin/webpack --config webpack.config.babel.js",
     "transpile-server-entry": "./node_modules/.bin/babel --out-dir dist/ app.js",
     "copy-files": "./node_modules/.bin/copyfiles index.html ./dist/",
+    "start-on-heroku": "npm run build && node dist/app.js",
     "start-use-built": "node dist/app.js",
     "test": "NODE_ENV=test ./node_modules/.bin/mocha --require @babel/register tests/.setup.js tests/*/*[sS]pec.js",
     "test:nyc": "NODE_ENV=test ./node_modules/.bin/nyc --reporter=html --reporter=text ./node_modules/.bin/mocha --require @babel/register tests/.setup.js tests/*/*[sS]pec.js"
