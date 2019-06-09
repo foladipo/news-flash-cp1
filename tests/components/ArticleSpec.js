@@ -57,7 +57,6 @@ describe('When NOT initialized with any props, the Article component', () => {
 
 describe('When initialized with a correct set of props, the Article component', () => {
   const wrapper = mount(<Article {...props} />);
-  console.log(`The set of props used to initialize Article is: \n\n${JSON.stringify(props)}\n`);
   it('should have an id prop', () => {
     expect(wrapper).to.have.prop('id');
   });
