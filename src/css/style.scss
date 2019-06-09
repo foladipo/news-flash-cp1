@@ -1,3 +1,5 @@
+@import "bootstrap-cerulean-theme.min";
+
 $border-width: 2px;
 $site-black: #303030;
 $small-screen-size: 320px;
@@ -94,6 +96,18 @@ body {
         }
       }
     }
+  }
+
+  .sign-out-btn-container {
+    display: flex;
+    flex-grow: 2;
+    justify-content: flex-end;
+  }
+
+  .site-name-link {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   // Means "for all div's that are direct children of #app-container and whose id's end with container".

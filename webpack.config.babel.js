@@ -24,7 +24,7 @@ const webpackConfig = {
         loader: 'babel-loader',
       },
       {
-        test: /\.scss$/,
+        test: /\.(s?)css$/,
         exclude: /node_modules/,
         loader: extractCssToFile.extract({
           use: ['css-loader', 'sass-loader'],
