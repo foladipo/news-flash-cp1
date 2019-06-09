@@ -101,7 +101,7 @@ npm run build
 - **Run the project**: In the terminal/command prompt, enter the following command:
 
 ```bash
-npm start
+npm run start-use-built
 ```
 
 - **Open a web browser of your choice and visit `http://localhost:5000` (or `http://localhost:PORT`). Voila! It's alive!**
@@ -150,3 +150,7 @@ PORT=8080
 This project is authored by [Folusho Oladipo](https://google.com/search?q=Folusho+Oladipo) and is licensed 
 for your use, modification and distribution under [the MIT license](https://en.wikipedia.org/wiki/MIT_License). 
 Feel free to hack, extend and share it!
+
+
+## TODO
+I will set up live reload soon, as I have deleted the scripts I was using to achieve that before.

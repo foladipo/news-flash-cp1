@@ -1,12 +1,12 @@
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
-import DotEnvPlugin from 'dotenv-webpack';
+const webpack = require('webpack');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const TerserJSPlugin = require('terser-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const WebpackDotenv = require('dotenv-webpack');
 
-const extractCssToFile = new ExtractTextPlugin('stylesheets/style.css');
-const dotEnvPlugin = new DotEnvPlugin({
-  path: '.env',
-});
-
-const webpackConfig = {
+module.exports = {
+  mode: 'production',
   entry: './src/js/main.jsx',
   output: {
     path: `${__dirname}/dist/`,
@@ -16,33 +16,42 @@ const webpackConfig = {
   resolve: {
     extensions: ['.js', '.jsx'],
   },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        styles: {
+          name: 'styles',
+          test: /\.css$/,
+          chunks: 'all',
+          enforce: true,
+        },
+      },
+    },
+    minimizer: [new TerserJSPlugin({ parallel: true }), new OptimizeCSSAssetsPlugin({})],
+  },
+  plugins: [
+    new CleanWebpackPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+    new MiniCssExtractPlugin({
+      filename: 'stylesheets/style.css',
+    }),
+    new WebpackDotenv(),
+  ],
   module: {
-    loaders: [
+    rules: [
       {
-        test: /(\.js|\.jsx)$/,
-        exclude: /(node_modules|routes)/,
-        loader: 'babel-loader',
+        test: /\.js(x?)$/,
+        exclude: /node_modules/,
+        use: 'babel-loader',
       },
       {
         test: /\.(s?)css$/,
         exclude: /node_modules/,
-        loader: extractCssToFile.extract({
-          use: ['css-loader', 'sass-loader'],
-
-          // In case we can't extract our CSS into a separate file, we'll
-          // just load it load it inline in our JS files, as is default.
-          fallback: 'style-loader',
-        }),
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
       },
     ],
   },
-  plugins: [
-    extractCssToFile,
-    dotEnvPlugin,
-  ],
   node: {
     fs: 'empty',
   },
 };
-
-export default webpackConfig;
