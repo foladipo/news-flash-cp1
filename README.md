@@ -78,10 +78,11 @@ Note: `npm` is a component of Node.js that serves as its package manager. So it 
 - **Configure this project with your Firebase keys**: [This page](https://firebase.google.com/docs/web/setup#config-object)
  shows what an object for configuring Firebase looks like. So, follow the instructions
  under "Get config object for your web app" on [this page](https://support.google.com/firebase/answer/7015592)
- to get your own Firebase config object. Now rename the `env.sample` file in the
- root of this project to `.env`, remove the comments (i.e "#") at the start of each
- line and that starts with "#FIREBASE_" and supply the value that that line needs. For
- example, `FIREBASE_API_KEY` should be the apiKey in your config.
+ to get your own Firebase config object. Make a copy of the `env.sample` file in the
+ root of this project, rename that copy to `.env`, remove the comments (i.e "#") at
+ the beginning of each line that starts with "#FIREBASE_" and supply the value
+ that that line needs. For example, `FIREBASE_API_KEY` should be the apiKey in your
+ Firebase app's config.
 
 - **Obtain an API key for News API**: The news articles displayed by this app are
  retrieved from [News API](https://newsapi.org/). Please head over to their website,
