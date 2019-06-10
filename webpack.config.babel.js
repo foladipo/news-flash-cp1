@@ -1,11 +1,10 @@
-const webpack = require('webpack');
-const dotenv = require('dotenv');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserJSPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const WebpackDotenv = require('dotenv-webpack');
 
-dotenv.config();
+const { NODE_ENV } = process.env;
 
 module.exports = {
   mode: 'production',
@@ -33,9 +32,11 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
     new MiniCssExtractPlugin({
       filename: 'stylesheets/style.css',
+    }),
+    new WebpackDotenv({
+      systemvars: NODE_ENV && NODE_ENV !== 'development',
     }),
   ],
   module: {

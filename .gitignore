@@ -6,5 +6,5 @@ npm-debug.log
 .nyc_output
 coverage
 .coveralls.yml
-dist/
+dist
 todo.txt
