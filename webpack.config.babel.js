@@ -34,7 +34,6 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: 'stylesheets/style.css',
     }),
-    new WebpackDotenv(),
   ],
   module: {
     rules: [
