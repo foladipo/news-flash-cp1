@@ -88,7 +88,7 @@ export function changeSort(sort) {
 /**
  * Broadcasts an Action when this app has successfully updated its list
  * of news sources and the sort types available for each of them. The retrieved
- * news sources, their individual sort types and other metadata are part 
+ * news sources, their individual sort types and other metadata are part
  * of the Action's payload.
  * @param {HTTPResponse} response: An Object that contains data about the
  * retrieved news sources, their sort types and other metadata about the

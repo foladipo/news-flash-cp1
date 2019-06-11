@@ -65,8 +65,8 @@ describe('WelcomeMessage', () => {
 
   // For the reasons why I used render(), see:
   // http://airbnb.io/enzyme/docs/api/ReactWrapper/text.html#-text-string
-  it('should have a second child that has the text \'Welcome to your dashboard\'', () => {
-    expect(secondChild.render().text()).to.equal('Welcome to your dashboard');
+  it('should have a second child that has the text \'Welcome to the dashboard!\'', () => {
+    expect(secondChild.render().text()).to.equal('Welcome to the dashboard!');
   });
 
   const thirdChild = children.at(2);

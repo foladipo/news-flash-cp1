@@ -32,8 +32,8 @@ describe('The NewsFlash dashboard', () => {
 });
 
 describe('The app container for the NewsFlash dashboard', () => {
-  it('should have an HTML id of app-container', () => {
-    expect(wrapper).to.have.id('app-container');
+  it('should have an HTML id of dashboard-app-container', () => {
+    expect(wrapper).to.have.id('dashboard-app-container');
   });
 
   it('should have an HTML class of col-lg-8', () => {

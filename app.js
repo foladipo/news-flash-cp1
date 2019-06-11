@@ -3,15 +3,31 @@ import path from 'path';
 import dotenv from 'dotenv';
 
 dotenv.config();
-const port = process.env.PORT || 5000;
 const app = express();
+const { NODE_ENV, PORT = 5000 } = process.env;
+if (NODE_ENV === 'production') {
+  app.use(express.static(__dirname));
+} else {
+  app.use('/static', express.static(path.join(__dirname, '/static')));
 
-app.use(express.static(path.join(__dirname, '/dist')));
+  /*eslint-disable */
+  const config = require('./webpack.config');
+  const webpack = require('webpack');
+  const webpackDevMiddleware = require('webpack-dev-middleware');
+  const webpackHotMiddlware = require('webpack-hot-middleware');
+  /*eslint-enable */
+
+  const compiler = webpack(config);
+  app.use(webpackDevMiddleware(compiler, {
+    publicPath: config.output.publicPath,
+  }));
+  app.use(webpackHotMiddlware(compiler));
+}
 
 app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, 'dist', 'index.html'));
+  res.sendFile(path.resolve(__dirname, 'index.html'));
 });
 
-app.listen(port, () => {
-  console.log('Node app is running on port', port);
+app.listen(PORT, () => {
+  console.log('Node app is running on port', PORT);
 });

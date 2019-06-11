@@ -9,9 +9,9 @@ import NavContainer from './NavContainer';
  * @return {ReactComponent|null|false} - A Component for DOM rendering.
  * Otherwise, return null or false to prevent the rendering of this Component.
  */
-export default function DashboardAppContainer() {
+export default function DashboardApp() {
   return (
-    <div id="app-container" className="col-lg-8 col-md-10 col-sm-12">
+    <div id="dashboard-app-container" className="col-lg-8 col-md-10 col-sm-12">
       <NavContainer />
       <ArticlesContainer />
       <FooterContainer />

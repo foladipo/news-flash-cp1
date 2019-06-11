@@ -9,10 +9,8 @@ import LoadingSourcesModal from './LoadingSourcesModal';
 export default function DashboardContainer() {
   return (
     <div>
-      <div className="col-lg-2 col-md-1 col-sm-0" />
       <LoadingSourcesModal />
       <DashboardApp />
-      <div className="col-lg-2 col-md-1 col-sm-0" />
     </div>
   );
 }

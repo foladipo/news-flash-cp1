@@ -24,23 +24,18 @@ export default function NavContainer() {
   return (
     <div id="nav-container" className="row">
       <div id="nav-controls" className="col-md-12">
-        <nav className="navbar navbar-default">
-          <div className="container-fluid">
-            <div className="navbar-header">
-              <h3 className="navbar-brand">News Flash</h3>
-            </div>
-            <ul className="nav navbar-nav navbar-left" />
-            <ul className="nav navbar-nav navbar-right">
-              <li>
-                <button
-                  id="sign-out-btn"
-                  onClick={signOut}
-                  className="btn btn-info navbar-btn"
-                >
-                  Sign out
-                </button>
-              </li>
-            </ul>
+        <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+          <a className="navbar-brand site-name-link" href="/">
+            <h2>News Flash</h2>
+          </a>
+          <div className="sign-out-btn-container">
+            <button
+              className="btn btn-secondary my-2 my-sm-0 sign-out-btn"
+              onClick={signOut}
+              type="submit"
+            >
+              Sign out
+            </button>
           </div>
         </nav>
       </div>

@@ -3,9 +3,8 @@
 *.DS_STORE
 node_modules
 npm-debug.log
-privateFiles
 .nyc_output
 coverage
 .coveralls.yml
-dist/scripts
-dist/stylesheets
+dist
+todo.txt
