@@ -92,20 +92,15 @@ Note: `npm` is a component of Node.js that serves as its package manager. So it 
  desired port by entering that port number in `.env`. If you don't do so, this app
  will run on port `5000`.
 
-- **Build the project**: This will compile all the project's source code into HTML, CSS and
- JS files. In the terminal/command prompt, enter the following command:
-
-```bash
-npm run build
-```
-
 - **Run the project**: In the terminal/command prompt, enter the following command:
 
 ```bash
-npm run start-use-built
+npm start
 ```
 
 - **Open a web browser of your choice and visit `http://localhost:5000` (or `http://localhost:PORT`). Voila! It's alive!**
+
+- **Note that this app uses hot reload**: So, after starting the app, you can make changes to the source code and they will be automatically compiled and reloaded into your browser page! Sweet, init?
 
 
 ## Limitations
@@ -151,7 +146,3 @@ PORT=8080
 This project is authored by [Folusho Oladipo](https://google.com/search?q=Folusho+Oladipo) and is licensed 
 for your use, modification and distribution under [the MIT license](https://en.wikipedia.org/wiki/MIT_License). 
 Feel free to hack, extend and share it!
-
-
-## TODO
-I will set up live reload soon, as I have deleted the scripts I was using to achieve that before.
