@@ -8,6 +8,8 @@ const { NODE_ENV, PORT = 5000 } = process.env;
 if (NODE_ENV === 'production') {
   app.use(express.static(__dirname));
 } else {
+  app.use('/static', express.static(path.join(__dirname, '/static')));
+
   /*eslint-disable */
   const config = require('./webpack.config');
   const webpack = require('webpack');
