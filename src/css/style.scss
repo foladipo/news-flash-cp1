@@ -6,7 +6,8 @@ $small-screen-size: 320px;
 $medium-screen-size: 600px;
 
 body {
-  width: 100%;
+  width: 100vw;
+  height: 100vh;
   margin: 0;
   background-color: #f9f9f9;
 
@@ -34,19 +35,65 @@ body {
     min-height: 90%;
   }
 
-  #app-container {
-    box-shadow: 3px 3px 5x $site-black;
-    background-color: #fefefe;
+  div {
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  #root-container {
+    height: 100%;
+    margin: 0 auto;
+    overflow-y: auto;
+
+    > div {
+      height: 100%;
+      padding: 10px;
+      overflow-y: auto;
+    }
+
+    .row {
+      display: block;
+      width: 100%;
+      margin: 0;
+    }
+  }
+
+  #dashboard-app-container {
+    float: none;
+    box-sizing: border-box;
+    box-shadow: 3px 3px 5px #dedede, -3px -3px 5px #eaeaea;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    margin: 0 auto;
     padding-top: 1em;
     padding-bottom: 1em;
-    box-sizing: border-box;
+    background-color: #fefefe;
 
-    #nav-container {
-      #search-sources-container {
-        div.input {
-          width: 95%;
-        }
+    > div[id$='container'] {
+      margin-top: 1em;
+    }
+  
+    .site-name-link {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .sign-out-btn-container {
+      display: flex;
+      flex-grow: 2;
+      justify-content: flex-end;
+    }
+    
+    #search-sources-container {
+      div.input {
+        width: 95%;
       }
+    }
+
+    #sign-out-btn {
+      margin-right: 1em;
     }
 
     #app-status-container {
@@ -56,10 +103,7 @@ body {
     #articles-container {
       border-bottom: $border-width solid #ececec;
       margin-bottom: 1em;
-    }
-
-    #sign-out-btn {
-      margin-right: 1em;
+      flex-grow: 2;
     }
 
     .article:first-child {
@@ -76,9 +120,9 @@ body {
       padding: 2%;
       
       .article-title {
+        box-sizing: border-box;
         display: block;
         margin-bottom: 0.5em;
-        box-sizing: border-box;
         color: #2fa4e7;
         font-size: 1.8em;
         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -96,22 +140,9 @@ body {
         }
       }
     }
-  }
 
-  .sign-out-btn-container {
-    display: flex;
-    flex-grow: 2;
-    justify-content: flex-end;
-  }
-
-  .site-name-link {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  // Means "for all div's that are direct children of #app-container and whose id's end with container".
-  > div[id$='container'] {
-    margin-top: 1em;
+    #footer-container {
+      padding: 0 15px;
+    }
   }
 }
