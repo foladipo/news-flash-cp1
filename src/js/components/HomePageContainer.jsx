@@ -1,5 +1,6 @@
 import React from 'react';
-import firebase from 'firebase';
+import firebaseCore from 'firebase/app';
+import * as firebaseui from 'firebaseui';
 import getFirebaseApp from '../util/getFirebaseApp';
 
 /**
@@ -14,7 +15,7 @@ export default function HomePageContainer() {
   const firebaseUi = new firebaseui.auth.AuthUI(firebaseApp.auth());
   firebaseApp.auth().onAuthStateChanged((user) => {
     if (user) {
-      user.getToken()
+      user.getIdToken()
         .then((idToken) => {
           document.cookie = `idToken=${idToken}`;
           window.location.replace('/dashboard');
@@ -28,11 +29,11 @@ export default function HomePageContainer() {
 
       const firebaseUiConfig = {
         callbacks: {
-          signInSuccess: () => false,
+          signInSuccessWithAuthResult: () => false,
         },
         signInOptions: [
-          firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-          firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+          firebaseCore.auth.GoogleAuthProvider.PROVIDER_ID,
+          firebaseCore.auth.FacebookAuthProvider.PROVIDER_ID,
         ],
       };
       firebaseUi.start('#firebaseui-auth-container', firebaseUiConfig);

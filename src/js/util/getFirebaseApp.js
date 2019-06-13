@@ -1,4 +1,4 @@
-import firebase from 'firebase';
+import firebaseCore from 'firebase/app';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -6,12 +6,13 @@ dotenv.config();
 /**
  * Return the existing Firebase app for this project, or instantiate
  * a new one if none existed before.
- * @return - A Firebase app, of type firebase.app.
+ * @return - A Firebase app, of type firebaseCore.app.App.
  */
 export default function getFirebaseApp() {
   let firebaseApp = {};
+
   try {
-    firebaseApp = firebase.app();
+    firebaseApp = firebaseCore.app();
   } catch (error) {
     const firebaseConfig = {
       apiKey: process.env.FIREBASE_API_KEY,
@@ -20,7 +21,7 @@ export default function getFirebaseApp() {
       storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
       projectId: process.env.FIREBASE_PROJECT_ID,
     };
-    firebaseApp = firebase.initializeApp(firebaseConfig);
+    firebaseApp = firebaseCore.initializeApp(firebaseConfig);
   }
 
   return firebaseApp;
