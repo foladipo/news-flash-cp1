@@ -1,4 +1,4 @@
-import firebase from 'firebase';
+import firebaseCore from 'firebase/app';
 import chai from 'chai';
 import dotenv from 'dotenv';
 import getFirebaseApp from '../../src/js/util/getFirebaseApp';
@@ -15,7 +15,7 @@ describe('getFirebaseApp()', () => {
 describe('When called, getFirebaseApp()', () => {
   const app = getFirebaseApp();
   it('should return an instance of firebase.app', () => {
-    expect(app instanceof firebase.app.App).to.equal(true);
+    expect(app instanceof firebaseCore.app.App).to.equal(true);
   });
 
   const initWith = 'should return a firebase app that was initialized with';

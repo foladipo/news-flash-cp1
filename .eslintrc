@@ -9,8 +9,5 @@
         "browser": true,
         "mocha": true,
         "node": true
-    },
-    "globals": {
-    "firebaseui": true
-  }
+    }
 }
