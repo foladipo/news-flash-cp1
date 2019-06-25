@@ -46,8 +46,8 @@ for details.
 ## Installation and setup
 
 Here are the steps you need to follow to run this project on your computer:
-- **Install Node.js**: You may visit [this link](https://nodejs.org/en/download/) for complete 
-instructions on installing Node.js on your computer.
+- **Install Node.js version 8 or later**: You may visit [this link](https://nodejs.org/en/download/) for complete 
+instructions on installing Node.js version 8 (or later) on your computer.
 
 - **Open a terminal/command prompt** on your computer and `cd` into your preferred path/location.
 
@@ -62,7 +62,7 @@ git clone https://github.com/foladipo/news-flash-cp1.git
 ```bash
 npm install
 ```
-Note: `npm` is a component of Node.js that serves as its package manager. So it comes along with installing Node.js.
+Note: `npm` is a component of Node.js that serves as its package manager. So it comes along with installing Node.js. Note that since the project requires Node.js version 8 or later, you also need npm version 6 or later to run this project.
 
 
 - **Create a Firebase project**: This project uses the [Firebase JavaScript SDK](https://firebase.google.com/docs/web/setup/)
