@@ -2,7 +2,8 @@
   "name": "news-flash-cp1",
   "version": "0.0.2",
   "engines": {
-    "node": ">=8 <10"
+    "node": "10.x",
+    "npm": "6.x"
   },
   "description": "A web app that retrieves news headlines and displays them in a list.",
   "main": "app.js",
