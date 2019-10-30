@@ -2,7 +2,8 @@
   "name": "news-flash-cp1",
   "version": "0.0.2",
   "engines": {
-    "node": ">=8 <10"
+    "node": "10.x",
+    "npm": "6.x"
   },
   "description": "A web app that retrieves news headlines and displays them in a list.",
   "main": "app.js",
@@ -68,18 +69,18 @@
     "cheerio": "^0.22.0",
     "coveralls": "^3.0.4",
     "enzyme": "^2.8.1",
-    "eslint": "^4.18.2",
-    "eslint-config-airbnb": "^14.1.0",
-    "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-jsx-a11y": "^4.0.0",
-    "eslint-plugin-react": "^6.10.3",
+    "eslint": "^5.3.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.14.2",
     "jsdom": "^9.12.0",
     "mocha": "^6.1.4",
     "nodemon": "^1.19.1",
     "nyc": "^14.1.1",
     "react-addons-test-utils": "^15.5.1",
     "react-test-renderer": "^15.5.4",
-    "sinon": "^2.2.0",
+    "sinon": "^7.3.2",
     "webpack-dev-middleware": "^3.7.0",
     "webpack-hot-middleware": "^2.25.0"
   }
